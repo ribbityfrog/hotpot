@@ -1,0 +1,10 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+em {
+    @apply font-medium italic
+}
+
+strong {
+    @apply font-medium
+}

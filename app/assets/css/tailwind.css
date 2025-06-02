@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@theme static {
+  --font-text: Montserrat, ui-sans-serif, system-ui;
+  --font-title: Inter, ui-sans-serif, system-ui;
+
+  --text-hidden: 0px;
+  --text-hidden--line-height: 0px;
+
+  --radius-slate: 33px;
+
+  --spacing-laptop: 1200px;
+  --spacing-desktop: 1800px;
+
+  --shadow-element: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
+  --shadow-section: 0 0 20px 0 rgba(1, 26, 59, 0.33);
+
+  --breakpoint-laptop: 1200px;
+  --breakpoint-desktop: 1800px;
+
+  --color-slate-50: #f1f6ee;
+  --color-slate-100: #e2eedd;
+  --color-slate-200: #c9debf;
+  --color-slate-300: #accd9d;
+  --color-slate-400: #93bd7f;
+  --color-slate-500: #76ac5d;
+  --color-slate-600: #5e8e49;
+  --color-slate-700: #466936;
+  --color-slate-800: #2f4724;
+  --color-slate-900: #162211;
+  --color-slate-950: #0b1109;
+
+  --color-slateSecond-50: #fff8e6;
+  --color-slateSecond-100: #fef2cd;
+  --color-slateSecond-200: #fde59b;
+  --color-slateSecond-300: #fdd868;
+  --color-slateSecond-400: #fcca36;
+  --color-slateSecond-500: #fabe04;
+  --color-slateSecond-600: #c99703;
+  --color-slateSecond-700: #977202;
+  --color-slateSecond-800: #644c02;
+  --color-slateSecond-900: #322601;
+  --color-slateSecond-950: #191300;
+
+  --color-slateConfirm-50: #e5faf3;
+  --color-slateConfirm-100: #d0f6e9;
+  --color-slateConfirm-200: #a1ecd2;
+  --color-slateConfirm-300: #6ee2ba;
+  --color-slateConfirm-400: #3fd9a3;
+  --color-slateConfirm-500: #25bb87;
+  --color-slateConfirm-600: #1d956b;
+  --color-slateConfirm-700: #166f50;
+  --color-slateConfirm-800: #0f4d37;
+  --color-slateConfirm-900: #08261c;
+  --color-slateConfirm-950: #03110c;
+
+  --color-slateCancel-50: #fdeded;
+  --color-slateCancel-100: #fbdbda;
+  --color-slateCancel-200: #f6b3b1;
+  --color-slateCancel-300: #f2908d;
+  --color-slateCancel-400: #ed6863;
+  --color-slateCancel-500: #e9453e;
+  --color-slateCancel-600: #d31e18;
+  --color-slateCancel-700: #a01712;
+  --color-slateCancel-800: #690f0c;
+  --color-slateCancel-900: #370806;
+  --color-slateCancel-950: #1b0403;
+
+  --color-slateDark-50: #e6e5eb;
+  --color-slateDark-100: #cdccd6;
+  --color-slateDark-200: #9f9bb0;
+  --color-slateDark-300: #6e6a86;
+  --color-slateDark-400: #464455;
+  --color-slateDark-500: #1c1b22;
+  --color-slateDark-600: #17171c;
+  --color-slateDark-700: #101014;
+  --color-slateDark-800: #0c0b0e;
+  --color-slateDark-900: #050506;
+  --color-slateDark-950: #020203;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+:root {
+  --ui-primary: var(--ui-color-primary-500);
+  --ui-second: var(--ui-color-second-600);
+  --ui-confirm: var(--ui-color-confirm-500);
+  --ui-cancel: var(--ui-color-cancel-400);
+  --ui-error: var(--ui-color-error-400);
+  --ui-darkness: white;
+
+  --ui-bg: var(--ui-darkness);
+
+  --ui-text-dimmed: var(--ui-color-darkness-400);
+  --ui-text-muted: var(--ui-color-darkness-300);
+  --ui-text-toned: var(--ui-color-darkness-200);
+  --ui-text: var(--ui-color-darkness-500);
+  --ui-text-highlighted: var(--ui-color-darkness-900);
+}
+
+.dark {
+  --ui-primary: var(--ui-color-primary-400);
+  --ui-second: var(--ui-color-second-500);
+  --ui-confirm: var(--ui-color-confirm-400);
+  --ui-cancel: var(--ui-color-cancel-400);
+  --ui-error: var(--ui-color-error-400);
+  --ui-darkness: var(--ui-color-darkness-500);
+
+  --ui-bg: var(--ui-darkness);
+
+  --ui-text-dimmed: var(--ui-color-darkness-200);
+  --ui-text-muted: var(--ui-color-darkness-300);
+  --ui-text-toned: var(--ui-color-darkness-400);
+  --ui-text: var(--ui-color-darkness-50);
+  --ui-text-highlighted: white;
+}
