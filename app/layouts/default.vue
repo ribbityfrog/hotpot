@@ -5,8 +5,8 @@
 <template>
     <Layout>
         <Section full class="py-4">
-            <HeaderMobile v-if="$device.isMobile" :menu="leAuth.isAuthenticated ? 'connected' : 'main'" />
-            <HeaderDefault v-else :menu="leAuth.isAuthenticated ? 'connected' : 'main'" />
+            <HeaderMobile v-if="$device.isMobile" menu="main" />
+            <HeaderDefault v-else menu="main" />
         </Section>
         <Section group full class="grow pt-4">
             <slot />

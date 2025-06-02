@@ -100,9 +100,9 @@ const classContent = `w-full ${props.layout} ${contentPosition} ${props.classCon
 <template>
     <section :class="classBlock" :style="styleBlock">
         <div :class="classSection">
-            <Hh2 v-if="props.title !== undefined || $slots.title !== undefined" :class="classTitle" :center="props.titleCenter">
+            <h2 v-if="props.title !== undefined || $slots.title !== undefined" :class="classTitle" :center="props.titleCenter">
                 <slot name="title">{{ props.title }}</slot>
-            </Hh2>
+            </h2>
             <div :class="classContent">
                 <slot />
             </div>

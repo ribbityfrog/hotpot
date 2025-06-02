@@ -19,29 +19,29 @@
   --breakpoint-laptop: 1200px;
   --breakpoint-desktop: 1800px;
 
-  --color-slate-50: #f1f6ee;
-  --color-slate-100: #e2eedd;
-  --color-slate-200: #c9debf;
-  --color-slate-300: #accd9d;
-  --color-slate-400: #93bd7f;
-  --color-slate-500: #76ac5d;
-  --color-slate-600: #5e8e49;
-  --color-slate-700: #466936;
-  --color-slate-800: #2f4724;
-  --color-slate-900: #162211;
-  --color-slate-950: #0b1109;
+  --color-slatePrimary-50: #f1f6ee;
+  --color-slatePrimary-100: #e2eedd;
+  --color-slatePrimary-200: #c9debf;
+  --color-slatePrimary-300: #accd9d;
+  --color-slatePrimary-400: #93bd7f;
+  --color-slatePrimary-500: #76ac5d;
+  --color-slatePrimary-600: #5e8e49;
+  --color-slatePrimary-700: #466936;
+  --color-slatePrimary-800: #2f4724;
+  --color-slatePrimary-900: #162211;
+  --color-slatePrimary-950: #0b1109;
 
-  --color-slateSecond-50: #fff8e6;
-  --color-slateSecond-100: #fef2cd;
-  --color-slateSecond-200: #fde59b;
-  --color-slateSecond-300: #fdd868;
-  --color-slateSecond-400: #fcca36;
-  --color-slateSecond-500: #fabe04;
-  --color-slateSecond-600: #c99703;
-  --color-slateSecond-700: #977202;
-  --color-slateSecond-800: #644c02;
-  --color-slateSecond-900: #322601;
-  --color-slateSecond-950: #191300;
+  --color-slateSecondary-50: #fff8e6;
+  --color-slateSecondary-100: #fef2cd;
+  --color-slateSecondary-200: #fde59b;
+  --color-slateSecondary-300: #fdd868;
+  --color-slateSecondary-400: #fcca36;
+  --color-slateSecondary-500: #fabe04;
+  --color-slateSecondary-600: #c99703;
+  --color-slateSecondary-700: #977202;
+  --color-slateSecondary-800: #644c02;
+  --color-slateSecondary-900: #322601;
+  --color-slateSecondary-950: #191300;
 
   --color-slateConfirm-50: #e5faf3;
   --color-slateConfirm-100: #d0f6e9;
@@ -80,14 +80,6 @@
   --color-slateDark-950: #020203;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,

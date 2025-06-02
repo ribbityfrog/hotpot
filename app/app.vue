@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-toaster.init()
-
 </script>
 
 <template>

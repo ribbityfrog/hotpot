@@ -3,6 +3,7 @@
 const props = defineProps({
     inline: {
         type: Boolean,
+        default: false
     },
     col: {
         type: Boolean,
@@ -80,6 +81,10 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    startEnd: {
+        type: Boolean,
+        default: false
+    },
     endCenter: {
         type: Boolean,
         default: false
@@ -143,10 +148,12 @@ else if (props.betweenEnd)
     justifyAlign = 'justify-between items-end content-center'
 else if (props.startCenter)
     justifyAlign = 'justify-start items-center content-center'
+else if (props.startEnd)
+    justifyAlign = 'justify-start items-end content-center'
 else if (props.endCenter)
     justifyAlign = 'justify-end items-center content-center'
 
-const classFlex = `${props.inline ? 'inline-flex' : `${width} flex ${direction}`} ${justifyAlign} ${debugDisplay} min-w-0`
+const classFlex = `${props.inline ? 'inline-flex' : `${width} flex ${direction}`} ${justifyAlign} ${debugDisplay}`
 
 </script>
 

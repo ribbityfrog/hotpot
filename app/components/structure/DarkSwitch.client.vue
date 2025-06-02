@@ -9,7 +9,7 @@ watch (selected, (newState) => {
 })
 
 const ui = {
-    base: 'cursor-pointer data-[state=checked]:bg-blue-300 data-[state=checked]:dark:bg-blue-300 data-[state=unchecked]:bg-yellow-400 data-[state=unchecked]:dark:bg-yellow-400',
+    base: 'data-[state=checked]:bg-blue-300 data-[state=checked]:dark:bg-blue-300 data-[state=unchecked]:bg-yellow-400 data-[state=unchecked]:dark:bg-yellow-400',
     icon: 'group-data-[state=unchecked]:text-blue-500 group-data-[state=unchecked]:dark:text-blue-500 group-data-[state=checked]:text-yellow-500 group-data-[state=checked]:dark:text-yellow-500',
 }
 

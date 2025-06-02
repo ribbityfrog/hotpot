@@ -42,10 +42,8 @@ watch(() => route.path, () => {
 <template>
     <Flex full between :class="`px-2 ${textColor}`">
         <NuxtLink to="/">
-            <NuxtImg
+            <img
                 src="/img/brand/logo.png"
-                width="100"
-                fit="inside"
                 alt="Logo"
                 class="object-contain w-[100px]"/>
         </NuxtLink>
@@ -56,16 +54,8 @@ watch(() => route.path, () => {
             <KitIcon name="i-lucide-menu" aria="burger menu" size="w-10 h-10" />
             <template #body>
                 <Flex col end class="gap-y-4">
-                    <Menu v-if="props.menu !== undefined" :menu="props.menu" :white="props.white" vertical />
-                    <ClientOnly v-if="!props.noAccount">
-                        <Flex v-if="leAuth.isAuthenticated" col center>
-                            <Menu menu="account" dropdown="Account" />
-                        </Flex>
-                        <Flex v-else col center>
-                            <AccountModalConnect />
-                        </Flex>
-                    </ClientOnly>
-                    <KitThemeDarkSwitch v-if="!props.noDark" />
+                    <Menu v-if="props.menu !== undefined" :menu="props.menu" vertical />
+                    <DarkSwitch v-if="!props.noDark" />
                 </Flex>
             </template>
         </USlideover>

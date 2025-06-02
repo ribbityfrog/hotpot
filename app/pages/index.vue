@@ -4,8 +4,8 @@
 
 <template>
     <Page>
-        <Section title="Yo" title-center class-content="gap-y-8">
-            Yoyo
+        <Section>
+            <h1>Clean start</h1>
         </Section>
     </Page>
 </template>
