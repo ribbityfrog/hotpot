@@ -62,7 +62,6 @@ export class Color {
             this.mix(new Color(0, 0, 0, 0.85)),
             this.mix(new Color(0, 0, 0, 0.92)),
         ]
-        console.log(this.shades)
     }
 
     shadeStyle(themeColor: ThemeColor) {
@@ -73,7 +72,6 @@ export class Color {
 
         let i = 0
         for (let shade = 100; shade <= 900; shade += 100) {
-            console.log(`${slate}${shade}`, this.shades[i]!.hex3)
             document.documentElement.style.setProperty(`${slate}${shade}`, this.shades[i]!.hex3)
             i++
             if (shade === 900)

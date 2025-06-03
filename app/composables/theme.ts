@@ -10,6 +10,12 @@ class Theme {
             primary: new Color('#FF0000'),
             secondary: new Color('#00FF00'),
         }
+
+        for (const entry of themeColorEntries) {
+            const color = this.#colors[entry]
+            color.shadeGen()
+            color.shadeStyle(entry)
+        }
     }
 }
 

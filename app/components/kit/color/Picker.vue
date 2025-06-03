@@ -7,9 +7,9 @@ const props = defineProps({
     }
 })
 
-const color = ref(theme.colors[props.color].hex3)
+const picker = ref(theme.colors[props.color].hex3)
 
-watch(color, (newcolor) => {
+watch(picker, (newcolor) => {
     const c = new Color(newcolor)
     c.shadeGen()
     c.shadeStyle(props.color)
@@ -26,7 +26,7 @@ watch(color, (newcolor) => {
         </UButton>
 
         <template #content>
-            <UColorPicker v-model="color" class="p-2" />
+            <UColorPicker v-model="picker" class="p-2" />
         </template>
     </UPopover>
 </template>
