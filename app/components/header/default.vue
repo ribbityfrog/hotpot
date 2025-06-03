@@ -32,7 +32,7 @@ const props = defineProps({
                 <img
                     src="/img/brand/logo.png"
                     alt="Logo"
-                    class="object-contain w-[150px]"/>
+                    class="object-contain w-[80px]">
             </NuxtLink>
         </div>
         <Flex center class="gap-x-4">

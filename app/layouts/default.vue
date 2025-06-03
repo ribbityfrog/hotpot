@@ -12,7 +12,7 @@
             <slot />
         </Section>
         <footer class="w-full">
-            <Section wide class="bg-darkness-50 dark:bg-darkness-700 py-4">
+            <Section wide class="bg-neutral-300 dark:bg-neutral-950 py-4">
                 <FooterDefault />
             </Section>
         </footer>

@@ -45,13 +45,13 @@ watch(() => route.path, () => {
             <img
                 src="/img/brand/logo.png"
                 alt="Logo"
-                class="object-contain w-[100px]"/>
+                class="object-contain w-[50px]">
         </NuxtLink>
         <USlideover
             v-model:open="isMenuOpen"
             title="Menu"
             side="right" >
-            <KitIcon name="i-lucide-menu" aria="burger menu" size="w-10 h-10" />
+            <UIcon name="i-lucide-menu" aria="burger menu" size="32" />
             <template #body>
                 <Flex col end class="gap-y-4">
                     <Menu v-if="props.menu !== undefined" :menu="props.menu" vertical />

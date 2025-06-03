@@ -1,15 +1,8 @@
-export const themeColors = {
-    primary: '--color-slatePrimary-',
-    secondary: '--color-slateSecondary-',
-} as const
-export type ThemeColor = keyof typeof themeColors
-export const themeColorEntries = Object.keys(themeColors) as Readonly<ThemeColor[]>
-
 export class Color {
-    r: number
-    g: number
-    b: number
-    a: number
+    r!: number
+    g!: number
+    b!: number
+    a!: number
     shades: Color[] = []
 
     get hex3(): string {
@@ -24,6 +17,15 @@ export class Color {
     constructor(r: number, g: number, b: number, a?: number);
     constructor(rOrHexa: number | string, g?: number, b?: number, a: number = 1)
     {
+        if (typeof rOrHexa === 'string')
+            this.init(rOrHexa)
+        else
+            this.init(rOrHexa, g!, b!, a)
+    }
+
+    init(hexa: string): void;
+    init(r: number, g: number, b: number, a?: number): void;
+    init(rOrHexa: number | string, g?: number, b?: number, a: number = 1): void {
         if(typeof rOrHexa === 'number')
         {
             this.r = Color.clampColor(rOrHexa)
@@ -38,6 +40,13 @@ export class Color {
             this.b = Color.clampColor(parseInt(hexa.slice(4, 6), 16))
             this.a = hasAlpha ? Color.clampAlpha(parseInt(hexa.slice(6, 8), 16) / 255) : 1
         }
+    }
+
+    update(hexa: string, style?: ThemeColor): void {
+        this.init(hexa)
+        this.shadeGen()
+        if (style)
+            this.shadeStyle(style)
     }
 
     mix(fg: Color): Color {
@@ -71,11 +80,11 @@ export class Color {
         const slate = themeColors[themeColor]
 
         let i = 0
-        for (let shade = 100; shade <= 900; shade += 100) {
-            document.documentElement.style.setProperty(`${slate}${shade}`, this.shades[i]!.hex3)
+        let shade = 50
+        while (shade <= 950) {
+            setProperty(`${slate}${shade}`, this.shades[i]!.hex3)
+            shade = shade === 50 || shade === 900 ? shade + 50 : shade + 100
             i++
-            if (shade === 900)
-                document.documentElement.style.setProperty(`${slate}950`, this.shades[i]!.hex3)
         }
     }
 

@@ -8,11 +8,11 @@ const props = defineProps({
 })
 
 const picker = ref(theme.colors[props.color].hex3)
+const input = ref(theme.colors[props.color].hex3)
 
 watch(picker, (newcolor) => {
-    const c = new Color(newcolor)
-    c.shadeGen()
-    c.shadeStyle(props.color)
+    input.value = picker.value
+    theme.colors[props.color].update(newcolor, props.color)
 })
 
 </script>
@@ -26,7 +26,13 @@ watch(picker, (newcolor) => {
         </UButton>
 
         <template #content>
-            <UColorPicker v-model="picker" class="p-2" />
+            <Flex col center class="gap-4 p-2">
+                <UColorPicker v-model="picker" />
+                <Flex center class="gap-4">
+                    <UInput v-model="input" class="w-24" color="neutral" :autofocus="false" />
+                    <UButton :disabled="picker === input" square color="success" @click="picker = input">OK</UButton>
+                </Flex>
+            </Flex>
         </template>
     </UPopover>
 </template>

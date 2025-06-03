@@ -3,10 +3,11 @@ export default defineAppConfig({
         colors: {
             primary: 'slatePrimary',
             secondary: 'slateSecondary',
-            darkness: 'slateDark',
-            confirm: 'slateConfirm',
-            cancel: 'slateCancel',
-            error: 'slateCancel',
+            success: 'slateSuccess',
+            info: 'slateInfo',
+            warning: 'slateWarning',
+            error: 'slateError',
+            neutral: 'slateNeutral'
         },
     }
 })

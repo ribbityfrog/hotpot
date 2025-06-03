@@ -43,41 +43,65 @@
   --color-slateSecondary-900: #322601;
   --color-slateSecondary-950: #191300;
 
-  --color-slateConfirm-50: #e5faf3;
-  --color-slateConfirm-100: #d0f6e9;
-  --color-slateConfirm-200: #a1ecd2;
-  --color-slateConfirm-300: #6ee2ba;
-  --color-slateConfirm-400: #3fd9a3;
-  --color-slateConfirm-500: #25bb87;
-  --color-slateConfirm-600: #1d956b;
-  --color-slateConfirm-700: #166f50;
-  --color-slateConfirm-800: #0f4d37;
-  --color-slateConfirm-900: #08261c;
-  --color-slateConfirm-950: #03110c;
+  --color-slateSuccess-50: #e5faf3;
+  --color-slateSuccess-100: #d0f6e9;
+  --color-slateSuccess-200: #a1ecd2;
+  --color-slateSuccess-300: #6ee2ba;
+  --color-slateSuccess-400: #3fd9a3;
+  --color-slateSuccess-500: #25bb87;
+  --color-slateSuccess-600: #1d956b;
+  --color-slateSuccess-700: #166f50;
+  --color-slateSuccess-800: #0f4d37;
+  --color-slateSuccess-900: #08261c;
+  --color-slateSuccess-950: #03110c;
 
-  --color-slateCancel-50: #fdeded;
-  --color-slateCancel-100: #fbdbda;
-  --color-slateCancel-200: #f6b3b1;
-  --color-slateCancel-300: #f2908d;
-  --color-slateCancel-400: #ed6863;
-  --color-slateCancel-500: #e9453e;
-  --color-slateCancel-600: #d31e18;
-  --color-slateCancel-700: #a01712;
-  --color-slateCancel-800: #690f0c;
-  --color-slateCancel-900: #370806;
-  --color-slateCancel-950: #1b0403;
+  --color-slateInfo-50: #ebf3ff;
+  --color-slateInfo-100: #d6e7ff;
+  --color-slateInfo-200: #a8cbff;
+  --color-slateInfo-300: #80b3ff;
+  --color-slateInfo-400: #579aff;
+  --color-slateInfo-500: #2b7fff;
+  --color-slateInfo-600: #0060f0;
+  --color-slateInfo-700: #0047b3;
+  --color-slateInfo-800: #002f75;
+  --color-slateInfo-900: #00183d;
+  --color-slateInfo-950: #000c1f;
 
-  --color-slateDark-50: #e6e5eb;
-  --color-slateDark-100: #cdccd6;
-  --color-slateDark-200: #9f9bb0;
-  --color-slateDark-300: #6e6a86;
-  --color-slateDark-400: #464455;
-  --color-slateDark-500: #1c1b22;
-  --color-slateDark-600: #17171c;
-  --color-slateDark-700: #101014;
-  --color-slateDark-800: #0c0b0e;
-  --color-slateDark-900: #050506;
-  --color-slateDark-950: #020203;
+  --color-slateWarning-50: #fff8e5;
+  --color-slateWarning-100: #fff0c7;
+  --color-slateWarning-200: #ffe294;
+  --color-slateWarning-300: #ffd35c;
+  --color-slateWarning-400: #ffc629;
+  --color-slateWarning-500: #f0b100;
+  --color-slateWarning-600: #c28e00;
+  --color-slateWarning-700: #8f6900;
+  --color-slateWarning-800: #614700;
+  --color-slateWarning-900: #2e2200;
+  --color-slateWarning-950: #191300;
+
+  --color-slateError-50: #fdeded;
+  --color-slateError-100: #fbdbda;
+  --color-slateError-200: #f6b3b1;
+  --color-slateError-300: #f2908d;
+  --color-slateError-400: #ed6863;
+  --color-slateError-500: #e9453e;
+  --color-slateError-600: #d31e18;
+  --color-slateError-700: #a01712;
+  --color-slateError-800: #690f0c;
+  --color-slateError-900: #370806;
+  --color-slateError-950: #1b0403;
+
+  --color-slateNeutral-50: #f2f4f7;
+  --color-slateNeutral-100: #e9ecf1;
+  --color-slateNeutral-200: #d3dae3;
+  --color-slateNeutral-300: #bdc7d6;
+  --color-slateNeutral-400: #a7b5c8;
+  --color-slateNeutral-500: #90a1b9;
+  --color-slateNeutral-600: #6980a0;
+  --color-slateNeutral-700: #4d607a;
+  --color-slateNeutral-800: #334051;
+  --color-slateNeutral-900: #1a2029;
+  --color-slateNeutral-950: #0c0f13;
 }
 
 @layer base {
@@ -96,15 +120,15 @@
   --ui-confirm: var(--ui-color-confirm-500);
   --ui-cancel: var(--ui-color-cancel-400);
   --ui-error: var(--ui-color-error-400);
-  --ui-darkness: white;
+  --ui-neutral: var(--ui-color-neutral-500);
 
-  --ui-bg: var(--ui-darkness);
+  --ui-bg: white;
 
-  --ui-text-dimmed: var(--ui-color-darkness-400);
-  --ui-text-muted: var(--ui-color-darkness-300);
-  --ui-text-toned: var(--ui-color-darkness-200);
-  --ui-text: var(--ui-color-darkness-500);
-  --ui-text-highlighted: var(--ui-color-darkness-900);
+  --ui-text-dimmed: var(--ui-color-neutral-400);
+  --ui-text-muted: var(--ui-color-neutral-300);
+  --ui-text-toned: var(--ui-color-neutral-200);
+  --ui-text: var(--ui-color-neutral-500);
+  --ui-text-highlighted: var(--ui-color-neutral-900);
 }
 
 .dark {
@@ -113,13 +137,13 @@
   --ui-confirm: var(--ui-color-confirm-400);
   --ui-cancel: var(--ui-color-cancel-400);
   --ui-error: var(--ui-color-error-400);
-  --ui-darkness: var(--ui-color-darkness-500);
+  --ui-neutral: var(--ui-color-neutral-400);
 
-  --ui-bg: var(--ui-darkness);
+  --ui-bg: var(--ui-color-neutral-900);
 
-  --ui-text-dimmed: var(--ui-color-darkness-200);
-  --ui-text-muted: var(--ui-color-darkness-300);
-  --ui-text-toned: var(--ui-color-darkness-400);
-  --ui-text: var(--ui-color-darkness-50);
+  --ui-text-dimmed: var(--ui-color-neutral-200);
+  --ui-text-muted: var(--ui-color-neutral-300);
+  --ui-text-toned: var(--ui-color-neutral-400);
+  --ui-text: var(--ui-color-neutral-50);
   --ui-text-highlighted: white;
 }
