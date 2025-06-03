@@ -31,7 +31,7 @@ export default defineNuxtConfig({
     ],
     ui: {
         theme: {
-            colors: ['primary', 'second', 'darkness', 'third', 'confirm', 'cancel', 'neutral', 'info', 'success', 'warning', 'error']
+            colors: ['primary', 'secondary', 'darkness', 'third', 'confirm', 'cancel', 'neutral', 'info', 'success', 'warning', 'error']
         },
     },
     css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],

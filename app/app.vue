@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+theme.init()
+
 </script>
 
 <template>

@@ -92,7 +92,7 @@
 
 :root {
   --ui-primary: var(--ui-color-primary-500);
-  --ui-second: var(--ui-color-second-600);
+  --ui-secondary: var(--ui-color-secondary-600);
   --ui-confirm: var(--ui-color-confirm-500);
   --ui-cancel: var(--ui-color-cancel-400);
   --ui-error: var(--ui-color-error-400);
@@ -109,7 +109,7 @@
 
 .dark {
   --ui-primary: var(--ui-color-primary-400);
-  --ui-second: var(--ui-color-second-500);
+  --ui-secondary: var(--ui-color-secondary-500);
   --ui-confirm: var(--ui-color-confirm-400);
   --ui-cancel: var(--ui-color-cancel-400);
   --ui-error: var(--ui-color-error-400);
