@@ -5,6 +5,12 @@ const tilesGap = ref(false)
 
 const tab = ref('0')
 
+const tilesGapComputed = computed(() => {
+    if (tab.value === '1')
+        return 'gap-x-2'
+    return tilesGap.value ? 'gap-x-1.5' : ''
+})
+
 </script>
 
 <template>
@@ -22,8 +28,8 @@ const tab = ref('0')
                     :content="false"
                     :items="[{ label: 'Background' }, { label: 'Text' }]"
                     class="w-80" />
-                <div class="space-y-2">
-                    <Flex v-if="tab !== '1'" class="gap-x-1">
+                <div v-if="tab !== '1'" class="space-y-2">
+                    <Flex class="gap-x-1">
                         <UCheckbox v-model="displayCodes" color="neutral" />
                         <p class="text-sm">Display color codes</p>
                     </Flex>
@@ -40,7 +46,7 @@ const tab = ref('0')
                 :key="themeColor"
                 full
                 center
-                :class="tilesGap ? 'gap-x-1.5' : ''"
+                :class="tilesGapComputed"
                 wrap>
                 <ColorTile :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
             </Flex>
