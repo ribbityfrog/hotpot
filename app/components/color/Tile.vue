@@ -8,6 +8,10 @@ const props = defineProps({
     color: {
         type: String as PropType<ThemeColor>,
         required: true
+    },
+    text: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -15,12 +19,12 @@ const props = defineProps({
 
 <template>
     <Flex
-        v-for="(shade, idx) in shades[props.color].bg"
+        v-for="(shade, idx) in shades[props.color][props.text ? 'text' : 'bg']"
         :key="shade"
         col
         center
-        :class="`w-1/13 sm:1/11 h-8 xl:h-12 ${shade}`">
-        <p v-if="!$device.isMobile && props.code" class="text-xs px-0.5 bg-neutral-700/60 text-white">
+        :class="`w-1/14 sm:1/11 h-8 xl:h-12 ${props.text ? '' : shade}`">
+        <p v-if="!$device.isMobile && props.code" :class="`${props.text ? `font-medium sm:font-semibold xl:font-extrabold ${shade}` : 'text-xs px-0.5 bg-neutral-700/60 text-white'}`">
             {{ theme.colors[props.color].shades[idx]?.hex3 ?? 'error' }}
         </p>
     </Flex>
