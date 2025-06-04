@@ -1,6 +1,10 @@
 class Theme {
     #colors!: Ref<Record<ThemeColor, Color>>
-    #originals!: Record<ThemeColor, Color>
+    // #defaults!: Ref<Record<DefaultColor, string>>
+    // #defaultsDark!: Ref<Record<DefaultColor, string>>
+    #originalColors!: Record<ThemeColor, Color>
+    // #originalDefaults!: Record<DefaultColor, string>
+    // #originalDefaultsDark!: Record<DefaultColor, string>
     #isReloadable!: Ref<boolean>
 
     get colors() {
@@ -19,15 +23,12 @@ class Theme {
         const storage = localStorage.getItem('colors')
         const colors: Record<ThemeColor, string> | null = storage ? JSON.parse(storage) : null
 
-        this.#originals = {
-            primary: new Color(getProperty('--ui-color-primary-500')),
-            secondary: new Color(getProperty('--ui-color-secondary-600')),
-            success: new Color(getProperty('--ui-color-success-500')),
-            info: new Color(getProperty('--ui-color-info-500')),
-            warning: new Color(getProperty('--ui-color-warning-500')),
-            error: new Color(getProperty('--ui-color-error-500')),
-            neutral: new Color(getProperty('--ui-color-neutral-500'))
-        }
+        this.#originalColors = themeOriginalColors
+
+        // this.#originalDefaults = { ...themeOriginalDefaults }
+        // this.#originalDefaultsDark = { ...themeOriginalDefaultsDark }
+
+        // this.applyDefaults()
 
         if (colors)
         {
@@ -51,15 +52,20 @@ class Theme {
         }
     }
 
+    // applyDefaults() {
+    //     for (const [key, value] of Object.entries(this.#originalDefaults))
+    //         console.log(`--ui-${key}`, `var(--ui-color-${value})`)
+    // }
+
     copyOriginals(): Record<ThemeColor, Color> {
         return { 
-            primary: new Color(this.#originals.primary.hex3),
-            secondary: new Color(this.#originals.secondary.hex3),
-            success: new Color(this.#originals.success.hex3),
-            info: new Color(this.#originals.info.hex3), 
-            warning: new Color(this.#originals.warning.hex3),
-            error: new Color(this.#originals.error.hex3),
-            neutral: new Color(this.#originals.neutral.hex3)
+            primary: new Color(this.#originalColors.primary.hex3),
+            secondary: new Color(this.#originalColors.secondary.hex3),
+            success: new Color(this.#originalColors.success.hex3),
+            info: new Color(this.#originalColors.info.hex3), 
+            warning: new Color(this.#originalColors.warning.hex3),
+            error: new Color(this.#originalColors.error.hex3),
+            neutral: new Color(this.#originalColors.neutral.hex3)
         }
     }
 

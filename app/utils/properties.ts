@@ -1,7 +1,7 @@
-export function getProperty(property: string): string {
-    return getComputedStyle(document.documentElement).getPropertyValue(property)
+export function getProperty(property: string, el: HTMLElement = document.documentElement): string {
+    return getComputedStyle(el).getPropertyValue(property)
 }
 
-export function setProperty(property: string, value: string): void {
-    document.documentElement.style.setProperty(property, value)
+export function setProperty(property: string, value: string, el: HTMLElement = document.documentElement): void {
+    el.style.setProperty(property, value)
 }

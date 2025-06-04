@@ -11,6 +11,14 @@ const tilesGapComputed = computed(() => {
     return tilesGap.value ? 'gap-x-1.5' : ''
 })
 
+const darkEl: Ref<HTMLElement | undefined> = ref(undefined)
+const compDarkEl = computed(() => {
+    if (darkEl.value && ('$el' in darkEl.value))
+        return darkEl.value.$el as HTMLElement
+    else
+        return undefined
+})
+
 </script>
 
 <template>
@@ -45,7 +53,10 @@ const tilesGapComputed = computed(() => {
             </Flex>
         </Section>
         <Section title="Defaults" class="mt-8">
-            <UButton @click="setProperty('--ui-bg', 'var(--ui-color-primary-200)')">Test</UButton>
+            <UButton @click="console.log(getProperty('--ui-bg'))">Test</UButton>
+        </Section>
+        <Section ref="darkEl" title="Defaults" class="mt-8 dark">
+            <UButton @click="console.log(getProperty('--ui-bg', compDarkEl))">Test</UButton>
         </Section>
     </Page>
 </template>
