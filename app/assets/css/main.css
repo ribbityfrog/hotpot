@@ -8,3 +8,15 @@ em {
 strong {
     @apply font-medium
 }
+
+h1, h2, h3, h4 {
+    font-family: 'Inter';
+}
+
+h1 {
+    @apply text-3xl sm:text-4xl font-bold
+}
+
+h2 {
+    @apply text-2xl sm:text-3xl font-semibold mb-2
+}

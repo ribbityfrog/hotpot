@@ -31,8 +31,8 @@ const menus = {
         label: 'Home',
         to: '/',
     },{
-        label: 'Colors',
-        to: '/colors',
+        label: 'Theming',
+        to: '/theme',
     }],
 
 } as const satisfies Record<string, NavigationMenuItem[] | DropdownMenuItem[]>

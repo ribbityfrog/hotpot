@@ -15,8 +15,8 @@ const tilesGapComputed = computed(() => {
 
 <template>
     <Page>
-        <Section v-if="!$device.isMobile" class="mb-2">
-            <Flex full between class="gap-y-4">
+        <Section class-content="gap-y-4" title="Colors & Shades">
+            <Flex v-if="!$device.isMobile" full between class="gap-y-4">
                 <UTabs
                     v-model="tab"
                     color="neutral"
@@ -34,8 +34,6 @@ const tilesGapComputed = computed(() => {
                     </Flex>
                 </div>
             </Flex>
-        </Section>
-        <Section wide class-content="gap-y-4 mt-6 sm:mt-2">
             <Flex
                 v-for="themeColor in themeColorEntries"
                 :key="themeColor"
@@ -45,6 +43,9 @@ const tilesGapComputed = computed(() => {
                 wrap>
                 <ColorTile :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
             </Flex>
+        </Section>
+        <Section title="Defaults" class="mt-8">
+            <UButton @click="setProperty('--ui-bg', 'var(--ui-color-primary-200)')">Test</UButton>
         </Section>
     </Page>
 </template>
