@@ -27,7 +27,7 @@ const props = defineProps({
         :key="shade"
         col
         center
-        :class="`${idx === 5 ? 'h-10 xl:h-14 rounded-md' : 'h-8 xl:h-12'} w-5 sm:w-1/13 ${props.text ? '' : shade} ${props.class}`">
+        :class="`${idx === 5 ? 'h-10 xl:h-14 rounded-md' : 'h-8 xl:h-12'} w-5 sm:w-1/14 ${props.text ? '' : shade} ${props.class}`">
         <p v-if="!$device.isMobile && props.code" :class="`${props.text ? `font-medium sm:font-semibold xl:font-extrabold ${shade}` : 'text-xs px-0.5 bg-neutral-700/60 text-white'}`">
             {{ theme.colors[props.color].shades[idx]?.hex3 ?? 'error' }}
         </p>

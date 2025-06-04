@@ -47,7 +47,7 @@ const tilesGapComputed = computed(() => {
                 <ColorPicker :color="themeColor" class="w-30 mr-2 sm:mr-4" />
                 <ColorShades :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
             </Flex>
-            <ThemeSaving />
+            <ThemeSaving class="sm:self-start" />
         </Section>
         <Section title="Colors" class="mt-8">
             <ColorSelector />
