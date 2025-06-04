@@ -23,7 +23,15 @@ class Theme {
         const storage = localStorage.getItem('colors')
         const colors: Record<ThemeColor, string> | null = storage ? JSON.parse(storage) : null
 
-        this.#originalColors = themeOriginalColors
+        this.#originalColors = {
+            primary: new Color(getProperty('--ui-color-primary-500')),
+            secondary: new Color(getProperty('--ui-color-secondary-600')),
+            success: new Color(getProperty('--ui-color-success-500')),
+            info: new Color(getProperty('--ui-color-info-500')),
+            warning: new Color(getProperty('--ui-color-warning-500')),
+            error: new Color(getProperty('--ui-color-error-500')),
+            neutral: new Color(getProperty('--ui-color-neutral-500'))
+        }
 
         // this.#originalDefaults = { ...themeOriginalDefaults }
         // this.#originalDefaultsDark = { ...themeOriginalDefaultsDark }
