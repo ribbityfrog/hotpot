@@ -32,7 +32,7 @@ const menus = {
         to: '/',
     },{
         label: 'Theming',
-        to: '/theme',
+        to: '/theming',
     }],
 
 } as const satisfies Record<string, NavigationMenuItem[] | DropdownMenuItem[]>
