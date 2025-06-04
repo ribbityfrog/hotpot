@@ -15,6 +15,11 @@ watch(picker, (newcolor) => {
     theme.colors[props.color].update(newcolor, props.color)
 })
 
+watch(theme.colorsRef, (newColors) => {
+    picker.value = newColors[props.color].hex3
+    input.value = newColors[props.color].hex3
+})
+
 </script>
 
 <template>
