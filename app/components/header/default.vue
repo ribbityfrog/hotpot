@@ -26,7 +26,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Flex full between class="px-8">
+    <Flex full between class="px-4">
         <div>
             <NuxtLink to="/">
                 <img

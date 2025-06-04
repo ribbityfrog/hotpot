@@ -15,12 +15,7 @@ const tilesGapComputed = computed(() => {
 
 <template>
     <Page>
-        <Section wide>
-            <Flex center class="gap-4" wrap>
-                <ColorPicker v-for="themeColor in themeColorEntries" :key="themeColor" :color="themeColor" />
-            </Flex>
-        </Section>
-        <Section v-if="!$device.isMobile" class="mt-6 mb-2">
+        <Section v-if="!$device.isMobile" class="mb-2">
             <Flex full between class="gap-y-4">
                 <UTabs
                     v-model="tab"
