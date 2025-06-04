@@ -15,6 +15,9 @@ const tilesGapComputed = computed(() => {
 
 <template>
     <Page>
+        <Section>
+            <h1>Theming</h1>
+        </Section>
         <Section class-content="gap-y-4" title="Shades">
             <Flex v-if="!$device.isMobile" full between class="gap-y-4">
                 <UTabs
@@ -41,8 +44,10 @@ const tilesGapComputed = computed(() => {
                 center
                 :class="tilesGapComputed"
                 wrap>
-                <ColorTile :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
+                <ColorPicker :color="themeColor" class="w-30 mr-2 sm:mr-4" />
+                <ColorShades :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
             </Flex>
+            <ThemeSaving />
         </Section>
         <Section title="Colors" class="mt-8">
             <ColorSelector />
