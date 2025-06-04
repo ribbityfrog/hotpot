@@ -11,19 +11,11 @@ const tilesGapComputed = computed(() => {
     return tilesGap.value ? 'gap-x-1.5' : ''
 })
 
-const darkEl: Ref<HTMLElement | undefined> = ref(undefined)
-const compDarkEl = computed(() => {
-    if (darkEl.value && ('$el' in darkEl.value))
-        return darkEl.value.$el as HTMLElement
-    else
-        return undefined
-})
-
 </script>
 
 <template>
     <Page>
-        <Section class-content="gap-y-4" title="Colors & Shades">
+        <Section class-content="gap-y-4" title="Shades">
             <Flex v-if="!$device.isMobile" full between class="gap-y-4">
                 <UTabs
                     v-model="tab"
@@ -52,11 +44,8 @@ const compDarkEl = computed(() => {
                 <ColorTile :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
             </Flex>
         </Section>
-        <Section title="Defaults" class="mt-8">
-            <UButton @click="console.log(getProperty('--ui-bg'))">Test</UButton>
-        </Section>
-        <Section ref="darkEl" title="Defaults" class="mt-8 dark">
-            <UButton @click="console.log(getProperty('--ui-bg', compDarkEl))">Test</UButton>
+        <Section title="Colors" class="mt-8">
+            <ColorSelector />
         </Section>
     </Page>
 </template>
