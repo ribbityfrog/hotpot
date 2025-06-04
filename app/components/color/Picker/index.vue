@@ -2,20 +2,20 @@
 
 const props = defineProps({
     color: {
-        type: String as PropType<ThemeColor>,
+        type: String as PropType<ThemeShade>,
         required: true
     }
 })
 
-const picker = ref(theme.colors[props.color].hex3)
-const input = ref(theme.colors[props.color].hex3)
+const picker = ref(theme.shades[props.color].hex3)
+const input = ref(theme.shades[props.color].hex3)
 
 watch(picker, (newcolor) => {
     input.value = picker.value
-    theme.colors[props.color].update(newcolor, props.color)
+    theme.shades[props.color].update(newcolor, props.color)
 })
 
-watch(theme.colorsRef, (newColors) => {
+watch(theme.shadesRef, (newColors) => {
     picker.value = newColors[props.color].hex3
     input.value = newColors[props.color].hex3
 })

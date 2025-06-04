@@ -202,4 +202,4 @@ export default {
                 'text-neutral-950',
             ]
         }
-} as const satisfies Record<ThemeColor, { bg: string[], text: string[] }>
+} as const satisfies Record<ThemeShade, { bg: string[], text: string[] }>

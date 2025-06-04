@@ -38,19 +38,20 @@ const tilesGapComputed = computed(() => {
                 </div>
             </Flex>
             <Flex
-                v-for="themeColor in themeColorEntries"
-                :key="themeColor"
+                v-for="themeShade in themeShadeEntries"
+                :key="themeShade"
                 full
                 center
                 :class="tilesGapComputed"
                 wrap>
-                <ColorPicker :color="themeColor" class="w-30 mr-2 sm:mr-4" />
-                <ColorShades :code="displayCodes || tab === '1'" :color="themeColor" :text="tab === '1'" />
+                <ColorPicker :color="themeShade" class="w-30 mr-2 sm:mr-4" />
+                <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" />
             </Flex>
             <ThemeSaving class="sm:self-start" />
         </Section>
-        <Section title="Colors" class="mt-8">
-            <ColorSelector />
+        <Section title="Colors" :class="`mt-8`">
+            <ColorSelector color="primary" />
         </Section>
+        <UButton color="primary" label="Button" />
     </Page>
 </template>

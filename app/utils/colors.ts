@@ -42,7 +42,7 @@ export class Color {
         }
     }
 
-    update(hexa: string, style?: ThemeColor): void {
+    update(hexa: string, style?: ThemeShade): void {
         this.init(hexa)
         this.shadeGen()
         if (style)
@@ -73,11 +73,11 @@ export class Color {
         ]
     }
 
-    shadeStyle(themeColor: ThemeColor) {
+    shadeStyle(themeShade: ThemeShade) {
         if (this.shades.length !== 11)
             return
 
-        const slate = themeColors[themeColor]
+        const slate = themeShades[themeShade]
 
         let i = 0
         let shade = 50

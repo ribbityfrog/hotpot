@@ -1,5 +1,5 @@
 <template>
     <Flex center wrap>
-        <ColorPicker v-for="themeColor in themeColorEntries" :key="themeColor" :color="themeColor" />
+        <ColorPicker v-for="themeShade in themeShadeEntries" :key="themeShade" :color="themeShade" />
     </Flex>
 </template>

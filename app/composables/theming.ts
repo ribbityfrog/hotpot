@@ -1,18 +1,18 @@
 class Theme {
-    #colors!: Ref<Record<ThemeColor, Color>>
+    #shades!: Ref<Record<ThemeShade, Color>>
     // #defaults!: Ref<Record<DefaultColor, string>>
     // #defaultsDark!: Ref<Record<DefaultColor, string>>
-    #originalColors!: Record<ThemeColor, Color>
+    #shadesDefault!: Record<ThemeShade, Color>
     // #originalDefaults!: Record<DefaultColor, string>
     // #originalDefaultsDark!: Record<DefaultColor, string>
     #isReloadable!: Ref<boolean>
 
-    get colors() {
-        return this.#colors.value
+    get shades() {
+        return this.#shades.value
     }
 
-    get colorsRef() {
-        return this.#colors
+    get shadesRef() {
+        return this.#shades
     }
 
     get isReloadable() {
@@ -20,10 +20,10 @@ class Theme {
     }
 
     init() {
-        const storage = localStorage.getItem('colors')
-        const colors: Record<ThemeColor, string> | null = storage ? JSON.parse(storage) : null
+        const storage = localStorage.getItem('shades')
+        const colors: Record<ThemeShade, string> | null = storage ? JSON.parse(storage) : null
 
-        this.#originalColors = {
+        this.#shadesDefault = {
             primary: new Color(getProperty('--ui-color-primary-500')),
             secondary: new Color(getProperty('--ui-color-secondary-600')),
             success: new Color(getProperty('--ui-color-success-500')),
@@ -41,20 +41,20 @@ class Theme {
         if (colors)
         {
             this.#isReloadable = ref(true)
-            this.#colors = ref(this.copyStorage(colors))
+            this.#shades = ref(this.copyStorage(colors))
         }
         else 
         {
             this.#isReloadable = ref(false)
-            this.#colors = ref(this.copyOriginals())
+            this.#shades = ref(this.copyOriginals())
         }
 
         this.shadeAll()
     }
 
     shadeAll() {
-        for (const entry of themeColorEntries) {
-            const color = this.#colors.value[entry]
+        for (const entry of themeShadeEntries) {
+            const color = this.#shades.value[entry]
             color.shadeGen()
             color.shadeStyle(entry)
         }
@@ -65,19 +65,19 @@ class Theme {
     //         console.log(`--ui-${key}`, `var(--ui-color-${value})`)
     // }
 
-    copyOriginals(): Record<ThemeColor, Color> {
+    copyOriginals(): Record<ThemeShade, Color> {
         return { 
-            primary: new Color(this.#originalColors.primary.hex3),
-            secondary: new Color(this.#originalColors.secondary.hex3),
-            success: new Color(this.#originalColors.success.hex3),
-            info: new Color(this.#originalColors.info.hex3), 
-            warning: new Color(this.#originalColors.warning.hex3),
-            error: new Color(this.#originalColors.error.hex3),
-            neutral: new Color(this.#originalColors.neutral.hex3)
+            primary: new Color(this.#shadesDefault.primary.hex3),
+            secondary: new Color(this.#shadesDefault.secondary.hex3),
+            success: new Color(this.#shadesDefault.success.hex3),
+            info: new Color(this.#shadesDefault.info.hex3), 
+            warning: new Color(this.#shadesDefault.warning.hex3),
+            error: new Color(this.#shadesDefault.error.hex3),
+            neutral: new Color(this.#shadesDefault.neutral.hex3)
         }
     }
 
-    copyStorage(storage: Record<ThemeColor, string>): Record<ThemeColor, Color> {
+    copyStorage(storage: Record<ThemeShade, string>): Record<ThemeShade, Color> {
         return {
             primary: new Color(storage.primary),
             secondary: new Color(storage.secondary),
@@ -90,17 +90,17 @@ class Theme {
     }
 
     save() {
-        const colors: Record<ThemeColor, string> = {
-            primary: this.#colors.value.primary.hex3,
-            secondary: this.#colors.value.secondary.hex3,
-            success: this.#colors.value.success.hex3,
-            info: this.#colors.value.info.hex3,
-            warning: this.#colors.value.warning.hex3,
-            error: this.#colors.value.error.hex3,
-            neutral: this.#colors.value.neutral.hex3
+        const colors: Record<ThemeShade, string> = {
+            primary: this.#shades.value.primary.hex3,
+            secondary: this.#shades.value.secondary.hex3,
+            success: this.#shades.value.success.hex3,
+            info: this.#shades.value.info.hex3,
+            warning: this.#shades.value.warning.hex3,
+            error: this.#shades.value.error.hex3,
+            neutral: this.#shades.value.neutral.hex3
         }
 
-        localStorage.setItem('colors', JSON.stringify(colors))
+        localStorage.setItem('shades', JSON.stringify(colors))
 
         this.#isReloadable.value = true
 
@@ -109,7 +109,7 @@ class Theme {
     }
 
     reset() {
-        this.#colors.value = this.copyOriginals()
+        this.#shades.value = this.copyOriginals()
         this.shadeAll()
 
         const toaster = useToast()
@@ -117,11 +117,11 @@ class Theme {
     }
 
     reload() {
-        const storage = localStorage.getItem('colors')
+        const storage = localStorage.getItem('shades')
 
         if (storage)
         {
-            this.#colors.value = this.copyStorage(JSON.parse(storage))
+            this.#shades.value = this.copyStorage(JSON.parse(storage))
 
             const toaster = useToast()
             toaster.add({ title: 'Reload!', description: 'Theme colors reloaded from last save.', color: 'success' })

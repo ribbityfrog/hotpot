@@ -1,4 +1,4 @@
-export const themeColors = {
+export const themeShades = {
     primary: '--color-slatePrimary-',
     secondary: '--color-slateSecondary-',
     success: '--color-slateSuccess-',
@@ -8,9 +8,9 @@ export const themeColors = {
     neutral: '--color-slateNeutral-'
 } as const
 
-export type ThemeColor = keyof typeof themeColors
+export type ThemeShade = keyof typeof themeShades
 
-export const themeColorEntries = Object.keys(themeColors) as Readonly<ThemeColor[]>
+export const themeShadeEntries = Object.keys(themeShades) as Readonly<ThemeShade[]>
 
-export const defaultColors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'bg', 'text', 'dimmed', 'muted', 'toned', 'highlighted', 'border', 'border-accented'] as const
-export type DefaultColor = typeof defaultColors[number]
+export const themeColors = ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral', 'bg', 'text', 'dimmed', 'muted', 'toned', 'highlighted', 'border', 'border-accented'] as const
+export type ThemeColor = typeof themeColors[number]
