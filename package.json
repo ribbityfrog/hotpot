@@ -18,6 +18,7 @@
     "@nuxtjs/device": "^3.2.4",
     "luxon": "^3.6.1",
     "nuxt": "^3.16.2",
+    "nuxt-shiki": "^0.3.1",
     "tailwindcss": "^4.1.4",
     "vue": "latest",
     "vue-router": "latest",

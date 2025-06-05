@@ -14,13 +14,7 @@ export default defineNuxtConfig({
     routeRules: {
         // '/**': { static: true },
     },
-    modules: [
-        '@nuxt/eslint',
-        '@nuxt/ui',
-        '@nuxtjs/color-mode',
-        '@nuxt/icon',
-        '@nuxtjs/device'
-    ],
+    modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxtjs/color-mode', '@nuxt/icon', '@nuxtjs/device', 'nuxt-shiki'],
     components: [
         '~/components',
         {
