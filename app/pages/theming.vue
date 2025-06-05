@@ -59,6 +59,28 @@ const tilesGapComputed = computed(() => {
             <h3 class="self-start">Main colors</h3>
             <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((color) => color !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
             <USeparator class="w-1/2 my-4" />
+            <Flex center class="gap-x-4">
+                <p class="font-medium">Text</p>
+                <ColorSelector color="bg" />
+                <Flex center class="gap-6" wrap>
+                    <Flex col center-start class="gap-y-3">
+                        <p class="text-sm">text-sm/font-normal</p>
+                        <p>text-base/font-normal</p>
+                        <p class="font-medium">text-base/font-medium</p>
+                    </Flex>
+                    <Flex col center-start class="gap-y-3">
+                        <p class="text-lg">text-lg/font-normal</p>
+                        <p class="text-lg font-medium">text-lg/font-medium</p>
+                        <p class="text-lg font-semibold">text-lg/font-semibold</p>
+                    </Flex>
+                    <Flex col center-start class="gap-y-3">
+                        <p class="text-xl">text-xl/font-medium</p>
+                        <p class="text-xl font-semibold">text-xl/font-semibold</p>
+                        <p class="text-xl font-bold">text-xl/font-bold</p>
+                    </Flex>
+                </Flex>
+            </Flex>
+            <USeparator class="w-1/2 my-4" />
             <Flex full between>
                 <Flex center class="gap-x-4">
                     <p class="font-medium">Background</p>
