@@ -50,7 +50,7 @@ const tilesGapComputed = computed(() => {
             </Flex>
             <ThemeSavingShades class="sm:self-start" />
         </Section>
-        <Section full group>
+        <Section full group class-content="gap-y-4 sm:gap-y-2">
             <Section start class="mt-8">
                 <h2>Colors</h2>
                 <p>Switch from dark to light mode on the top-right to define the defaults colors for both modes</p>
@@ -68,14 +68,7 @@ const tilesGapComputed = computed(() => {
                         Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
                     </p>
                 </div>
-                <Flex full between>
-                    <Flex center class="gap-x-4">
-                        <p class="font-medium">Background</p>
-                        <ColorSelector color="bg" />
-                        <img src="/img/monster.gif" class="h-16 scale-x-[-1]" >
-                    </Flex>
-                    <img src="/img/kermit.gif" class="h-16 scale-x-[-1]" >
-                </Flex>
+                <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
                 <ThemeColorTextSelection v-for="(color, index) in themeColors.filter((color) => color.includes('text'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
