@@ -35,7 +35,7 @@ export const defaultColorsDark = {
     'text-toned': 'neutral-300',
     'text-highlighted': 'neutral-50',
     'text-inverted': 'neutral-100',
-    bg: 'neutral-800',
+    bg: 'neutral-900',
     'bg-muted': 'neutral-700',
     'bg-elevated': 'neutral-700',
     'bg-accented': 'neutral-600',

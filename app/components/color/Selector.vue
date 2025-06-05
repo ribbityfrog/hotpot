@@ -38,7 +38,16 @@ const itemShades: Ref<{ label: string, value: ThemeShadeExtended }[]> = ref([
     {
         label: 'Neutral',
         value: 'neutral'
-    }
+    },
+    {
+        label: 'White',
+        value: 'white'
+    },
+    {
+        label: 'Black',
+        value: 'black'
+    },
+
 ])
 
 const itemTints: Ref<{ label: string, value: ThemeTint }[]> = ref([
@@ -112,11 +121,22 @@ nuxtApp.hook('colors:update', () => {
     selected.value = defineSelection(colorMode.value)
 })
 
+function getChipColor(color?: ThemeShadeExtended) {
+    if (!color) return 'bg-pink-500'
+
+    if (color === 'white')
+        return 'bg-white'
+    else if (color === 'black')
+        return 'bg-black'
+    else
+        return `bg-${color}-500`
+}
+
 </script>
 
 <template>
     <Flex center class="gap-2">
-        <USelect
+        <USelectMenu
             v-model="selected.shade"
             color="neutral"
             :items="itemShades"
@@ -124,13 +144,14 @@ nuxtApp.hook('colors:update', () => {
             class="w-38"
             @change="updateColor">
             <template #leading="{ modelValue }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${modelValue}-500`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(modelValue)}`" />
             </template>
             <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${itemShades![index]!.value}-500`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(itemShades![index]!.value)}`" />
             </template>
-        </USelect>
+        </USelectMenu>
         <USelect
+            v-if="selected.shade !== 'white' && selected.shade !== 'black'"
             v-model="selected.tint"
             color="neutral"
             :items="itemTints"

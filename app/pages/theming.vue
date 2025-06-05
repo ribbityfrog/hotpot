@@ -58,6 +58,15 @@ const tilesGapComputed = computed(() => {
         <Section class-content="mt-8 gap-y-8 sm:gap-y-4">
             <h3 class="self-start">Main colors</h3>
             <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((color) => color !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+            <USeparator class="w-1/2 my-4" />
+            <Flex full between>
+                <Flex center class="gap-x-4">
+                    <p class="font-medium">Background</p>
+                    <ColorSelector color="bg" />
+                    <img src="/img/monster.gif" class="h-16 scale-x-[-1]" >
+                </Flex>
+                <img src="/img/kermit.gif" class="h-16 scale-x-[-1]" >
+            </Flex>
             <ThemeSavingColors class="sm:self-start" />
         </Section>
         <Section class="mt-8">
