@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+const colorMode = useColorMode()
+
 const props = defineProps({
     color: {
         type: String as PropType<ThemeColor>,
@@ -7,7 +9,7 @@ const props = defineProps({
     }
 })
 
-const itemColors = ref([
+const itemShades: Ref<{ label: string, value: ThemeShadeExtended }[]> = ref([
     {
         label: 'Primary',
         value: 'primary'
@@ -38,7 +40,7 @@ const itemColors = ref([
     }
 ])
 
-const itemShades = ref([
+const itemTints: Ref<{ label: string, value: ThemeTint }[]> = ref([
     {
         label: '50',
         value: '50'
@@ -85,34 +87,56 @@ const itemShades = ref([
     }
 ])
 
-const selected = reactive({
-    color: itemColors.value[0]?.value,
-    shade: itemShades.value[0]?.value
-})
+function defineSelection(mode: string) {
+    const colors = mode === 'dark' ? theme.colorsDark : theme.colors
+    const shadeTint = colors[props.color].split('-')
+    return {
+        shade: shadeTint[0] as ThemeShadeExtended,
+        tint: (shadeTint[1] ? shadeTint[1] : '500') as ThemeTint
+    }
+}
 
-watch(selected, (newSelection) => 
-    // setProperty(`--ui-${props.color}`, `var(--ui-color-${newSelection.color}-${newSelection.shade})`, colorMode.value === 'dark' ? computedDarkEl.value : undefined)
-    setProperty(`--ui-${props.color}`, `var(--ui-color-${newSelection.color}-${newSelection.shade})`)
-)
+const selected: Ref<{ shade: ThemeShadeExtended, tint: ThemeTint }> = ref(defineSelection(colorMode.value))
+
+function updateColor() {
+    const color: ThemeShadeTint = (selected.value.shade === 'white' || selected.value.shade === 'black' ? selected.value.shade : `${selected.value.shade}-${selected.value.tint}`) as ThemeShadeTint
+    theme.setColor(props.color, color, colorMode.value)
+}
+
+watch(colorMode, (newMode) => {
+    selected.value = defineSelection(newMode.value)
+})
 
 </script>
 
 <template>
     <Flex center class="gap-2">
-        <USelect v-model="selected.color" :items="itemColors" value-key="value" class="w-38">
+        <USelect
+            v-model="selected.shade"
+            color="neutral"
+            :items="itemShades"
+            value-key="value"
+            class="w-38"
+            @change="updateColor">
             <template #leading="{ modelValue }">
                 <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${modelValue}-500`" />
             </template>
             <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${itemColors![index]!.value}-500`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${itemShades![index]!.value}-500`" />
             </template>
         </USelect>
-        <USelect v-model="selected.shade" :items="itemShades" value-key="value" class="w-26">
+        <USelect
+            v-model="selected.tint"
+            color="neutral"
+            :items="itemTints"
+            value-key="value"
+            class="w-26"
+            @change="updateColor">
             <template #leading="{ modelValue }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.color}-${modelValue}`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${modelValue}`" />
             </template>
             <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.color}-${itemShades![index]!.value}`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${itemTints![index]!.value}`" />
             </template>
         </USelect>
     </Flex>

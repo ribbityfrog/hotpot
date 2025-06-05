@@ -1,10 +1,8 @@
 class Theme {
     #shades!: Ref<Record<ThemeShade, Color>>
-    // #defaults!: Ref<Record<DefaultColor, string>>
-    // #defaultsDark!: Ref<Record<DefaultColor, string>>
     #shadesDefault!: Record<ThemeShade, Color>
-    // #originalDefaults!: Record<DefaultColor, string>
-    // #originalDefaultsDark!: Record<DefaultColor, string>
+    #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
+    #colorsDark!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #isReloadable!: Ref<boolean>
 
     get shades() {
@@ -13,6 +11,14 @@ class Theme {
 
     get shadesRef() {
         return this.#shades
+    }
+
+    get colors() {
+        return this.#colors.value
+    }
+
+    get colorsDark() {
+        return this.#colorsDark.value
     }
 
     get isReloadable() {
@@ -33,10 +39,10 @@ class Theme {
             neutral: new Color(getProperty('--ui-color-neutral-500'))
         }
 
-        // this.#originalDefaults = { ...themeOriginalDefaults }
-        // this.#originalDefaultsDark = { ...themeOriginalDefaultsDark }
+        this.#colors = ref({ ...defaultColors })
+        this.#colorsDark = ref({ ...defaultColorsDark })
 
-        // this.applyDefaults()
+        this.applyColors()
 
         if (colors)
         {
@@ -49,10 +55,10 @@ class Theme {
             this.#shades = ref(this.copyOriginals())
         }
 
-        this.shadeAll()
+        this.applyShades()
     }
 
-    shadeAll() {
+    applyShades() {
         for (const entry of themeShadeEntries) {
             const color = this.#shades.value[entry]
             color.shadeGen()
@@ -60,10 +66,22 @@ class Theme {
         }
     }
 
-    // applyDefaults() {
-    //     for (const [key, value] of Object.entries(this.#originalDefaults))
-    //         console.log(`--ui-${key}`, `var(--ui-color-${value})`)
-    // }
+    applyColors(mode?: string) {
+        const colorMode = mode === 'light' || mode === 'dark' ? mode : useColorMode().value
+
+        for (const [key, value] of Object.entries(colorMode === 'dark' ? this.#colorsDark.value : this.#colors.value))
+            setProperty(`--ui-${key}`, value == 'black' || value === 'white' ? value : `var(--ui-color-${value})`)
+    }
+
+    setColor(name: ThemeColor, color: ThemeShadeTintExtended, mode?: string) {
+        const colorMode = mode === 'light' || mode === 'dark' ? mode : useColorMode().value
+        const value = color === 'black' || color === 'white' ? color : `var(--ui-color-${color})`
+
+        if (colorMode === 'dark') this.#colorsDark.value[name] = color
+        else this.#colors.value[name] = color
+
+        setProperty(`--ui-${name}`, value)
+    }
 
     copyOriginals(): Record<ThemeShade, Color> {
         return { 
@@ -110,7 +128,7 @@ class Theme {
 
     reset() {
         this.#shades.value = this.copyOriginals()
-        this.shadeAll()
+        this.applyShades()
 
         const toaster = useToast()
         toaster.add({ title: 'Reset!', description: 'Theme colors reset.', color: 'success' })

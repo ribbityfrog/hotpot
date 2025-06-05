@@ -2,6 +2,12 @@
 
 theme.init()
 
+const colorMode = useColorMode()
+
+watch(colorMode, (newMode) => {
+    theme.applyColors(newMode.value)
+})
+
 </script>
 
 <template>
