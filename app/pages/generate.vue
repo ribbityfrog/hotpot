@@ -1,20 +1,17 @@
 <script setup lang="ts">
 
 const nuxtConfig = 
-`
-export default defineNuxtConfig({
+`export default defineNuxtConfig({
 \tui: {
 \t\ttheme: {
 \t\t\tcolors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral']
 \t\t},
 \t},
 \tcss: ['~/assets/css/tailwind.css'],
-}
-`
+}`
 
 const appConfig =
-`
-export default defineAppConfig({
+`export default defineAppConfig({
 \tui: {
 \t\tcolors: {
 \t\t\tprimary: 'slatePrimary',
@@ -26,12 +23,10 @@ export default defineAppConfig({
 \t\t\tneutral: 'slateNeutral'
 \t\t},
 \t}
-})
-`
+})`
 
 let cssConfig = 
-`
-@import 'tailwindcss';
+`@import 'tailwindcss';
 @import '@nuxt/ui';
 
 theme static {`
@@ -58,15 +53,15 @@ cssConfig += '}'
 </script>
 
 <template>
-    <Page>
+    <Page class="gap-y-6">
         <Section start>
-            <Shiki lang="ts" :code="nuxtConfig" />
+            <ShikiBox :code="nuxtConfig" file="/nuxt.config.ts" />
         </Section>
         <Section start>
-            <Shiki lang="ts" :code="appConfig" />
+            <ShikiBox :code="appConfig" file="(/app)/app.config.ts" />
         </Section>
         <Section start>
-            <Shiki :code="cssConfig" />
+            <ShikiBox :code="cssConfig" file="(/app)/assets/css/tailwind.css" />
         </Section>
     </Page>
 </template>
