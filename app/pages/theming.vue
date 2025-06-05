@@ -15,8 +15,9 @@ const tilesGapComputed = computed(() => {
 
 <template>
     <Page>
-        <Section>
+        <Section class-content="gap-y-2">
             <h1>Theming</h1>
+            <p>Shades and Colors are saved/reloaded/reseted independently from each other</p>
         </Section>
         <Section class-content="gap-y-4" title="Shades">
             <Flex v-if="!$device.isMobile" full between class="gap-y-4">
