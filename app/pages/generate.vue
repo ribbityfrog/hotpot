@@ -32,6 +32,7 @@ let cssConfig =
 theme static {`
 
 for (const [key, value] of Object.entries(themeShades)) {
+    cssConfig += '\n'
     for (const [index, tint] of Object.values(themeTints).entries())
         cssConfig += `\n\t${value}${tint}: ${theme.shades[key as ThemeShade].shades[index]!.hex3};`
 }
