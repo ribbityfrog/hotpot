@@ -54,6 +54,15 @@ cssConfig += '}'
 
 <template>
     <Page class="gap-y-6">
+        <Section>
+            <h1>Generate code</h1>
+            <p>
+                Add this minimum generated code in the corresping files
+            </p>
+            <p>
+                This will work only if you have Nuxt UI correctly installed
+            </p>
+        </Section>
         <Section start>
             <ShikiBox :code="nuxtConfig" file="/nuxt.config.ts" />
         </Section>
