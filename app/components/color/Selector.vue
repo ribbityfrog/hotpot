@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+const nuxtApp = useNuxtApp()
 const colorMode = useColorMode()
 
 const props = defineProps({
@@ -105,6 +106,10 @@ function updateColor() {
 
 watch(colorMode, (newMode) => {
     selected.value = defineSelection(newMode.value)
+})
+
+nuxtApp.hook('colors:update', () => {
+    selected.value = defineSelection(colorMode.value)
 })
 
 </script>

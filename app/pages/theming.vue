@@ -48,11 +48,26 @@ const tilesGapComputed = computed(() => {
                 <ColorPicker :color="themeShade" class="w-30 mr-2 sm:mr-4" />
                 <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" />
             </Flex>
-            <ThemeSaving class="sm:self-start" />
+            <ThemeSavingShades class="sm:self-start" />
         </Section>
-        <Section title="Colors" :class="`mt-8`">
-            <ColorSelector color="primary" />
+        <Section start class="mt-8">
+            <h2>Colors</h2>
+            <p>Switch from dark to light mode on the top-right to define the defaults colors for both modes</p>
+            <p>Main and Neutral are saved/reloaded/reseted together</p>
         </Section>
-        <UButton color="primary" label="Button" />
+        <Section class-content="mt-8 gap-y-8 sm:gap-y-4">
+            <h3 class="self-start">Main colors</h3>
+            <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((color) => color !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+            <ThemeSavingColors class="sm:self-start" />
+        </Section>
+        <Section class="mt-8">
+            <div class="self-start">
+                <h3>Neutral</h3>
+                <p>
+                    Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
+                </p>
+            </div>
+            <ThemeSavingColors class="sm:self-start" />
+        </Section>
     </Page>
 </template>

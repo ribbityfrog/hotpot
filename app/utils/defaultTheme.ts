@@ -5,7 +5,6 @@ export const defaultColors = {
     info: 'info-500',
     warning: 'warning-500',
     error: 'error-500',
-    neutral: 'neutral-500',
     text: 'neutral-800',
     'text-dimmed': 'neutral-400',
     'text-muted': 'neutral-500',
@@ -24,13 +23,12 @@ export const defaultColors = {
 } satisfies Record<ThemeColor, ThemeShadeTintExtended>
 
 export const defaultColorsDark = {
-    primary: 'primary-400',
-    secondary: 'secondary-400',
-    success: 'success-400',
-    info: 'info-400',
-    warning: 'warning-400',
-    error: 'error-400',
-    neutral: 'neutral-400',
+    primary: 'primary-600',
+    secondary: 'secondary-600',
+    success: 'success-600',
+    info: 'info-600',
+    warning: 'warning-600',
+    error: 'error-600',
     text: 'neutral-100',
     'text-dimmed': 'neutral-500',
     'text-muted': 'neutral-400',

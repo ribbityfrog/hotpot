@@ -20,3 +20,7 @@ h1 {
 h2 {
     @apply text-2xl sm:text-3xl font-semibold mb-2
 }
+
+h3 {
+    @apply text-xl sm:text-xl font-medium mb-2
+}

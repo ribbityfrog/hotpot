@@ -13,6 +13,13 @@ export type ThemeShadeExtended = ThemeShade | 'white' | 'black'
 
 export const themeShadeEntries = Object.keys(themeShades) as Readonly<ThemeShade[]>
 
+
+export const themeTints = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const
+export type ThemeTint = typeof themeTints[number]
+
+export type ThemeShadeTint = `${ThemeShade}-${ThemeTint}`
+export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'black'
+
 export const themeColors = [
     'primary',
     'secondary', 
@@ -20,7 +27,6 @@ export const themeColors = [
     'info', 
     'warning',
     'error',
-    'neutral',
     'text',
     'text-dimmed',
     'text-muted',
@@ -39,8 +45,3 @@ export const themeColors = [
 ] as const
 export type ThemeColor = typeof themeColors[number]
 
-export const themeTints = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const
-export type ThemeTint = typeof themeTints[number]
-
-export type ThemeShadeTint = `${ThemeShade}-${ThemeTint}`
-export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'black'

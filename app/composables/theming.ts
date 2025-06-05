@@ -3,7 +3,10 @@ class Theme {
     #shadesDefault!: Record<ThemeShade, Color>
     #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #colorsDark!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
-    #isReloadable!: Ref<boolean>
+    #isShadesReloadable!: Ref<boolean>
+    #isColorsReloadable!: Ref<boolean>
+    #lsShades = 'shades'
+    #lsColors = 'colors'
 
     get shades() {
         return this.#shades.value
@@ -21,13 +24,19 @@ class Theme {
         return this.#colorsDark.value
     }
 
-    get isReloadable() {
-        return this.#isReloadable.value
+    get isShadesReloadable() {
+        return this.#isShadesReloadable.value
+    }
+
+    get isColorsReloadable() {
+        return this.#isColorsReloadable.value
     }
 
     init() {
-        const storage = localStorage.getItem('shades')
-        const colors: Record<ThemeShade, string> | null = storage ? JSON.parse(storage) : null
+        const storedShades = localStorage.getItem(this.#lsShades)
+        const storedColors = localStorage.getItem(this.#lsColors)
+        const shades: Record<ThemeShade, string> | null = storedShades ? JSON.parse(storedShades) : null
+        const colors: Record<'light' | 'dark', Record<ThemeColor, ThemeShadeTintExtended>> | null = storedColors ? JSON.parse(storedColors) : null
 
         this.#shadesDefault = {
             primary: new Color(getProperty('--ui-color-primary-500')),
@@ -42,20 +51,31 @@ class Theme {
         this.#colors = ref({ ...defaultColors })
         this.#colorsDark = ref({ ...defaultColorsDark })
 
-        this.applyColors()
+        this.#isShadesReloadable = ref(false)
+        this.#isColorsReloadable = ref(false)
+
+        if (shades)
+        {
+            this.#isShadesReloadable = ref(true)
+            this.#shades = ref(this.copyShadesStorage(shades))
+        }
+        else 
+            this.#shades = ref(this.copyShadesDefault())
 
         if (colors)
         {
-            this.#isReloadable = ref(true)
-            this.#shades = ref(this.copyStorage(colors))
+            this.#isColorsReloadable = ref(true)
+            this.#colors.value = { ...colors.light }
+            this.#colorsDark.value = { ...colors.dark }
         }
-        else 
+        else
         {
-            this.#isReloadable = ref(false)
-            this.#shades = ref(this.copyOriginals())
+            this.#colors.value = { ...defaultColors }
+            this.#colorsDark.value = { ...defaultColorsDark }
         }
 
         this.applyShades()
+        this.applyColors()
     }
 
     applyShades() {
@@ -83,7 +103,7 @@ class Theme {
         setProperty(`--ui-${name}`, value)
     }
 
-    copyOriginals(): Record<ThemeShade, Color> {
+    copyShadesDefault(): Record<ThemeShade, Color> {
         return { 
             primary: new Color(this.#shadesDefault.primary.hex3),
             secondary: new Color(this.#shadesDefault.secondary.hex3),
@@ -95,7 +115,7 @@ class Theme {
         }
     }
 
-    copyStorage(storage: Record<ThemeShade, string>): Record<ThemeShade, Color> {
+    copyShadesStorage(storage: Record<ThemeShade, string>): Record<ThemeShade, Color> {
         return {
             primary: new Color(storage.primary),
             secondary: new Color(storage.secondary),
@@ -107,7 +127,7 @@ class Theme {
         }
     }
 
-    save() {
+    saveShades() {
         const colors: Record<ThemeShade, string> = {
             primary: this.#shades.value.primary.hex3,
             secondary: this.#shades.value.secondary.hex3,
@@ -118,32 +138,69 @@ class Theme {
             neutral: this.#shades.value.neutral.hex3
         }
 
-        localStorage.setItem('shades', JSON.stringify(colors))
+        localStorage.setItem(this.#lsShades, JSON.stringify(colors))
 
-        this.#isReloadable.value = true
+        this.#isShadesReloadable.value = true
 
         const toaster = useToast()
-        toaster.add({ title: 'Saved!', description: 'Theme colors saved to local storage.', color: 'success' })
+        toaster.add({ title: 'Shades saved!', description: 'Theme shades saved into local storage.', color: 'success' })
     }
 
-    reset() {
-        this.#shades.value = this.copyOriginals()
+    resetShades() {
+        this.#shades.value = this.copyShadesDefault()
         this.applyShades()
 
         const toaster = useToast()
-        toaster.add({ title: 'Reset!', description: 'Theme colors reset.', color: 'success' })
+        toaster.add({ title: 'Shades reseted!', description: 'Theme shades have been reseted.', color: 'success' })
     }
 
-    reload() {
-        const storage = localStorage.getItem('shades')
+    reloadShades() {
+        const storage = localStorage.getItem(this.#lsShades)
 
         if (storage)
         {
-            this.#shades.value = this.copyStorage(JSON.parse(storage))
+            this.#shades.value = this.copyShadesStorage(JSON.parse(storage))
 
             const toaster = useToast()
-            toaster.add({ title: 'Reload!', description: 'Theme colors reloaded from last save.', color: 'success' })
+            toaster.add({ title: 'Shades reloaded!', description: 'Theme shades reloaded from last save.', color: 'success' })
         }
+    }
+
+    saveColors() {
+        localStorage.setItem(this.#lsColors, JSON.stringify({ light: this.#colors.value, dark: this.#colorsDark.value }))
+
+        const toaster = useToast()
+        toaster.add({ title: 'Colors saved!', description: 'Theme colors saved into local storage.', color: 'success' })
+    }
+
+    resetColors() {
+        this.#colors.value = { ...defaultColors }
+        this.#colorsDark.value = { ...defaultColorsDark }
+        this.applyColors()
+
+        const nuxtApp = useNuxtApp()
+        nuxtApp.callHook('colors:update')
+
+        const toaster = useToast()
+        toaster.add({ title: 'Colors reseted!', description: 'Theme colors have been reseted.', color: 'success' })
+    }
+
+    reloadColors() {
+        const storage = localStorage.getItem(this.#lsColors)
+
+        if (storage)
+        {
+            const colors = JSON.parse(storage)
+            this.#colors.value = { ...colors.light }
+            this.#colorsDark.value = { ...colors.dark }
+            this.applyColors()
+        }
+
+        const nuxtApp = useNuxtApp()
+        nuxtApp.callHook('colors:update')
+
+        const toaster = useToast()
+        toaster.add({ title: 'Colors reloaded!', description: 'Theme colors reloaded from last save.', color: 'success' })
     }
 }
 
