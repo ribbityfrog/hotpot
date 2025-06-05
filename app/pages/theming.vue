@@ -57,30 +57,16 @@ const tilesGapComputed = computed(() => {
         </Section>
         <Section class-content="mt-8 gap-y-8 sm:gap-y-4">
             <h3 class="self-start">Main colors</h3>
-            <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((color) => color !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
-            <USeparator class="w-1/2 my-4" />
-            <Flex center class="gap-x-4">
-                <p class="font-medium">Text</p>
-                <ColorSelector color="bg" />
-                <Flex center class="gap-6" wrap>
-                    <Flex col center-start class="gap-y-3">
-                        <p class="text-sm">text-sm/font-normal</p>
-                        <p>text-base/font-normal</p>
-                        <p class="font-medium">text-base/font-medium</p>
-                    </Flex>
-                    <Flex col center-start class="gap-y-3">
-                        <p class="text-lg">text-lg/font-normal</p>
-                        <p class="text-lg font-medium">text-lg/font-medium</p>
-                        <p class="text-lg font-semibold">text-lg/font-semibold</p>
-                    </Flex>
-                    <Flex col center-start class="gap-y-3">
-                        <p class="text-xl">text-xl/font-medium</p>
-                        <p class="text-xl font-semibold">text-xl/font-semibold</p>
-                        <p class="text-xl font-bold">text-xl/font-bold</p>
-                    </Flex>
-                </Flex>
-            </Flex>
-            <USeparator class="w-1/2 my-4" />
+            <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+            <ThemeSavingColors class="sm:self-start" />
+        </Section>
+        <Section class="mt-8" class-content="gap-y-8 sm:gap-y-4">
+            <div class="self-start">
+                <h3>Neutral</h3>
+                <p>
+                    Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
+                </p>
+            </div>
             <Flex full between>
                 <Flex center class="gap-x-4">
                     <p class="font-medium">Background</p>
@@ -90,14 +76,8 @@ const tilesGapComputed = computed(() => {
                 <img src="/img/kermit.gif" class="h-16 scale-x-[-1]" >
             </Flex>
             <ThemeSavingColors class="sm:self-start" />
-        </Section>
-        <Section class="mt-8">
-            <div class="self-start">
-                <h3>Neutral</h3>
-                <p>
-                    Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
-                </p>
-            </div>
+            <USeparator class="w-1/2 my-4" />
+            <ThemeColorTextSelection v-for="(color, index) in themeColors.filter((color) => color.includes('text'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
             <ThemeSavingColors class="sm:self-start" />
         </Section>
     </Page>
