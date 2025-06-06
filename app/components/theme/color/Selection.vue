@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Flex start-center class="gap-4" wrap>
+    <Flex center class="gap-4" wrap>
         <p class="w-22 font-medium">{{ props.label }}</p>
         <ColorSelector :color="props.color" />
         <UButton :color="props.color" label="Button" />

@@ -16,10 +16,10 @@ const colorStyle = props.color === 'text' || !props.color.includes('text') ? 'te
 </script>
 
 <template>
-    <Flex start-center class="gap-x-4">
+    <Flex center class="gap-4" wrap>
         <p class="font-medium w-42">{{ props.label }}</p>
         <ColorSelector :color="colorStyle" />
-        <Flex start-center :class="`gap-6 ${colorStyle === 'text-inverted' ? 'bg-inverted rounded-md p-2' : ''}`" wrap>
+        <Flex center :class="`gap-6 ${colorStyle === 'text-inverted' ? 'bg-inverted rounded-md p-2' : ''}`" wrap>
             <Flex col center-start class="gap-y-3">
                 <p :class="`${colorStyle} text-sm`">text-sm/font-normal</p>
                 <p :class="colorStyle">text-base/font-normal</p>

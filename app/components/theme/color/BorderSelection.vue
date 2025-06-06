@@ -16,7 +16,7 @@ const colorStyle = props.color === 'border' || !props.color.includes('border') ?
 </script>
 
 <template>
-    <Flex center class="gap-x-4" wrap>
+    <Flex center class="gap-4" wrap>
         <p class="font-medium w-36">{{ props.label }}</p>
         <ColorSelector :color="colorStyle" />
         <Flex col center class="gap-y-2">

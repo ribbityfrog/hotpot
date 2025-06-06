@@ -67,18 +67,19 @@ const tilesGapComputed = computed(() => {
                         Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
                     </p>
                 </div>
-                <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="capitalize(color)" :color="color" />
+                <Flex col start class="gap-y-4">
+                    <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="capitalize(color)" :color="color" />
+                </Flex>
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
-                <ThemeColorBorderSelection v-for="(color, index) in themeColors.filter((color) => color.includes('border'))" :key="index" :label="capitalize(color)" :color="color" />
+                <Flex col start class="gap-y-4">
+                    <ThemeColorBorderSelection v-for="(color, index) in themeColors.filter((color) => color.includes('border'))" :key="index" :label="capitalize(color)" :color="color" />
+                </Flex>
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
-                <ThemeColorTextSelection
-                    v-for="(color, index) in themeColors.filter((color) => color.includes('text'))"
-                    :key="index"
-                    class="self-start"
-                    :label="capitalize(color)"
-                    :color="color" />
+                <Flex col start class="gap-y-4">
+                    <ThemeColorTextSelection v-for="(color, index) in themeColors.filter((color) => color.includes('text'))" :key="index" :label="capitalize(color)" :color="color" />
+                </Flex>
                 <ThemeSavingColors class="sm:self-start" />
             </Section>
         </Section>
