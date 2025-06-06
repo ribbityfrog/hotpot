@@ -23,7 +23,6 @@ const tilesGapComputed = computed(() => {
             <Flex v-if="!$device.isMobile" full between class="gap-y-4">
                 <UTabs
                     v-model="tab"
-                    color="neutral"
                     :content="false"
                     :items="[{ label: 'Background' }, { label: 'Text' }]"
                     class="w-80" />

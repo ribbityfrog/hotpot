@@ -22,7 +22,11 @@ const colorStyle = props.color === 'bg' || !props.color.includes('bg') ? 'bg' : 
             <ColorSelector :color="colorStyle" />
             <img v-if="colorStyle === 'bg'" src="/img/monster.gif" class="h-16 scale-x-[-1]" >
             <Flex v-else center class="gap-4">
-                <div :class="`h-12 w-12 ${colorStyle}`" />
+                <div v-if="colorStyle !== 'bg-muted'" :class="`h-12 w-12 ${colorStyle}`" />
+                <div v-else :class="`h-12 w-64 ${colorStyle}`" />
+                <UProgress v-if="colorStyle === 'bg-accented'" :value="50" size="xl" class="w-52" />
+                <UStepper v-if="colorStyle === 'bg-elevated'" :items="[{ icon: 'i-lucide-bird' }, { icon: 'i-lucide-egg' }, { icon: 'i-lucide-egg-fried' }]" class="w-52" />
+                <UTabs v-if="colorStyle === 'bg-inverted'" :items="[{ label: 'Bird' }, { label: 'Egg' }]" color="neutral" class="w-52" />
             </Flex>
         </Flex>
         <img v-if="colorStyle === 'bg'" src="/img/kermit.gif" class="h-16 scale-x-[-1]" >
