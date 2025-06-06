@@ -14,5 +14,10 @@ export default defineAppConfig({
                 content: '!w-fit !min-w-1/2',
             }
         },
+        button: {
+            slots: {
+                base: 'cursor-pointer',
+            }
+        }
     }
 })

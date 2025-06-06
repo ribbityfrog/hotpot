@@ -45,10 +45,11 @@ const tilesGapComputed = computed(() => {
                 :key="themeShade"
                 full
                 center
-                :class="tilesGapComputed"
-                wrap>
-                <ColorPicker :color="themeShade" class="w-30 mr-2 sm:mr-4" />
-                <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" />
+                :class="tilesGapComputed">
+                <ColorPicker :color="themeShade" class="w-32 mr-2 sm:mr-4" />
+                <ColorPickerPopup :color="themeShade">
+                    <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element" />
+                </ColorPickerPopup>
             </Flex>
             <ThemeSavingShades class="sm:self-start" />
         </Section>

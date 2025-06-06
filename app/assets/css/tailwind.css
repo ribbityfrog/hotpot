@@ -13,8 +13,10 @@
   --spacing-laptop: 1200px;
   --spacing-desktop: 1800px;
 
-  --shadow-element: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
+  --shadow-element: 4px 4px 20px 0 rgba(1, 26, 59, 0.25);
   --shadow-section: 0 0 20px 0 rgba(1, 26, 59, 0.33);
+  --shadow-element-white: 2px 2px 15px 0 rgba(0, 0, 0, 0.35);
+  --shadow-section-white: 0 0 20px 0 rgba(0, 0, 0, 0.35);
 
   --breakpoint-laptop: 1200px;
   --breakpoint-desktop: 1800px;
