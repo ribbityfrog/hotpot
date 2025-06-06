@@ -21,6 +21,7 @@
                 <li>Adding some Components pages to have more samples</li>
                 <li>Better shades calculation (now it sucks, I should use HSL to have cleaner shades)</li>
                 <li>Contrast calculation for accessibility, like <ULink to="https://webaim.org/resources/contrastchecker/" target="_blank" external>WebAIM</ULink></li>
+                <li>Being able to add Shades to be used in the Nuxt UI Shades/Colors and with Tailwind directly</li>
                 <li>More tailwind theming (rounded, shadows and others)</li>
                 <li>Components theming and generating an <i>app.config.ts</i></li> 
             </ul>
