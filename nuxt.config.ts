@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     },
     app: {
         head: {
-            title: 'Nuxtheme',
+            title: 'Hotpot',
             link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
         },
         pageTransition: { name: 'page', mode: 'out-in' }
