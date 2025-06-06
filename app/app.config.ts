@@ -9,5 +9,10 @@ export default defineAppConfig({
             error: 'slateError',
             neutral: 'slateNeutral'
         },
+        slideover: {
+            slots: {
+                content: '!w-fit !min-w-1/2',
+            }
+        },
     }
 })
