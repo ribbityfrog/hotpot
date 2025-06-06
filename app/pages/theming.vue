@@ -22,13 +22,27 @@ const tilesGapComputed = computed(() => {
                 <p>Reset doesn't delete your saved shades or colors, you can reload them afterwards</p>
             </div>
         </Section>
+        <Section start title="Background" class-content="gap-y-4">
+            <div class="self-start">
+                <p>It's advised to start by selecting your background</p>
+                <p>If not white, it's recommended to use the <i>Neutral</i> shades to ensure the best overall readibility</p>
+            </div>
+            <Flex center class="gap-4">
+                <p class="font-medium">Background</p>
+                <ColorSelector color="bg" />
+            </Flex>
+            <Flex center>
+                <ColorPicker color="neutral" class="w-32 mr-2 sm:mr-4" />
+                <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element" />
+            </Flex>
+        </Section>
         <Section class-content="gap-y-4" title="Shades">
             <Flex v-if="!$device.isMobile" full between class="gap-y-4">
                 <UTabs
                     v-model="tab"
                     :content="false"
-                    :items="[{ label: 'Background' }, { label: 'Text' }]"
-                    class="w-80" />
+                    :items="[{ label: 'Tiles' }, { label: 'Codes' }]"
+                    class="w-62" />
                 <div v-if="tab !== '1'" class="space-y-2">
                     <Flex class="gap-x-1">
                         <UCheckbox v-model="displayCodes" color="neutral" />
