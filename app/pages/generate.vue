@@ -71,7 +71,15 @@ cssConfig += '}'
             <ShikiBox :code="appConfig" file="(/app)/app.config.ts" />
         </Section>
         <Section start>
-            <ShikiBox :code="cssConfig" file="(/app)/assets/css/tailwind.css" />
+            <ShikiBox lang="css" :code="cssConfig" file="(/app)/assets/css/tailwind.css" />
         </Section>
     </Page>
 </template>
+
+<style>
+
+.prose pre, .shiki, pre.shiki {
+    background: transparent !important;
+}
+
+</style>

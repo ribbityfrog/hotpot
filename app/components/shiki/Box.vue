@@ -27,12 +27,12 @@ function clipboard() {
 
 <template>
     <Flex col start>
-        <Flex full between class="px-4 py-2 border-2">
+        <Flex full between class="px-4 py-2 border-2 bg-muted">
             <p>
                 {{ props.file }}
             </p>
             <UIcon name="i-lucide-clipboard" class="hover:animate-pulse cursor-pointer" @click="clipboard" />
         </Flex>
-        <Shiki :lang="props.lang" :code="props.code" class="px-2 py-2 bg-muted border-x-2 border-b-2" />
+        <Shiki :lang="props.lang" :code="props.code" class="px-2 py-2 bg-inverted dark:bg-elevated border-x-2 border-b-2" />
     </Flex>
 </template>

@@ -23,12 +23,18 @@ export default defineNuxtConfig({
             pathPrefix: false
         },
     ],
+    css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
     ui: {
         theme: {
             colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral']
         },
     },
-    css: ['~/assets/css/main.css', '~/assets/css/tailwind.css'],
+    shiki: {
+        bundledThemes: ['dracula-soft'],
+        defaultTheme: 'dracula-soft',
+        bundledLangs: ['ts', 'css'],
+        defaultLang: 'ts',
+    },
     app: {
         head: {
             title: 'Nuxtheme',
