@@ -68,7 +68,7 @@ const tilesGapComputed = computed(() => {
                 <div class="self-start">
                     <h3>Neutral</h3>
                     <p>
-                        Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
+                        Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral" target="_blank" external>see more</ULink>
                     </p>
                 </div>
                 <Flex col start class="gap-y-4">
