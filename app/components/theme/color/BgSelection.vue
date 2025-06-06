@@ -16,8 +16,8 @@ const colorStyle = props.color === 'bg' || !props.color.includes('bg') ? 'bg' : 
 </script>
 
 <template>
-    <Flex full between wrap>
-        <Flex start-center class="gap-x-4">
+    <Flex between wrap class="min-w-180">
+        <Flex start-center class="gap-x-4" wrap>
             <p class="font-medium w-28">{{ props.label }}</p>
             <ColorSelector :color="colorStyle" />
             <img v-if="colorStyle === 'bg'" src="/img/monster.gif" class="h-16 scale-x-[-1]" >

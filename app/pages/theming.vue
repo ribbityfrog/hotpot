@@ -71,6 +71,9 @@ const tilesGapComputed = computed(() => {
                 <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
+                <ThemeColorBorderSelection v-for="(color, index) in themeColors.filter((color) => color.includes('border'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+                <ThemeSavingColors class="sm:self-start" />
+                <USeparator class="w-1/2 my-4" />
                 <ThemeColorTextSelection v-for="(color, index) in themeColors.filter((color) => color.includes('text'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
             </Section>
