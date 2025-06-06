@@ -1,6 +1,7 @@
 class Theme {
     #shades!: Ref<Record<ThemeShade, Color>>
-    #shadesDefault!: Record<ThemeShade, Color>
+    #shadesDefault!: Record<ThemeShade, string>
+    #shadesNuxt!: Record<ThemeShade, string>
     #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #colorsDark!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #isShadesReloadable!: Ref<boolean>
@@ -39,13 +40,23 @@ class Theme {
         const colors: Record<'light' | 'dark', Record<ThemeColor, ThemeShadeTintExtended>> | null = storedColors ? JSON.parse(storedColors) : null
 
         this.#shadesDefault = {
-            primary: new Color(getProperty('--ui-color-primary-500')),
-            secondary: new Color(getProperty('--ui-color-secondary-600')),
-            success: new Color(getProperty('--ui-color-success-500')),
-            info: new Color(getProperty('--ui-color-info-500')),
-            warning: new Color(getProperty('--ui-color-warning-500')),
-            error: new Color(getProperty('--ui-color-error-500')),
-            neutral: new Color(getProperty('--ui-color-neutral-500'))
+            primary: getProperty('--ui-color-primary-500'),
+            secondary: getProperty('--ui-color-secondary-500'),
+            success: getProperty('--ui-color-success-500'),
+            info: getProperty('--ui-color-info-500'),
+            warning: getProperty('--ui-color-warning-500'),
+            error: getProperty('--ui-color-error-500'),
+            neutral: getProperty('--ui-color-neutral-500')
+        }
+
+        this.#shadesNuxt = {
+            primary: '#00c950',
+            secondary: '#2b7fff',
+            success: '#00c950',
+            info: '#2b7fff',
+            warning: '#f0b100',
+            error: '#fb2c36',
+            neutral: '#737373'
         }
 
         this.#colors = ref({ ...defaultColors })
@@ -57,10 +68,10 @@ class Theme {
         if (shades)
         {
             this.#isShadesReloadable = ref(true)
-            this.#shades = ref(this.copyShadesStorage(shades))
+            this.#shades = ref(this.copyShades(shades))
         }
         else 
-            this.#shades = ref(this.copyShadesDefault())
+            this.#shades = ref(this.copyShades(this.#shadesDefault))
 
         if (colors)
         {
@@ -103,27 +114,15 @@ class Theme {
         setProperty(`--ui-${name}`, value)
     }
 
-    copyShadesDefault(): Record<ThemeShade, Color> {
-        return { 
-            primary: new Color(this.#shadesDefault.primary.hex3),
-            secondary: new Color(this.#shadesDefault.secondary.hex3),
-            success: new Color(this.#shadesDefault.success.hex3),
-            info: new Color(this.#shadesDefault.info.hex3), 
-            warning: new Color(this.#shadesDefault.warning.hex3),
-            error: new Color(this.#shadesDefault.error.hex3),
-            neutral: new Color(this.#shadesDefault.neutral.hex3)
-        }
-    }
-
-    copyShadesStorage(storage: Record<ThemeShade, string>): Record<ThemeShade, Color> {
+    copyShades(shades: Record<ThemeShade, string>): Record<ThemeShade, Color> {
         return {
-            primary: new Color(storage.primary),
-            secondary: new Color(storage.secondary),
-            success: new Color(storage.success),
-            info: new Color(storage.info),
-            warning: new Color(storage.warning),
-            error: new Color(storage.error),
-            neutral: new Color(storage.neutral)
+            primary: new Color(shades.primary),
+            secondary: new Color(shades.secondary),
+            success: new Color(shades.success),
+            info: new Color(shades.info),
+            warning: new Color(shades.warning),
+            error: new Color(shades.error),
+            neutral: new Color(shades.neutral)
         }
     }
 
@@ -147,11 +146,19 @@ class Theme {
     }
 
     resetShades() {
-        this.#shades.value = this.copyShadesDefault()
+        this.#shades.value = this.copyShades(this.#shadesDefault)
         this.applyShades()
 
         const toaster = useToast()
         toaster.add({ title: 'Shades reseted!', description: 'Theme shades have been reseted.', color: 'success' })
+    }
+
+    resetToNuxtShades() {
+        this.#shades.value = this.copyShades(this.#shadesNuxt)
+        this.applyShades()
+
+        const toaster = useToast()
+        toaster.add({ title: 'Shades reseted!', description: 'Theme shades have been reseted to Nuxt UI default.', color: 'success' })
     }
 
     reloadShades() {
@@ -159,7 +166,7 @@ class Theme {
 
         if (storage)
         {
-            this.#shades.value = this.copyShadesStorage(JSON.parse(storage))
+            this.#shades.value = this.copyShades(JSON.parse(storage))
 
             const toaster = useToast()
             toaster.add({ title: 'Shades reloaded!', description: 'Theme shades reloaded from last save.', color: 'success' })
