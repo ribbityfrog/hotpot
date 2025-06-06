@@ -1,7 +1,6 @@
 class Theme {
     #shades!: Ref<Record<ThemeShade, Color>>
     #shadesDefault!: Record<ThemeShade, string>
-    #shadesNuxt!: Record<ThemeShade, string>
     #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #colorsDark!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #isShadesReloadable!: Ref<boolean>
@@ -47,16 +46,6 @@ class Theme {
             warning: getProperty('--ui-color-warning-500'),
             error: getProperty('--ui-color-error-500'),
             neutral: getProperty('--ui-color-neutral-500')
-        }
-
-        this.#shadesNuxt = {
-            primary: '#00c950',
-            secondary: '#2b7fff',
-            success: '#00c950',
-            info: '#2b7fff',
-            warning: '#f0b100',
-            error: '#fb2c36',
-            neutral: '#737373'
         }
 
         this.#colors = ref({ ...defaultColors })
@@ -154,7 +143,7 @@ class Theme {
     }
 
     resetToNuxtShades() {
-        this.#shades.value = this.copyShades(this.#shadesNuxt)
+        this.#shades.value = this.copyShades(defaultNuxtShades)
         this.applyShades()
 
         const toaster = useToast()

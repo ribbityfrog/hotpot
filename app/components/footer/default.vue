@@ -1,8 +1,6 @@
 <template>
     <Flex full between>
-        <Flex class="gap-4">
-            Links
-        </Flex>
-        Socials
+        <ContactBasic />
+        <ULink to="https://discord.com/invite/nuxt" external>Nuxt Discord</ULink>
     </Flex>
 </template>

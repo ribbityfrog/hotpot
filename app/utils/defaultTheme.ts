@@ -7,8 +7,8 @@ export const defaultColors = {
     error: 'error-500',
     text: 'neutral-800',
     'text-dimmed': 'neutral-400',
-    'text-muted': 'neutral-500',
-    'text-toned': 'neutral-600',
+    'text-muted': 'neutral-600',
+    'text-toned': 'neutral-700',
     'text-highlighted': 'neutral-900',
     'text-inverted': 'neutral-100',
     bg: 'white',
@@ -45,3 +45,13 @@ export const defaultColorsDark = {
     'border-accented': 'primary-700',
     'border-inverted': 'white',
 } satisfies Record<ThemeColor, ThemeShadeTintExtended>
+
+export const defaultNuxtShades = {
+    primary: '#00c950',
+    secondary: '#2b7fff',
+    success: '#00c950',
+    info: '#2b7fff',
+    warning: '#f0b100',
+    error: '#fb2c36',
+    neutral: '#737373'
+}

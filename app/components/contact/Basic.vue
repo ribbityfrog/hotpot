@@ -15,7 +15,7 @@ const classText = `${props.italic ? 'italic' : ''}`
     <Flex col center>
         <p :class="classText">An issue ? A question ?</p>
         <Flex center >
-            <KitLink to="mailto:contact@preprod.tech" tab>contact@preprod.tech</KitLink>
+            <ULink to="mailto:contact@steamfrog.net" tab>contact@steamfrog.net</ULink>
         </Flex>
     </Flex>
 </template>
