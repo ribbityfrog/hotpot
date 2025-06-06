@@ -57,7 +57,7 @@ const tilesGapComputed = computed(() => {
             </Section>
             <Section class-content="mt-8 gap-y-8 sm:gap-y-4">
                 <h3 class="self-start">Main colors</h3>
-                <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+                <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="capitalize(color)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
             </Section>
             <Section class="mt-8" class-content="gap-y-8 sm:gap-y-4">
@@ -67,13 +67,18 @@ const tilesGapComputed = computed(() => {
                         Allows proper design and consistency and accessibility between modes, <ULink to="https://ui.nuxt.com/getting-started/theme#neutral">see more</ULink>
                     </p>
                 </div>
-                <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+                <ThemeColorBgSelection v-for="(color, index) in themeColors.filter((color) => color.includes('bg'))" :key="index" :label="capitalize(color)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
-                <ThemeColorBorderSelection v-for="(color, index) in themeColors.filter((color) => color.includes('border'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+                <ThemeColorBorderSelection v-for="(color, index) in themeColors.filter((color) => color.includes('border'))" :key="index" :label="capitalize(color)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
                 <USeparator class="w-1/2 my-4" />
-                <ThemeColorTextSelection v-for="(color, index) in themeColors.filter((color) => color.includes('text'))" :key="index" :label="color.charAt(0).toUpperCase() + color.slice(1)" :color="color" />
+                <ThemeColorTextSelection
+                    v-for="(color, index) in themeColors.filter((color) => color.includes('text'))"
+                    :key="index"
+                    class="self-start"
+                    :label="capitalize(color)"
+                    :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
             </Section>
         </Section>
