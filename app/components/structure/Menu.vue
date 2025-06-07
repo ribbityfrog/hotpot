@@ -37,6 +37,10 @@ const menus = {
         label: 'Samples',
         children: [
             {
+                label: 'Sidebar',
+                to: '/sample/sidebar',
+            },
+            {
                 label: 'Articles',
                 to: '/sample/articles',
             },

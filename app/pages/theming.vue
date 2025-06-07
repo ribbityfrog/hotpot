@@ -24,12 +24,18 @@ const tilesGapComputed = computed(() => {
         </Section>
         <Section start title="Background" class-content="gap-y-4">
             <div class="self-start">
-                <p>It's advised to start by selecting your background</p>
+                <p>It's advised to start by selecting your background for light and dark mode</p>
                 <p>If not white, it's recommended to use the <i>Neutral</i> shades to ensure the best overall readibility</p>
             </div>
-            <Flex center class="gap-4">
-                <p class="font-medium">Background</p>
-                <ColorSelector color="bg" />
+            <Flex center class="gap-8">
+                <Flex center class="gap-4">
+                    <strong>Background</strong>
+                    <ColorSelector color="bg" />
+                </Flex>
+                <Flex center class="gap-2">
+                    <strong>Mode</strong>
+                    <DarkSwitch />
+                </Flex>
             </Flex>
             <Flex center>
                 <ColorPicker color="neutral" class="w-32 mr-2 sm:mr-4" />
@@ -78,9 +84,15 @@ const tilesGapComputed = computed(() => {
                 <div class="self-start mb-4">
                     <p>The text used on colors is <i>text-inverted</i> available in the <strong>Neutral section</strong></p>
                     <p>Let's make it convenient, here you go :</p>
-                    <Flex start class="gap-2 mt-4">
-                        <p class="font-medium">Text-inverted</p>
-                        <ColorSelector color="text-inverted" />
+                    <Flex start-center class="gap-6 mt-4" wrap>
+                        <Flex center class="gap-2">
+                            <p class="font-medium">Text-inverted</p>
+                            <ColorSelector color="text-inverted" />
+                        </Flex>
+                        <Flex center class="gap-2">
+                            <strong>Mode</strong>
+                            <DarkSwitch />
+                        </Flex>
                     </Flex>
                 </div>
                 <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="capitalize(color)" :color="color" />

@@ -40,7 +40,8 @@ export default defineNuxtConfig({
             title: 'Hotpot',
             link: [{ rel: 'icon', type: 'image/png', href: '/favicon.png' }]
         },
-        pageTransition: { name: 'page', mode: 'out-in' }
+        pageTransition: { name: 'page', mode: 'out-in' },
+        layoutTransition: { name: 'page', mode: 'out-in' }
     },
     colorMode: {
         preference: 'light',

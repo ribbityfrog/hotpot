@@ -2,10 +2,9 @@
 
 const colorMode = useColorMode()
 
-const selected = ref(false)
-
-watch (selected, (newState) => {
-    colorMode.preference = newState ? 'dark' : 'light'
+const selected = computed({
+    get: () => colorMode.preference === 'dark',
+    set: (val) => { colorMode.preference = val ? 'dark' : 'light' }
 })
 
 const ui = {
@@ -29,5 +28,6 @@ onMounted(() => {
         unchecked-icon="i-lucide-moon"
         checked-icon="i-lucide-sun"
         :ui="ui"
+        @update:model-value="colorMode.preference = $event ? 'dark' : 'light'"
     />
 </template>
