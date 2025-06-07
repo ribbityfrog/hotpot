@@ -33,7 +33,7 @@ const tilesGapComputed = computed(() => {
             </Flex>
             <Flex center>
                 <ColorPicker color="neutral" class="w-32 mr-2 sm:mr-4" />
-                <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element" />
+                <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
             </Flex>
         </Section>
         <Section class-content="gap-y-4" title="Shades">
@@ -62,7 +62,7 @@ const tilesGapComputed = computed(() => {
                 :class="tilesGapComputed">
                 <ColorPicker :color="themeShade" class="w-32 mr-2 sm:mr-4" />
                 <ColorPickerPopup :color="themeShade">
-                    <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element" />
+                    <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
                 </ColorPickerPopup>
             </Flex>
             <ThemeSavingShades class="sm:self-start" />

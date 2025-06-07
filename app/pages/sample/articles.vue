@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+const colorMode = useColorMode()
+
 const articles = [{
     title: 'Frog birthday !',
     subtitle: 'Frogs have birthday.\nThe one of yours truly is today :)',
@@ -14,8 +16,19 @@ const articles = [{
 }]
 
 const shade: Ref<ThemeShade> = ref('secondary')
-const backTint: Ref<ThemeTint> = ref('100')
-const backTintDark: Ref<ThemeTint> = ref('700')
+const backTint: Ref<ThemeTint> = ref('200')
+const backTintDark: Ref<ThemeTint> = ref('800')
+
+const articlesRef = useTemplateRef<any[]>('articlesRef')
+
+Theme.sample(
+    [{
+        domRefs: articlesRef,
+        add: () => `bg-${shade.value}-${colorMode.value === 'dark' ? backTintDark.value : backTint.value}`,
+        remove: (c: string) => c.startsWith('bg-'),
+    }],
+    [shade, backTint, backTintDark]
+)
 
 </script>
 
@@ -30,28 +43,29 @@ const backTintDark: Ref<ThemeTint> = ref('700')
             <ColorOptionTint v-model="backTintDark" :shade="shade" />
         </Section>
         <Section>
-            <Flex full center-start class="gap-8">
+            <Flex full class="justify-center items-stretch content-start gap-8">
                 <Flex
                     v-for="article in articles"
+                    ref="articlesRef"
                     :key="article.title"
                     col
-                    :class="`bg-${shade}-${backTint} dark:bg-${shade}-${backTintDark} rounded-lg shadow-element`"
+                    class="rounded-lg shadow-element dark:shadow-element-dark"
                     w="w-[350px]">
                     <img :src="article.thumbnail" class="w-[350px] aspect-[7/4] object-cover rounded-t-lg">
-                    <div class="py-4 px-6">
+                    <Flex col start full class="py-4 px-6 h-full">
                         <h3 class="line-clamp-2" no-space>
                             {{ article.title }}
                         </h3>
-                        <p class="whitespace-pre-line line-clamp-3 mb-4">
+                        <p class="whitespace-pre-line line-clamp-3 mb-4 grow">
                             {{ article.subtitle }}
                         </p>
-                        <Flex between class="px-7">
+                        <Flex full between class="px-7">
                             <p class="text-muted">
                                 {{ article.date }}
                             </p>
                             <UButton :color="shade">See more</UButton>
                         </Flex>
-                    </div>
+                    </Flex>
                 </Flex>
             </Flex>
         </Section>
