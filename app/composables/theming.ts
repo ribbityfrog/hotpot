@@ -1,5 +1,3 @@
-import type { ShallowRef } from 'vue'
-
 export class Theme {
     #shades!: Ref<Record<ThemeShade, Color>>
     #shadesDefault!: Record<ThemeShade, string>
@@ -199,27 +197,6 @@ export class Theme {
 
         const toaster = useToast()
         toaster.add({ title: 'Colors reloaded!', description: 'Theme colors reloaded from last save.', color: 'success' })
-    }
-
-    static sample(dom: { domRefs: ShallowRef<any[] | null>, add: () => string | string[], remove: (c: string) => boolean }[], watchers: Ref<unknown>[]) {
-
-        const colorMode = useColorMode()
-
-        function updateColor() {
-            dom.forEach(domEl => domEl.domRefs.value?.forEach(el => {
-                const bgs = Array.from(el.$el.classList as DOMTokenList).filter((c: string) => domEl.remove(c))
-                if (bgs.length > 0) el.$el.classList.remove(bgs)
-                el.$el.classList.add(domEl.add())
-            }))
-        }
-
-        watch([colorMode, ...watchers], () => {
-            updateColor()
-        })
-
-        onMounted(() => {
-            updateColor()
-        })
     }
 }
 

@@ -1,7 +1,5 @@
 <script setup lang="ts">
 
-const colorMode = useColorMode()
-
 const articles = [{
     title: 'Frog birthday !',
     subtitle: 'Frogs have birthday.\nThe one of yours truly is today :)',
@@ -19,16 +17,9 @@ const shade: Ref<ThemeShade> = ref('secondary')
 const backTint: Ref<ThemeTint> = ref('200')
 const backTintDark: Ref<ThemeTint> = ref('800')
 
-const articlesRef = useTemplateRef<any[]>('articlesRef')
+const colorMode = useColorMode()
 
-Theme.sample(
-    [{
-        domRefs: articlesRef,
-        add: () => `bg-${shade.value}-${colorMode.value === 'dark' ? backTintDark.value : backTint.value}`,
-        remove: (c: string) => c.startsWith('bg-'),
-    }],
-    [shade, backTint, backTintDark]
-)
+const computedBg = computed(() => `bg-${shade.value}-${colorMode.value === 'dark' ? backTintDark.value : backTint.value}`)
 
 </script>
 
@@ -46,10 +37,9 @@ Theme.sample(
             <Flex full class="justify-center items-stretch content-start gap-8">
                 <Flex
                     v-for="article in articles"
-                    ref="articlesRef"
                     :key="article.title"
                     col
-                    class="rounded-lg shadow-element dark:shadow-element-dark"
+                    :class="`rounded-lg shadow-element dark:shadow-element-dark ${computedBg}`"
                     w="w-[350px]">
                     <img :src="article.thumbnail" class="w-[350px] aspect-[7/4] object-cover rounded-t-lg">
                     <Flex col start full class="py-4 px-6 h-full">
