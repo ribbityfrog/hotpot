@@ -27,9 +27,12 @@
                 <li>Components theming and generating an <i>app.config.ts</i></li> 
             </ul>
         </Section>
-        <Section start title="Suggestions">
-            <p>Sure :)</p>
+        <Section start title="I have suggestions">
+            <p>Thanks :)</p>
             <p>You can reach me on the <ULink>Nuxt Discord</ULink> or email me at <ULink to="mailto:contact@steamfrog.net" target="_blank" external>contact@steamfrog.net</ULink></p>
+        </Section>
+        <Section start title="Thanks to">
+            <p><ULink to="https://github.com/bertyn99">@bertyn99</ULink> for the original idea</p>
         </Section>
     </Page>
 </template>
