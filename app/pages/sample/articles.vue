@@ -20,7 +20,8 @@ const articles = [{
 }
 ]
 
-const shade: Ref<ThemeShade> = ref('secondary')
+const buttonShade: Ref<ThemeShade> = ref('primary')
+const backShade: Ref<ThemeShade> = ref('secondary')
 const backTint: Ref<ThemeTint> = ref('200')
 const backTintDark: Ref<ThemeTint> = ref('800')
 
@@ -34,16 +35,20 @@ const backTintDark: Ref<ThemeTint> = ref('800')
         <Section>
             <Flex center class="gap-6" wrap>
                 <Flex center class="gap-2">
-                    <strong>Color</strong>
-                    <ColorOptionShade v-model="shade" />
+                    <strong>Button</strong>
+                    <ColorOptionShade v-model="buttonShade" />
+                </Flex>
+                <Flex center class="gap-2">
+                    <strong>Background</strong>
+                    <ColorOptionShade v-model="backShade" />
                 </Flex>
                 <Flex center class="gap-2">
                     <strong>Bg (light)</strong>
-                    <ColorOptionTint v-model="backTint" :shade="shade" />
+                    <ColorOptionTint v-model="backTint" :shade="backShade" />
                 </Flex>
                 <Flex center class="gap-2">
                     <strong>Bg (dark)</strong>
-                    <ColorOptionTint v-model="backTintDark" :shade="shade" />
+                    <ColorOptionTint v-model="backTintDark" :shade="backShade" />
                 </Flex>
             </Flex>
         </Section>
@@ -53,11 +58,11 @@ const backTintDark: Ref<ThemeTint> = ref('800')
                     v-for="article in articles"
                     :key="article.title"
                     col
-                    :class="`rounded-lg shadow-element dark:shadow-element-dark bg-${shade}-${backTint} dark:bg-${shade}-${backTintDark}`"
+                    :class="`rounded-lg shadow-element dark:shadow-element-dark bg-${backShade}-${backTint} dark:bg-${backShade}-${backTintDark}`"
                     w="w-[350px]">
                     <img :src="article.thumbnail" class="w-[350px] aspect-[7/4] object-cover rounded-t-lg">
                     <Flex col start full class="py-4 px-6 h-full">
-                        <h3 class="line-clamp-2" no-space>
+                        <h3 class="line-clamp-2 w-full text-center mb-2">
                             {{ article.title }}
                         </h3>
                         <p class="whitespace-pre-line line-clamp-3 mb-4 grow">
@@ -67,7 +72,7 @@ const backTintDark: Ref<ThemeTint> = ref('800')
                             <p class="text-muted">
                                 {{ article.date }}
                             </p>
-                            <UButton :color="shade">See more</UButton>
+                            <UButton :color="buttonShade">See more</UButton>
                         </Flex>
                     </Flex>
                 </Flex>

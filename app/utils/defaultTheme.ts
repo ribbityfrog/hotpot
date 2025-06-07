@@ -10,7 +10,7 @@ export const defaultColors = {
     'text-muted': 'neutral-600',
     'text-toned': 'neutral-700',
     'text-highlighted': 'neutral-900',
-    'text-inverted': 'neutral-100',
+    'text-inverted': 'white',
     bg: 'white',
     'bg-muted': 'neutral-50',
     'bg-elevated': 'neutral-100',

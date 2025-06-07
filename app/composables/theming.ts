@@ -134,7 +134,9 @@ export class Theme {
         toaster.add({ title: 'Shades saved!', description: 'Theme shades saved into local storage.', color: 'success' })
     }
 
-    resetShades() {
+    resetShades(delet: boolean = false) {
+        if (delet) localStorage.removeItem(this.#lsShades)
+
         this.#shades.value = this.copyShades(this.#shadesDefault)
         this.applyShades()
 
@@ -169,7 +171,9 @@ export class Theme {
         toaster.add({ title: 'Colors saved!', description: 'Theme colors saved into local storage.', color: 'success' })
     }
 
-    resetColors() {
+    resetColors(delet: boolean = false) {
+        if (delet) localStorage.removeItem(this.#lsColors)
+        
         this.#colors.value = { ...defaultColors }
         this.#colorsDark.value = { ...defaultColorsDark }
         this.applyColors()
