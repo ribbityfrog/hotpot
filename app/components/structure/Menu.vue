@@ -34,6 +34,14 @@ const menus = {
         label: 'Theming',
         to: '/theming',
     },{
+        label: 'Samples',
+        children: [
+            {
+                label: 'Articles',
+                to: '/sample/articles',
+            },
+        ],
+    }, {
         label: 'Generate',
         to: '/generate',
     }],

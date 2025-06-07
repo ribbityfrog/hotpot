@@ -75,6 +75,14 @@ const tilesGapComputed = computed(() => {
             </Section>
             <Section class-content="mt-8 gap-y-8 sm:gap-y-4">
                 <h3 class="self-start">Main colors</h3>
+                <div class="self-start mb-4">
+                    <p>The text used on colors is <i>text-inverted</i> available in the <strong>Neutral section</strong></p>
+                    <p>Let's make it convenient, here you go :</p>
+                    <Flex start class="gap-2 mt-4">
+                        <p class="font-medium">Text-inverted</p>
+                        <ColorSelector color="text-inverted" />
+                    </Flex>
+                </div>
                 <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="capitalize(color)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
             </Section>

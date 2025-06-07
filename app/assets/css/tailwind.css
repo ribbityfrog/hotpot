@@ -116,36 +116,3 @@
   }
 }
 
-:root {
-  --ui-primary: var(--ui-color-primary-500);
-  --ui-secondary: var(--ui-color-secondary-600);
-  --ui-confirm: var(--ui-color-confirm-500);
-  --ui-cancel: var(--ui-color-cancel-400);
-  --ui-error: var(--ui-color-error-400);
-  --ui-neutral: var(--ui-color-neutral-500);
-
-  --ui-bg: white;
-
-  --ui-text-dimmed: var(--ui-color-neutral-400);
-  --ui-text-muted: var(--ui-color-neutral-300);
-  --ui-text-toned: var(--ui-color-neutral-200);
-  --ui-text: var(--ui-color-neutral-500);
-  --ui-text-highlighted: var(--ui-color-neutral-900);
-}
-
-.dark {
-  --ui-primary: var(--ui-color-primary-300);
-  --ui-secondary: var(--ui-color-secondary-500);
-  --ui-confirm: var(--ui-color-confirm-400);
-  --ui-cancel: var(--ui-color-cancel-400);
-  --ui-error: var(--ui-color-error-400);
-  --ui-neutral: var(--ui-color-neutral-400);
-
-  --ui-bg: var(--ui-color-neutral-900);
-
-  --ui-text-dimmed: var(--ui-color-neutral-200);
-  --ui-text-muted: var(--ui-color-neutral-300);
-  --ui-text-toned: var(--ui-color-neutral-400);
-  --ui-text: var(--ui-color-neutral-50);
-  --ui-text-highlighted: white;
-}

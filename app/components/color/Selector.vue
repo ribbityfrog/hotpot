@@ -50,53 +50,6 @@ const itemShades: Ref<{ label: string, value: ThemeShadeExtended }[]> = ref([
 
 ])
 
-const itemTints: Ref<{ label: string, value: ThemeTint }[]> = ref([
-    {
-        label: '50',
-        value: '50'
-    },    
-    {
-        label: '100',
-        value: '100'
-    },
-    {
-        label: '200',
-        value: '200'
-    },
-    {
-        label: '300',
-        value: '300'
-    },
-    {
-        label: '400',
-        value: '400'
-    },
-    {
-        label: '500',
-        value: '500'
-    },    
-    {
-        label: '600',
-        value: '600'
-    },
-    {
-        label: '700',
-        value: '700'
-    },
-    {
-        label: '800',
-        value: '800'
-    },
-    {
-        label: '900',
-        value: '900'
-    },
-    {
-        label: '950',
-        value: '950'
-    }
-])
-
 function defineSelection(mode: string) {
     const colors = mode === 'dark' ? theme.colorsDark : theme.colors
     const shadeTint = colors[props.color].split('-')
@@ -121,17 +74,6 @@ nuxtApp.hook('colors:update', () => {
     selected.value = defineSelection(colorMode.value)
 })
 
-function getChipColor(color?: ThemeShadeExtended) {
-    if (!color) return 'bg-pink-500'
-
-    if (color === 'white')
-        return 'bg-white'
-    else if (color === 'black')
-        return 'bg-black'
-    else
-        return `bg-${color}-500`
-}
-
 </script>
 
 <template>
@@ -139,7 +81,7 @@ function getChipColor(color?: ThemeShadeExtended) {
         <USelectMenu
             v-model="selected.shade"
             color="neutral"
-            :items="itemShades"
+            :items="itemShadesExtended"
             value-key="value"
             class="w-38"
             @change="updateColor">
