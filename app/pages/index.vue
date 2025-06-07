@@ -18,7 +18,8 @@
             <p>If you like it, please <ULink target="_blank" to="https://github.com/ribbityfrog/hotpot" external>star it on GitHub</ULink></p>
             <p>Here is the roadmap if this project has any form of success:</p>
             <ul class="list-disc list-inside ml-4">
-                <li>Adding some Components pages to have more samples</li>
+                <li>Adding some Components pages to have more samples (in progress)</li>
+                <li>Export / Import shades and colors (from hotpot to hotpot only)</li>
                 <li>Better shades calculation (now it sucks, I should use HSL to have cleaner shades)</li>
                 <li>Contrast calculation for accessibility, like <ULink to="https://webaim.org/resources/contrastchecker/" target="_blank" external>WebAIM</ULink></li>
                 <li>Being able to add Shades to be used in the Nuxt UI Shades/Colors and with Tailwind directly</li>
