@@ -1,17 +1,24 @@
 <script setup lang="ts">
 
 const articles = [{
+    title: 'Do frogs fly ?',
+    subtitle: 'An incredible story, not a clickbait',
+    thumbnail: '/img/sample/articles/flying_frog.webp',
+    date: '8 Apr. 2025',
+},
+{
     title: 'Frog birthday !',
     subtitle: 'Frogs have birthday.\nThe one of yours truly is today :)',
     thumbnail: '/img/sample/articles/birthday_frog.webp',
     date: '4 Apr. 2025',
 },
 {
-    title: 'Do frogs fly ?',
-    subtitle: 'An incredible story, not a clickbait',
-    thumbnail: '/img/sample/articles/flying_frog.webp',
+    title: 'A frog on the moon',
+    subtitle: 'Hoppity hop, moonlanding I\'m coming!',
+    thumbnail: '/img/sample/articles/moon_frog.webp',
     date: '1 Apr. 2025',
-}]
+}
+]
 
 const shade: Ref<ThemeShade> = ref('secondary')
 const backTint: Ref<ThemeTint> = ref('200')
@@ -25,9 +32,20 @@ const backTintDark: Ref<ThemeTint> = ref('800')
             <h1>Articles</h1>
         </Section>
         <Section>
-            <ColorOptionShade v-model="shade" />
-            <ColorOptionTint v-model="backTint" :shade="shade" />
-            <ColorOptionTint v-model="backTintDark" :shade="shade" />
+            <Flex center class="gap-6" wrap>
+                <Flex center class="gap-2">
+                    <strong>Color</strong>
+                    <ColorOptionShade v-model="shade" />
+                </Flex>
+                <Flex center class="gap-2">
+                    <strong>Bg (light)</strong>
+                    <ColorOptionTint v-model="backTint" :shade="shade" />
+                </Flex>
+                <Flex center class="gap-2">
+                    <strong>Bg (dark)</strong>
+                    <ColorOptionTint v-model="backTintDark" :shade="shade" />
+                </Flex>
+            </Flex>
         </Section>
         <Section>
             <Flex full class="justify-center items-stretch content-start gap-8">
