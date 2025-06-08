@@ -19,8 +19,15 @@ const tilesGapComputed = computed(() => {
             <h1>Theming</h1>
             <div class="text-center">
                 <p>Shades and Colors are saved/reloaded/reseted independently from each other</p>
-                <p>Reset doesn't delete your saved shades or colors, you can reload them afterwards</p>
+                <p>Reset shades or colors doesn't delete their save, you can reload them afterwards</p>
             </div>
+            <Flex v-if="theme.isColorsReloadable || theme.isShadesReloadable" col center class="gap-y-2">
+                <p>To delete your saves</p>
+                <Flex center class="gap-8">
+                    <UButton v-if="theme.isShadesReloadable" color="error" @click="theme.resetShades(true)">Reset and delete Shades</UButton>
+                    <UButton v-if="theme.isColorsReloadable" color="error" @click="theme.resetColors(true)">Reset and delete Colors</UButton>
+                </Flex>
+            </Flex>
         </Section>
         <Section start title="Background" class-content="gap-y-4">
             <div class="self-start">

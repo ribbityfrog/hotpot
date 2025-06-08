@@ -20,17 +20,49 @@ const articles = [{
 }
 ]
 
-const buttonShade: Ref<ThemeShade> = ref('primary')
-const backShade: Ref<ThemeShade> = ref('secondary')
-const backTint: Ref<ThemeTint> = ref('200')
-const backTintDark: Ref<ThemeTint> = ref('800')
+const rawStorage = localStorage.getItem('sample-articles')
+const orig: Record<string, any> = {
+    buttonShade: 'primary',
+    backShade: 'secondary',
+    backTint: '200',
+    backTintDark: '800'
+} satisfies Record<string, ThemeShadeExtended | ThemeTint>
+const storage = rawStorage ? JSON.parse(rawStorage) : orig
+
+const buttonShade: Ref<ThemeShade> = ref(storage.buttonShade)
+    
+const backShade: Ref<ThemeShade> = ref(storage.backShade)
+const backTint: Ref<ThemeTint> = ref(storage.backTint)
+const backTintDark: Ref<ThemeTint> = ref(storage.backTintDark)
+
+watch([buttonShade, backShade, backTint, backTintDark], () => 
+    localStorage.setItem('sample-articles', JSON.stringify({
+        buttonShade: buttonShade.value,
+
+        backShade: backShade.value,
+        backTint: backTint.value,
+        backTintDark: backTintDark.value
+    }))
+)
+
+function reset() {
+    buttonShade.value = orig.buttonShade
+
+    backShade.value = orig.backShade
+    backTint.value = orig.backTint
+    backTintDark.value = orig.backTintDark
+}
 
 </script>
 
 <template>
     <Page class="gap-y-12">
         <Section>
-            <h1>Articles</h1>
+            <Flex full between>
+                <div/>
+                <h1>Articles</h1>
+                <UButton color="error" class="self-end" @click="reset">Reset</UButton>
+            </Flex>
         </Section>
         <Section>
             <Flex center class="gap-6" wrap>

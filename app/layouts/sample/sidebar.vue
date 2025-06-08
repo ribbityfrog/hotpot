@@ -1,16 +1,58 @@
 <script setup lang="ts">
 
-const topBarShade: Ref<ThemeShade> = ref('primary')
-const topBarTint: Ref<ThemeTint> = ref('100')
-const topBarTintDark: Ref<ThemeTint> = ref('800')
+const rawStorage = localStorage.getItem('sample-sidebar')
+const orig: Record<string, any> = {
+    topBarShade: 'primary',
+    topBarTint: '100',
+    topBarTintDark: '800',
+    sideBarShade: 'primary',
+    sideBarTint: '100',
+    sideBarTintDark: '800',
+    bottomBarShade: 'neutral',
+    bottomBarTint: '100',
+    bottomBarTintDark: '900'
+}
+const storage = rawStorage ? JSON.parse(rawStorage) : orig
 
-const sideBarShade: Ref<ThemeShade> = ref('primary')
-const sideBarTint: Ref<ThemeTint> = ref('100')
-const sideBarTintDark: Ref<ThemeTint> = ref('800')
+const topBarShade: Ref<ThemeShade> = ref(storage.topBarShade)
+const topBarTint: Ref<ThemeTint> = ref(storage.topBarTint)
+const topBarTintDark: Ref<ThemeTint> = ref(storage.topBarTintDark)
 
-const bottomBarShade: Ref<ThemeShade> = ref('neutral')
-const bottomBarTint: Ref<ThemeTint> = ref('100')
-const bottomBarTintDark: Ref<ThemeTint> = ref('900')
+const sideBarShade: Ref<ThemeShade> = ref(storage.sideBarShade)
+const sideBarTint: Ref<ThemeTint> = ref(storage.sideBarTint)
+const sideBarTintDark: Ref<ThemeTint> = ref(storage.sideBarTintDark)
+
+const bottomBarShade: Ref<ThemeShade> = ref(storage.bottomBarShade)
+const bottomBarTint: Ref<ThemeTint> = ref(storage.bottomBarTint)
+const bottomBarTintDark: Ref<ThemeTint> = ref(storage.bottomBarTintDark)
+
+watch([topBarShade, topBarTint, topBarTintDark, sideBarShade, sideBarTint, sideBarTintDark, bottomBarShade, bottomBarTint, bottomBarTintDark], () => {
+    localStorage.setItem('sample-sidebar', JSON.stringify({
+        topBarShade: topBarShade.value,
+        topBarTint: topBarTint.value,
+        topBarTintDark: topBarTintDark.value,
+        sideBarShade: sideBarShade.value,
+        sideBarTint: sideBarTint.value,
+        sideBarTintDark: sideBarTintDark.value,
+        bottomBarShade: bottomBarShade.value,
+        bottomBarTint: bottomBarTint.value,
+        bottomBarTintDark: bottomBarTintDark.value
+    }))
+})
+
+function reset() {
+    topBarShade.value = orig.topBarShade
+    topBarTint.value = orig.topBarTint
+    topBarTintDark.value = orig.topBarTintDark
+
+    sideBarShade.value = orig.sideBarShade
+    sideBarTint.value = orig.sideBarTint
+    sideBarTintDark.value = orig.sideBarTintDark
+
+    bottomBarShade.value = orig.bottomBarShade
+    bottomBarTint.value = orig.bottomBarTint
+    bottomBarTintDark.value = orig.bottomBarTintDark
+}
 
 </script>
 
@@ -26,8 +68,12 @@ const bottomBarTintDark: Ref<ThemeTint> = ref('900')
                     <h2 class="w-full text-center">Froggo</h2>
                     <Menu menu="main" vertical />
                 </Flex>
-                <Section group full class-content="gap-y-8">
-                    <slot />
+                <Section group full class-content="gap-y-8 p-6">
+                    <Flex full between>
+                        <div/>
+                        <h1>Articles</h1>
+                        <UButton color="error" class="self-end" @click="reset">Reset</UButton>
+                    </Flex>
                     <Flex col star class="gap-6">
                         <Flex center class="gap-6" wrap>
                             <Flex center class="gap-2">
@@ -72,6 +118,7 @@ const bottomBarTintDark: Ref<ThemeTint> = ref('900')
                             </Flex>
                         </Flex>
                     </Flex>
+                    <slot />
                 </Section>
             </Flex>
         </Page>

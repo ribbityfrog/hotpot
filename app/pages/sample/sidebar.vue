@@ -7,9 +7,5 @@ definePageMeta({
 </script>
 
 <template>
-    <Page class="py-4">
-        <Section>
-            <h1>Header / Sidebar / Footer</h1>
-        </Section>
-    </Page>
+    <Page />
 </template>

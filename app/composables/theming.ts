@@ -135,7 +135,10 @@ export class Theme {
     }
 
     resetShades(delet: boolean = false) {
-        if (delet) localStorage.removeItem(this.#lsShades)
+        if (delet) {
+            localStorage.removeItem(this.#lsShades)
+            this.#isShadesReloadable.value = false
+        }
 
         this.#shades.value = this.copyShades(this.#shadesDefault)
         this.applyShades()
@@ -172,7 +175,10 @@ export class Theme {
     }
 
     resetColors(delet: boolean = false) {
-        if (delet) localStorage.removeItem(this.#lsColors)
+        if (delet) { 
+            localStorage.removeItem(this.#lsColors)
+            this.#isColorsReloadable.value = false
+        }
         
         this.#colors.value = { ...defaultColors }
         this.#colorsDark.value = { ...defaultColorsDark }
