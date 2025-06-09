@@ -86,11 +86,15 @@ function reset() {
     <Page class="gap-y-8">
         <Section class-content="gap-y-4">
             <Flex full between>
-                <div/>
-                <h1>Buttons</h1>
-                <UButton color="error" class="self-end" @click="reset">Reset</UButton>
+                <div class="w-1/4"/>
+                <Flex col center class="gap-y-4 w-1/2">
+                    <h1>Buttons</h1>
+                    <UCheckbox v-model="config.isGenerated" label="Include in code generation" />
+                </Flex>
+                <Flex end class="w-1/4">
+                    <UButton color="error" @click="reset">Reset</UButton>
+                </Flex>
             </Flex>
-            <UCheckbox v-model="config.isGenerated" label="Include in code generation" />
         </Section>
         <Section class-content="gap-y-4">
             <UCheckbox v-model="config.cursor" label="Pointer cursor on hover" />
