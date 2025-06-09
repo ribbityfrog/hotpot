@@ -30,10 +30,12 @@ const menus = {
     main: [{
         label: 'Home',
         to: '/',
-    }, {
+    },
+    {
         label: 'Colors',
         to: '/colors',
-    }, {
+    },
+    {
         label: 'Components',
         children: [
             {
@@ -41,7 +43,8 @@ const menus = {
                 to: '/component/buttons',
             },
         ],
-    }, {
+    },
+    {
         label: 'Samples',
         children: [
             {
@@ -53,7 +56,8 @@ const menus = {
                 to: '/sample/articles',
             },
         ],
-    }, {
+    },
+    {
         label: 'Generate',
         to: '/generate',
     }],

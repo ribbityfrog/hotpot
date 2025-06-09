@@ -64,8 +64,7 @@ watch([slots, variants], () => {
         localStorage.setItem('gen-comp-buttons', JSON.stringify({ slots: slots.value, variants: variants.value }))
 })
 
-watch(config, (newConfig) => {
-    console.log('hum')
+watch(config.value, (newConfig) => {
     if (newConfig.isGenerated)
         localStorage.setItem('gen-comp-buttons', JSON.stringify({ slots: slots.value, variants: variants.value }))
     else if (!newConfig.isGenerated)
@@ -101,9 +100,9 @@ function reset() {
                     <UInputNumber
                         v-model="config[size].x"
                         size="sm"
-                        :step="config[size].x < 5 ? 0.5 : 1"
+                        :step="0.5"
                         :min="0"
-                        :max="100" />
+                        :max="50" />
                 </UFormField>
             </Flex>
             <Flex end class="gap-6">
@@ -112,9 +111,9 @@ function reset() {
                     <UInputNumber
                         v-model="config[size].y"
                         size="sm"
-                        :step="config[size].y < 5 ? 0.5 : 1"
+                        :step="0.5"
                         :min="0"
-                        :max="100" />
+                        :max="50" />
                 </UFormField>
             </Flex>
             <Flex end class="gap-6">
