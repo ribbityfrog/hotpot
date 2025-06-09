@@ -15,8 +15,12 @@ export default defineAppConfig({
             }
         },
         button: {
-            slots: {
-                base: 'cursor-pointer',
+            variants: {
+                size: {
+                    sm: {
+                        base: 'px-12'
+                    }
+                }
             }
         }
     }

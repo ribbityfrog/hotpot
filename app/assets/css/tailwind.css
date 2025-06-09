@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
 @source inline("{hover:,}{dark:,}{text,bg,border}-{primary,secondary,success,info,warning,error,neutral}-{50,{100..900..100},950}");
+@source inline("p{x,y}-{{0..100..1},0.5,1.5,2.5,3.5,4.5}");
+@source inline("gap-{{0..12..1},0.5,1.5,2.5,3.5,4.5,6.5,7.5,8.5,9.5,10.5,11.5}");
 
 @theme static {
   --font-text: Montserrat, ui-sans-serif, system-ui;

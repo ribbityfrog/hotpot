@@ -30,10 +30,18 @@ const menus = {
     main: [{
         label: 'Home',
         to: '/',
-    },{
-        label: 'Theming',
-        to: '/theming',
-    },{
+    }, {
+        label: 'Colors',
+        to: '/colors',
+    }, {
+        label: 'Components',
+        children: [
+            {
+                label: 'Buttons',
+                to: '/component/buttons',
+            },
+        ],
+    }, {
         label: 'Samples',
         children: [
             {
