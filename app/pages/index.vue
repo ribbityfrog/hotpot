@@ -21,7 +21,6 @@
             <strong>Shades and Colors are constantly available as drawers in the header</strong>
         </Section>
         <Section start title="Next steps">
-            <p>If you like it, please <ULink target="_blank" to="https://github.com/ribbityfrog/hotpot" external>star it on GitHub</ULink></p>
             <p>Here is the roadmap if this project has any form of success:</p>
             <ul class="list-disc list-inside ml-4">
                 <li>Adding some Components pages to have more samples (in progress)</li>
