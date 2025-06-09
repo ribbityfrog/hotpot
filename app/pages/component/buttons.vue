@@ -6,27 +6,32 @@ const orig = {
     xs: {
         x: 2,
         y: 1,
-        gap: 1.5
+        gap: 1,
+        roundness: 'rounded-md'
     },
     sm: {
         x: 2.5,
         y: 1.5,
-        gap: 1.5
+        gap: 1.5,
+        roundness: 'rounded-md'
     },
     md: {
         x: 4,
         y: 1.5,
-        gap: 1.5
+        gap: 1.5,
+        roundness: 'rounded-md'
     },
     lg: {
         x: 4,
         y: 2,
-        gap: 1.5
+        gap: 2,
+        roundness: 'rounded-md'
     },
     xl: {
         x: 4,
         y: 2,
-        gap: 1.5
+        gap: 2,
+        roundness: 'rounded-md'
     }
 }
 
@@ -42,19 +47,19 @@ const slots = computed(() => ({
 const variants = computed(() => ({
     size: {
         xs: {
-            base: `px-${config.value.xs.x} py-${config.value.xs.y} gap-${config.value.xs.gap}`
+            base: `px-${config.value.xs.x} py-${config.value.xs.y} gap-${config.value.xs.gap} ${config.value.xs.roundness}`
         },
         sm: {
-            base: `px-${config.value.sm.x} py-${config.value.sm.y} gap-${config.value.sm.gap}`
+            base: `px-${config.value.sm.x} py-${config.value.sm.y} gap-${config.value.sm.gap} ${config.value.sm.roundness}`
         },
         md: {
-            base: `px-${config.value.md.x} py-${config.value.md.y} gap-${config.value.md.gap}`
+            base: `px-${config.value.md.x} py-${config.value.md.y} gap-${config.value.md.gap} ${config.value.md.roundness}`
         },
         lg: {
-            base: `px-${config.value.lg.x} py-${config.value.lg.y} gap-${config.value.lg.gap}`
+            base: `px-${config.value.lg.x} py-${config.value.lg.y} gap-${config.value.lg.gap} ${config.value.lg.roundness}`
         },
         xl: {
-            base: `px-${config.value.xl.x} py-${config.value.xl.y} gap-${config.value.xl.gap}`
+            base: `px-${config.value.xl.x} py-${config.value.xl.y} gap-${config.value.xl.gap} ${config.value.xl.roundness}`
         },
     },
 }))
@@ -129,6 +134,12 @@ function reset() {
                         :step="0.5"
                         :min="0"
                         :max="12" />
+                </UFormField>
+            </Flex>
+            <Flex end class="gap-6">
+                <strong class="mb-1">Rounding</strong>
+                <UFormField v-for="size in variantSizes" :key="size" :label="size">
+                    <InputRoundness v-model="config[size].roundness" class="w-36" />
                 </UFormField>
             </Flex>
         </Section>
