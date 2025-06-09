@@ -10,7 +10,7 @@ const nuxtConfig =
 \tcss: ['~/assets/css/tailwind.css'],
 }`
 
-const appConfig =
+let appConfig =
 `export default defineAppConfig({
 \tui: {
 \t\tcolors: {
@@ -21,9 +21,34 @@ const appConfig =
 \t\t\twarning: 'slateWarning',
 \t\t\terror: 'slateError',
 \t\t\tneutral: 'slateNeutral'
-\t\t},
+\t\t},`
+
+function fillAppConfig(config: object, depth: number = 1) {
+    for (const [key, value] of Object.entries(config)) {
+        if (typeof value === 'object')
+        {
+            appConfig += `\n${'\t'.repeat(depth + 2)}${key}: {`
+            fillAppConfig(value, depth + 1)
+        }
+        else
+            appConfig += `\n${'\t'.repeat(depth + 2)}${key}: '${value}',`
+    }
+    appConfig += `\n${'\t'.repeat(depth + 1)}},`
+}
+
+const configs = getStoragesStartWith('gen-comp-')
+
+for (const config of configs)
+{
+    appConfig += `\n\t\t${config.name}{`
+    delete config.name
+    fillAppConfig(config)
+}
+
+appConfig += `
 \t}
-})`
+})
+`
 
 let cssConfig = 
 `@import 'tailwindcss';

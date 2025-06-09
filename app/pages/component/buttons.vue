@@ -36,7 +36,7 @@ const storage: typeof orig = rawStorage ? JSON.parse(rawStorage) : orig
 const config = ref(structuredClone(storage))
 
 const slots = computed(() => ({
-    base: `${config.value.cursor ? 'cursor-pointer' : 'cursor-default'} `,
+    base: config.value.cursor ? 'cursor-pointer' : 'cursor-default',
 }))
 
 const variants = computed(() => ({
@@ -66,7 +66,7 @@ watch([slots, variants], () => {
 
 watch(config.value, (newConfig) => {
     if (newConfig.isGenerated)
-        localStorage.setItem('gen-comp-buttons', JSON.stringify({ slots: slots.value, variants: variants.value }))
+        localStorage.setItem('gen-comp-buttons', JSON.stringify({ name: 'button', slots: slots.value, variants: variants.value }))
     else if (!newConfig.isGenerated)
         localStorage.removeItem('gen-comp-buttons')
 
@@ -93,7 +93,7 @@ function reset() {
             <UCheckbox v-model="config.isGenerated" label="Include in code generation" />
         </Section>
         <Section class-content="gap-y-4">
-            <UCheckbox v-model="config.cursor" label="Cursor pointer" />
+            <UCheckbox v-model="config.cursor" label="Pointer cursor on hover" />
             <Flex end class="gap-6">
                 <strong class="mb-1">X padding</strong>
                 <UFormField v-for="size in variantSizes" :key="size" :label="size" class="w-26">

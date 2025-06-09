@@ -14,14 +14,5 @@ export default defineAppConfig({
                 content: '!w-fit !min-w-1/2',
             }
         },
-        button: {
-            variants: {
-                size: {
-                    sm: {
-                        base: 'px-12'
-                    }
-                }
-            }
-        }
     }
 })

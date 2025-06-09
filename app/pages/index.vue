@@ -11,8 +11,12 @@
         </Section>
         <Section start title="How to use">
             <p>I turned the fire on already :</p>
-            <p>1/ Express yourself artistically in <ULink to="/theming">Theming</ULink></p>
-            <p>2/ Sneakily retrieve the code in <ULink to="/generate">Generate</ULink></p>
+            <ol class="list-decimal list-inside ml-4">
+                <li>Choose your colors in <ULink to="/colors">Colors</ULink></li>
+                <li>Shape your components</li>
+                <li>Check the coherence with the samples</li>
+                <li>Retrieve the code in <ULink to="/generate">Generate</ULink></li>
+            </ol>
         </Section>
         <Section start title="Next steps">
             <p>If you like it, please <ULink target="_blank" to="https://github.com/ribbityfrog/hotpot" external>star it on GitHub</ULink></p>
