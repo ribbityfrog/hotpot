@@ -1,8 +1,9 @@
 <template>
-    <UDrawer :ui="{ overlay: 'bg-transparent' }">
+    <UDrawer :overlay="false" :modal="false">
         <UButton label="Shades" color="info" trailing-icon="i-lucide-chevron-up" variant="subtle" />
         <template #content>
             <Flex col center class="gap-4 p-4">
+                <DarkSwitch />
                 <Flex
                     v-for="shade in themeShadeEntries"
                     :key="shade"
