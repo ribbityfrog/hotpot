@@ -170,6 +170,8 @@ export class Theme {
     saveColors() {
         localStorage.setItem(this.#lsColors, JSON.stringify({ light: this.#colors.value, dark: this.#colorsDark.value }))
 
+        this.#isColorsReloadable.value = true
+
         const toaster = useToast()
         toaster.add({ title: 'Colors saved!', description: 'Theme colors saved into local storage.', color: 'success' })
     }
