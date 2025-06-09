@@ -59,6 +59,7 @@ function reset() {
     <Page class="gap-y-12">
         <Section>
             <Flex full between>
+                <div />
                 <h1>Articles</h1>
                 <UButton color="error" class="self-end" @click="reset">Reset</UButton>
             </Flex>

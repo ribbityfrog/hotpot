@@ -71,7 +71,7 @@ function reset() {
                 <Section group full class-content="gap-y-8 p-6">
                     <Flex full between>
                         <div/>
-                        <h1>Articles</h1>
+                        <h1>Sidebar</h1>
                         <UButton color="error" class="self-end" @click="reset">Reset</UButton>
                     </Flex>
                     <Flex col star class="gap-6">
