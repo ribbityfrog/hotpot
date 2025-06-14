@@ -9,6 +9,7 @@ export const themeShades = {
 } as const
 
 export type ThemeShade = keyof typeof themeShades
+export type ThemeShadeStrict = Exclude<ThemeShade, 'neutral'>
 export type ThemeShadeExtended = ThemeShade | 'white' | 'black'
 
 export const themeShadeEntries = Object.keys(themeShades) as Readonly<ThemeShade[]>
@@ -21,9 +22,9 @@ export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'b
 
 export const themeColors = [
     'primary',
-    'secondary', 
-    'success', 
-    'info', 
+    'secondary',
+    'success',
+    'info',
     'warning',
     'error',
     'text',
