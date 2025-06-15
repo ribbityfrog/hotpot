@@ -10,45 +10,9 @@ const props = defineProps({
     }
 })
 
-const itemShades: Ref<{ label: string, value: ThemeShadeExtended }[]> = ref([
-    {
-        label: 'Primary',
-        value: 'primary'
-    },    
-    {
-        label: 'Secondary',
-        value: 'secondary'
-    },
-    {
-        label: 'Success',
-        value: 'success'
-    },
-    {
-        label: 'Info',
-        value: 'info'
-    },
-    {
-        label: 'Warning',
-        value: 'warning'
-    },
-    {
-        label: 'Error',
-        value: 'error'
-    },
-    {
-        label: 'Neutral',
-        value: 'neutral'
-    },
-    {
-        label: 'White',
-        value: 'white'
-    },
-    {
-        label: 'Black',
-        value: 'black'
-    },
-
-])
+const itemShades: Ref<{ label: string, value: ThemeShadeExtended }[]> = ref(
+    themeShadesExtended.map(shade => ({ label: capitalize(shade), value: shade }))
+)
 
 function defineSelection(mode: string) {
     const colors = mode === 'dark' ? theme.colorsDark : theme.colors
@@ -78,12 +42,7 @@ nuxtApp.hook('colors:update', () => {
 
 <template>
     <Flex center class="gap-2">
-        <USelectMenu
-            v-model="selected.shade"
-            color="neutral"
-            :items="itemShadesExtended"
-            value-key="value"
-            class="w-38"
+        <USelectMenu v-model="selected.shade" color="neutral" :items="genItems(themeShadesExtended)" value-key="value" class="w-38"
             @change="updateColor">
             <template #leading="{ modelValue }">
                 <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(modelValue)}`" />
@@ -92,19 +51,13 @@ nuxtApp.hook('colors:update', () => {
                 <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(itemShades![index]!.value)}`" />
             </template>
         </USelectMenu>
-        <USelect
-            v-if="selected.shade !== 'white' && selected.shade !== 'black'"
-            v-model="selected.tint"
-            color="neutral"
-            :items="itemTints"
-            value-key="value"
-            class="w-26"
-            @change="updateColor">
+        <USelect v-if="selected.shade !== 'white' && selected.shade !== 'black'" v-model="selected.tint" color="neutral"
+            :items="genItems(themeTints)" value-key="value" class="w-26" @change="updateColor">
             <template #leading="{ modelValue }">
                 <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${modelValue}`" />
             </template>
             <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${itemTints![index]!.value}`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${themeTints![index]}`" />
             </template>
         </USelect>
     </Flex>

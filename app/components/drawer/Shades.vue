@@ -5,14 +5,14 @@
             <Flex col center class="gap-4 p-4">
                 <DarkSwitch />
                 <Flex
-                    v-for="shade in themeShadeEntries"
+                    v-for="shade in themeShades"
                     :key="shade"
                     full
                     center>
-                    <ColorPicker :color="shade" class="w-32 mr-2 sm:mr-4" />
-                    <ColorPickerPopup :color="shade">
+                    <ColorPicker :shade="shade" class="w-32 mr-2 sm:mr-4" />
+                    <!-- <ColorPickerPopup :shade="shade">
                         <ColorShades :color="shade" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
-                    </ColorPickerPopup>
+                    </ColorPickerPopup> -->
                 </Flex>
                 <ThemeSavingShades />
             </Flex>

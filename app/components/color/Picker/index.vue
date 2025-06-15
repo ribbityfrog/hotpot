@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 const props = defineProps({
-    color: {
+    shade: {
         type: String as PropType<ThemeShade>,
         required: true
     }
@@ -10,10 +10,10 @@ const props = defineProps({
 </script>
 
 <template>
-    <ColorPickerPopup :color="props.color">
-        <UButton :label="capitalize(props.color)" color="neutral" variant="outline">
+    <ColorPickerPopup :shade="props.shade">
+        <UButton :label="capitalize(props.shade)" color="neutral" variant="outline">
             <template #leading>
-                <span :class="shades[props.color].bg[5]" class="size-3 rounded-full" />
+                <span :class="`bg-${shade}-500`" class="size-3 rounded-full" />
             </template>
         </UButton>
     </ColorPickerPopup>

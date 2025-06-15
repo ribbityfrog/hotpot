@@ -1,18 +1,20 @@
-export const themeShades = {
-    primary: '--color-slatePrimary-',
-    secondary: '--color-slateSecondary-',
-    success: '--color-slateSuccess-',
-    info: '--color-slateInfo-',
-    warning: '--color-slateWarning-',
-    error: '--color-slateError-',
-    neutral: '--color-slateNeutral-'
+export const themeSlates = {
+    primary: 'slatePrimary',
+    secondary: 'slateSecondary',
+    success: 'slateSuccess',
+    info: 'slateInfo',
+    warning: 'slateWarning',
+    error: 'slateError',
+    neutral: 'slateNeutral'
 } as const
 
-export type ThemeShade = keyof typeof themeShades
+export type ThemeShade = keyof typeof themeSlates
 export type ThemeShadeStrict = Exclude<ThemeShade, 'neutral'>
 export type ThemeShadeExtended = ThemeShade | 'white' | 'black'
 
-export const themeShadeEntries = Object.keys(themeShades) as Readonly<ThemeShade[]>
+export const themeShades = Object.keys(themeSlates) as Readonly<ThemeShade[]>
+export const themeShadesStrict = themeShades.filter(v => v !== 'neutral') as Readonly<ThemeShadeStrict[]>
+export const themeShadesExtended = [...themeShades, 'white', 'black'] as Readonly<ThemeShadeExtended[]>
 
 export const themeTints = ['50', '100', '200', '300', '400', '500', '600', '700', '800', '900', '950'] as const
 export type ThemeTint = typeof themeTints[number]

@@ -15,8 +15,7 @@ export class Color {
 
     constructor(hexa: string);
     constructor(r: number, g: number, b: number, a?: number);
-    constructor(rOrHexa: number | string, g?: number, b?: number, a: number = 1)
-    {
+    constructor(rOrHexa: number | string, g?: number, b?: number, a: number = 1) {
         if (typeof rOrHexa === 'string')
             this.init(rOrHexa)
         else
@@ -26,8 +25,7 @@ export class Color {
     init(hexa: string): void;
     init(r: number, g: number, b: number, a?: number): void;
     init(rOrHexa: number | string, g?: number, b?: number, a: number = 1): void {
-        if(typeof rOrHexa === 'number')
-        {
+        if (typeof rOrHexa === 'number') {
             this.r = Color.clampColor(rOrHexa)
             this.g = Color.clampColor(g!)
             this.b = Color.clampColor(b!)
@@ -77,13 +75,9 @@ export class Color {
         if (this.shades.length !== 11)
             return
 
-        const slate = themeShades[themeShade]
-
         let i = 0
-        let shade = 50
-        while (shade <= 950) {
-            setProperty(`${slate}${shade}`, this.shades[i]!.hex3)
-            shade = shade === 50 || shade === 900 ? shade + 50 : shade + 100
+        for (const tint of themeTints) {
+            setProperty(getSlateStyled(themeShade, tint), this.shades[i]!.hex3)
             i++
         }
     }

@@ -45,8 +45,8 @@ const tilesGapComputed = computed(() => {
                 </Flex>
             </Flex>
             <Flex center>
-                <ColorPicker color="neutral" class="w-32 mr-2 sm:mr-4" />
-                <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
+                <ColorPicker shade="neutral" class="w-32 mr-2 sm:mr-4" />
+                <!-- <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" /> -->
             </Flex>
         </Section>
         <Section class-content="gap-y-4" title="Shades">
@@ -68,15 +68,15 @@ const tilesGapComputed = computed(() => {
                 </div>
             </Flex>
             <Flex
-                v-for="themeShade in themeShadeEntries"
+                v-for="themeShade in themeShades"
                 :key="themeShade"
                 full
                 center
                 :class="tilesGapComputed">
-                <ColorPicker :color="themeShade" class="w-32 mr-2 sm:mr-4" />
-                <ColorPickerPopup :color="themeShade">
+                <ColorPicker :shade="themeShade" class="w-32 mr-2 sm:mr-4" />
+                <!-- <ColorPickerPopup :shade="themeShade">
                     <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
-                </ColorPickerPopup>
+                </ColorPickerPopup> -->
             </Flex>
             <ThemeSavingShades class="sm:self-start" />
         </Section>
@@ -102,7 +102,7 @@ const tilesGapComputed = computed(() => {
                         </Flex>
                     </Flex>
                 </div>
-                <ThemeColorSelection v-for="(color, index) in themeShadeEntries.filter((shade) => shade !== 'neutral')" :key="index" :label="capitalize(color)" :color="color" />
+                <ThemeColorSelection v-for="(color, index) in themeShadesStrict" :key="index" :label="capitalize(color)" :color="color" />
                 <ThemeSavingColors class="sm:self-start" />
             </Section>
             <Section class="mt-8" class-content="gap-y-8 sm:gap-y-4">

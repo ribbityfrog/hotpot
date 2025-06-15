@@ -1,23 +1,23 @@
 <script setup lang="ts">
 
 const props = defineProps({
-    color: {
+    shade: {
         type: String as PropType<ThemeShade>,
         required: true
     }
 })
 
-const picker = ref(theme.shades[props.color].hex3)
-const input = ref(theme.shades[props.color].hex3)
+const picker = ref(theme.shades[props.shade].hex3)
+const input = ref(theme.shades[props.shade].hex3)
 
 watch(picker, (newcolor) => {
     input.value = picker.value
-    theme.shades[props.color].update(newcolor, props.color)
+    theme.shades[props.shade].update(newcolor, props.shade)
 })
 
 watch(theme.shadesRef, (newColors) => {
-    picker.value = newColors[props.color].hex3
-    input.value = newColors[props.color].hex3
+    picker.value = newColors[props.shade].hex3
+    input.value = newColors[props.shade].hex3
 })
 
 </script>

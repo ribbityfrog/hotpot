@@ -54,22 +54,19 @@ export class Theme {
         this.#isShadesReloadable = ref(false)
         this.#isColorsReloadable = ref(false)
 
-        if (shades)
-        {
+        if (shades) {
             this.#isShadesReloadable = ref(true)
             this.#shades = ref(this.copyShades(shades))
         }
-        else 
+        else
             this.#shades = ref(this.copyShades(this.#shadesDefault))
 
-        if (colors)
-        {
+        if (colors) {
             this.#isColorsReloadable = ref(true)
             this.#colors.value = { ...colors.light }
             this.#colorsDark.value = { ...colors.dark }
         }
-        else
-        {
+        else {
             this.#colors.value = { ...defaultColors }
             this.#colorsDark.value = { ...defaultColorsDark }
         }
@@ -79,10 +76,10 @@ export class Theme {
     }
 
     applyShades() {
-        for (const entry of themeShadeEntries) {
-            const color = this.#shades.value[entry]
+        for (const shade of themeShades) {
+            const color = this.#shades.value[shade]
             color.shadeGen()
-            color.shadeStyle(entry)
+            color.shadeStyle(shade)
         }
     }
 
@@ -158,8 +155,7 @@ export class Theme {
     reloadShades() {
         const storage = localStorage.getItem(this.#lsShades)
 
-        if (storage)
-        {
+        if (storage) {
             this.#shades.value = this.copyShades(JSON.parse(storage))
 
             const toaster = useToast()
@@ -177,11 +173,11 @@ export class Theme {
     }
 
     resetColors(delet: boolean = false) {
-        if (delet) { 
+        if (delet) {
             localStorage.removeItem(this.#lsColors)
             this.#isColorsReloadable.value = false
         }
-        
+
         this.#colors.value = { ...defaultColors }
         this.#colorsDark.value = { ...defaultColorsDark }
         this.applyColors()
@@ -196,8 +192,7 @@ export class Theme {
     reloadColors() {
         const storage = localStorage.getItem(this.#lsColors)
 
-        if (storage)
-        {
+        if (storage) {
             const colors = JSON.parse(storage)
             this.#colors.value = { ...colors.light }
             this.#colorsDark.value = { ...colors.dark }
