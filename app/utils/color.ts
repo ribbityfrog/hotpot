@@ -82,6 +82,10 @@ export class Color {
         }
     }
 
+    copy(): Color {
+        return new Color(this.hex4)
+    }
+
     static clampColor(value: number): number {
         return Math.min(Math.max(Math.trunc(value), 0), 255)
     }
