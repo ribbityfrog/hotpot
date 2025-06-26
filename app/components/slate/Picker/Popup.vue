@@ -1,23 +1,21 @@
 <script setup lang="ts">
 
-const props = defineProps({
-    shade: {
-        type: String as PropType<ThemeShade>,
-        required: true
-    }
+const slate = defineModel({
+    type: Object as PropType<Slate>,
+    required: true
 })
 
-const picker = ref(theme.shades[props.shade].hex3)
-const input = ref(theme.shades[props.shade].hex3)
+const picker = ref(slate.value.color.hex3)
+const input = ref(slate.value.color.hex3)
 
-watch(picker, (newcolor) => {
+watch(picker, (newColor) => {
     input.value = picker.value
-    theme.shades[props.shade].update(newcolor, props.shade)
+    slate.value.color.update(newColor)
 })
 
-watch(theme.shadesRef, (newColors) => {
-    picker.value = newColors[props.shade].hex3
-    input.value = newColors[props.shade].hex3
+watch(theme.slatesRef, (newColors) => {
+    picker.value = newColors[slate.value.name].color.hex3
+    input.value = newColors[slate.value.name].color.hex3
 })
 
 </script>

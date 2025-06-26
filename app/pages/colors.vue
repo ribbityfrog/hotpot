@@ -33,21 +33,17 @@
                     <DarkSwitch />
                 </Flex>
             </Flex>
-            <Flex center>
+            <!-- <Flex center>
                 <ColorPicker shade="neutral" class="w-32 mr-2 sm:mr-4" />
-                <!-- <ColorShades color="neutral" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" /> -->
-            </Flex>
+            </Flex> -->
         </Section>
         <Section class-content="gap-y-4" title="Shades">
             <Flex
-                v-for="themeShade in themeShades"
-                :key="themeShade"
+                v-for="slate in theme.slates"
+                :key="slate.name"
                 full
                 center>
-                <ColorPicker :shade="themeShade" class="w-32 mr-2 sm:mr-4" />
-                <!-- <ColorPickerPopup :shade="themeShade">
-                    <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />
-                </ColorPickerPopup> -->
+                <SlatePicker v-model="theme.slates[slate.name]" class="w-32 mr-2 sm:mr-4" />
             </Flex>
             <ThemeSavingShades class="sm:self-start" />
         </Section>

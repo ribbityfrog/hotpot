@@ -1,5 +1,5 @@
 export class Theme {
-    #shades!: Ref<Record<ThemeShade, Color>>
+    #slates!: Ref<Record<ThemeShade, Slate>>
     #shadesDefault!: Record<ThemeShade, string>
     #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
     #colorsDark!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
@@ -8,12 +8,12 @@ export class Theme {
     #lsShades = 'shades'
     #lsColors = 'colors'
 
-    get shades() {
-        return this.#shades.value
+    get slates() {
+        return this.#slates.value
     }
 
-    get shadesRef() {
-        return this.#shades
+    get slatesRef() {
+        return this.#slates
     }
 
     get colors() {
@@ -56,10 +56,10 @@ export class Theme {
 
         if (shades) {
             this.#isShadesReloadable = ref(true)
-            this.#shades = ref(this.copyShades(shades))
+            this.#slates = ref(this.copySlates(shades))
         }
         else
-            this.#shades = ref(this.copyShades(this.#shadesDefault))
+            this.#slates = ref(this.copySlates(this.#shadesDefault))
 
         if (colors) {
             this.#isColorsReloadable = ref(true)
@@ -71,16 +71,13 @@ export class Theme {
             this.#colorsDark.value = { ...defaultColorsDark }
         }
 
-        this.applyShades()
+        this.applySlates()
         this.applyColors()
     }
 
-    applyShades() {
-        for (const shade of themeShades) {
-            const color = this.#shades.value[shade]
-            color.shadeGen()
-            color.shadeStyle(shade)
-        }
+    applySlates() {
+        for (const slate of Object.values(this.#slates.value))
+            slate.applyStyle()
     }
 
     applyColors(mode?: string) {
@@ -100,27 +97,27 @@ export class Theme {
         setProperty(`--ui-${name}`, value)
     }
 
-    copyShades(shades: Record<ThemeShade, string>): Record<ThemeShade, Color> {
+    copySlates(shades: Record<ThemeShade, string>): Record<ThemeShade, Slate> {
         return {
-            primary: new Color(shades.primary),
-            secondary: new Color(shades.secondary),
-            success: new Color(shades.success),
-            info: new Color(shades.info),
-            warning: new Color(shades.warning),
-            error: new Color(shades.error),
-            neutral: new Color(shades.neutral)
+            primary: new Slate(new Color(shades.primary), 'primary'),
+            secondary: new Slate(new Color(shades.secondary), 'secondary'),
+            success: new Slate(new Color(shades.success), 'success'),
+            info: new Slate(new Color(shades.info), 'info'),
+            warning: new Slate(new Color(shades.warning), 'warning'),
+            error: new Slate(new Color(shades.error), 'error'),
+            neutral: new Slate(new Color(shades.neutral), 'neutral')
         }
     }
 
     saveShades() {
         const colors: Record<ThemeShade, string> = {
-            primary: this.#shades.value.primary.hex3,
-            secondary: this.#shades.value.secondary.hex3,
-            success: this.#shades.value.success.hex3,
-            info: this.#shades.value.info.hex3,
-            warning: this.#shades.value.warning.hex3,
-            error: this.#shades.value.error.hex3,
-            neutral: this.#shades.value.neutral.hex3
+            primary: this.#slates.value.primary.color.hex3,
+            secondary: this.#slates.value.secondary.color.hex3,
+            success: this.#slates.value.success.color.hex3,
+            info: this.#slates.value.info.color.hex3,
+            warning: this.#slates.value.warning.color.hex3,
+            error: this.#slates.value.error.color.hex3,
+            neutral: this.#slates.value.neutral.color.hex3
         }
 
         localStorage.setItem(this.#lsShades, JSON.stringify(colors))
@@ -137,16 +134,16 @@ export class Theme {
             this.#isShadesReloadable.value = false
         }
 
-        this.#shades.value = this.copyShades(this.#shadesDefault)
-        this.applyShades()
+        this.#slates.value = this.copySlates(this.#shadesDefault)
+        this.applySlates()
 
         const toaster = useToast()
         toaster.add({ title: 'Shades reseted!', description: 'Theme shades have been reseted.', color: 'success' })
     }
 
     resetToNuxtShades() {
-        this.#shades.value = this.copyShades(defaultNuxtShades)
-        this.applyShades()
+        this.#slates.value = this.copySlates(defaultNuxtShades)
+        this.applySlates()
 
         const toaster = useToast()
         toaster.add({ title: 'Shades reseted!', description: 'Theme shades have been reseted to Nuxt UI default.', color: 'success' })
@@ -156,7 +153,7 @@ export class Theme {
         const storage = localStorage.getItem(this.#lsShades)
 
         if (storage) {
-            this.#shades.value = this.copyShades(JSON.parse(storage))
+            this.#slates.value = this.copySlates(JSON.parse(storage))
 
             const toaster = useToast()
             toaster.add({ title: 'Shades reloaded!', description: 'Theme shades reloaded from last save.', color: 'success' })

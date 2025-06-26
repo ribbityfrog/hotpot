@@ -3,7 +3,7 @@ export class Color {
     g!: number
     b!: number
     a!: number
-    #slate?: Slate
+    slate?: Slate
 
     get hex3(): string {
         return `#${this.r.toString(16).padStart(2, '0')}${this.g.toString(16).padStart(2, '0')}${this.b.toString(16).padStart(2, '0')}`
@@ -30,7 +30,8 @@ export class Color {
             this.g = Color.clampColor(gOrSlate as number)
             this.b = Color.clampColor(b!)
             this.a = Color.clampAlpha(a)
-            this.#slate = slate
+            if (slate)
+                this.slate = slate
         } else {
             const hexa = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/.test(rOrHexa) ? rOrHexa.slice(1) : 'FF0000'
             const hasAlpha = hexa.length === 8
@@ -38,13 +39,17 @@ export class Color {
             this.g = Color.clampColor(parseInt(hexa.slice(2, 4), 16))
             this.b = Color.clampColor(parseInt(hexa.slice(4, 6), 16))
             this.a = hasAlpha ? Color.clampAlpha(parseInt(hexa.slice(6, 8), 16) / 255) : 1
-            this.#slate = gOrSlate ? gOrSlate as Slate : undefined
+            if (gOrSlate)
+                this.slate = gOrSlate as Slate
         }
     }
 
+    attachSlate(slate: Slate): void { this.slate = slate }
+    dropSlate(): void { this.slate = undefined }
+
     update(hexa: string): void {
         this.init(hexa)
-        this.#slate?.applyStyle()
+        this.slate?.update()
     }
 
     mix(fg: Color): Color {
@@ -55,8 +60,8 @@ export class Color {
         )
     }
 
-    copy(): Color {
-        return new Color(this.hex4)
+    copy(slate?: Slate): Color {
+        return new Color(this.hex4, slate)
     }
 
     static clampColor(value: number): number {
