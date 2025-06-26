@@ -1,16 +1,5 @@
 <script setup lang="ts">
 
-const displayCodes = ref(false)
-const tilesGap = ref(false)
-
-const tab = ref('0')
-
-const tilesGapComputed = computed(() => {
-    if (tab.value === '1')
-        return 'gap-x-2'
-    return tilesGap.value ? 'gap-x-1.5' : ''
-})
-
 </script>
 
 <template>
@@ -50,29 +39,11 @@ const tilesGapComputed = computed(() => {
             </Flex>
         </Section>
         <Section class-content="gap-y-4" title="Shades">
-            <Flex v-if="!$device.isMobile" full between class="gap-y-4">
-                <UTabs
-                    v-model="tab"
-                    :content="false"
-                    :items="[{ label: 'Tiles' }, { label: 'Codes' }]"
-                    class="w-62" />
-                <div v-if="tab !== '1'" class="space-y-2">
-                    <Flex class="gap-x-1">
-                        <UCheckbox v-model="displayCodes" color="neutral" />
-                        <p class="text-sm">Display color codes</p>
-                    </Flex>
-                    <Flex class="gap-x-1">
-                        <UCheckbox v-model="tilesGap" color="neutral" />
-                        <p class="text-sm">Add a gap between tiles</p>
-                    </Flex>
-                </div>
-            </Flex>
             <Flex
                 v-for="themeShade in themeShades"
                 :key="themeShade"
                 full
-                center
-                :class="tilesGapComputed">
+                center>
                 <ColorPicker :shade="themeShade" class="w-32 mr-2 sm:mr-4" />
                 <!-- <ColorPickerPopup :shade="themeShade">
                     <ColorShades :code="displayCodes || tab === '1'" :color="themeShade" :text="tab === '1'" class="transform duration-500 ease-in-out hover:shadow-element hover:dark:shadow-element-dark" />

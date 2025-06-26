@@ -1,17 +1,26 @@
 export class Slate {
     #color: Color
-    #shades!: Record<ThemeTint, Color>
+    #name: ThemeShade
+    #tints!: Record<ThemeTint, Color>
+    darkTint: ThemeTint = '400'
+    lightTint: ThemeTint = '500'
 
-    constructor(color: Color) {
+    constructor(color: Color, shade: ThemeShade) {
         this.#color = color
-        this.shadeGen()
+        this.#name = shade
+        this.#tintsGen()
     }
 
     get color(): Color { return this.#color }
-    get shades(): Record<ThemeTint, Color> { return this.#shades }
+    get shades(): Record<ThemeTint, Color> { return this.#tints }
 
-    shadeGen(): void {
-        this.#shades = {
+    update(color: Color) { 
+        this.#color = color
+        this.applyStyle()
+    }
+
+    #tintsGen(): void {
+        this.#tints = {
             50: this.#color.mix(new Color(255, 255, 255, 0.85)),
             100: this.#color.mix(new Color(255, 255, 255, 0.7)),
             200: this.#color.mix(new Color(255, 255, 255, 0.55)),
@@ -26,8 +35,8 @@ export class Slate {
         }
     }
 
-    shadeStyle(themeShade: ThemeShade) {
+    applyStyle() {
         for (const tint of themeTints)
-            setProperty(getSlateStyled(themeShade, tint), this.shades[tint].hex3)
+            setProperty(getSlateStyled(this.#name, tint), this.shades[tint].hex3)
     }
 }

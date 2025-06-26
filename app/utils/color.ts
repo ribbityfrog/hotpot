@@ -3,7 +3,7 @@ export class Color {
     g!: number
     b!: number
     a!: number
-    shades: Color[] = []
+    #slate?: Slate
 
     get hex3(): string {
         return `#${this.r.toString(16).padStart(2, '0')}${this.g.toString(16).padStart(2, '0')}${this.b.toString(16).padStart(2, '0')}`
@@ -13,23 +13,24 @@ export class Color {
         return `#${this.r.toString(16).padStart(2, '0')}${this.g.toString(16).padStart(2, '0')}${this.b.toString(16).padStart(2, '0')}${(this.a * 255).toString(16).padStart(2, '0')}`
     }
 
-    constructor(hexa: string);
-    constructor(r: number, g: number, b: number, a?: number);
-    constructor(rOrHexa: number | string, g?: number, b?: number, a: number = 1) {
+    constructor(hexa: string, slate?: Slate);
+    constructor(r: number, g: number, b: number, a?: number, slate?: Slate);
+    constructor(rOrHexa: number | string, gOrSlate?: number | Slate, b?: number, a: number = 1, slate?: Slate) {
         if (typeof rOrHexa === 'string')
-            this.init(rOrHexa)
+            this.init(rOrHexa, slate)
         else
-            this.init(rOrHexa, g!, b!, a)
+            this.init(rOrHexa, gOrSlate as number, b!, a, slate)
     }
 
-    init(hexa: string): void;
-    init(r: number, g: number, b: number, a?: number): void;
-    init(rOrHexa: number | string, g?: number, b?: number, a: number = 1): void {
+    init(hexa: string, slate?: Slate): void;
+    init(r: number, g: number, b: number, a?: number, slate?: Slate): void;
+    init(rOrHexa: number | string, gOrSlate?: number | Slate, b?: number, a: number = 1, slate?: Slate): void {
         if (typeof rOrHexa === 'number') {
             this.r = Color.clampColor(rOrHexa)
-            this.g = Color.clampColor(g!)
+            this.g = Color.clampColor(gOrSlate as number)
             this.b = Color.clampColor(b!)
             this.a = Color.clampAlpha(a)
+            this.#slate = slate
         } else {
             const hexa = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/.test(rOrHexa) ? rOrHexa.slice(1) : 'FF0000'
             const hasAlpha = hexa.length === 8
@@ -37,14 +38,13 @@ export class Color {
             this.g = Color.clampColor(parseInt(hexa.slice(2, 4), 16))
             this.b = Color.clampColor(parseInt(hexa.slice(4, 6), 16))
             this.a = hasAlpha ? Color.clampAlpha(parseInt(hexa.slice(6, 8), 16) / 255) : 1
+            this.#slate = gOrSlate ? gOrSlate as Slate : undefined
         }
     }
 
-    update(hexa: string, style?: ThemeShade): void {
+    update(hexa: string): void {
         this.init(hexa)
-        this.shadeGen()
-        if (style)
-            this.shadeStyle(style)
+        this.#slate?.applyStyle()
     }
 
     mix(fg: Color): Color {
@@ -53,33 +53,6 @@ export class Color {
             (fg.g * fg.a) + (this.g * (1 - fg.a)),
             (fg.b * fg.a) + (this.b * (1 - fg.a))
         )
-    }
-
-    shadeGen(): void {
-        this.shades = [
-            this.mix(new Color(255, 255, 255, 0.85)),
-            this.mix(new Color(255, 255, 255, 0.7)),
-            this.mix(new Color(255, 255, 255, 0.55)),
-            this.mix(new Color(255, 255, 255, 0.35)),
-            this.mix(new Color(255, 255, 255, 0.15)),
-            this,
-            this.mix(new Color(0, 0, 0, 0.3)),
-            this.mix(new Color(0, 0, 0, 0.5)),
-            this.mix(new Color(0, 0, 0, 0.7)),
-            this.mix(new Color(0, 0, 0, 0.85)),
-            this.mix(new Color(0, 0, 0, 0.92)),
-        ]
-    }
-
-    shadeStyle(themeShade: ThemeShade) {
-        if (this.shades.length !== 11)
-            return
-
-        let i = 0
-        for (const tint of themeTints) {
-            setProperty(getSlateStyled(themeShade, tint), this.shades[i]!.hex3)
-            i++
-        }
     }
 
     copy(): Color {
