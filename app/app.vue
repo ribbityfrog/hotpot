@@ -4,8 +4,9 @@ theme.init()
 
 const colorMode = useColorMode()
 
-watch(colorMode, (newMode) => {
-    theme.applyColors(newMode.value)
+watch(colorMode, () => {
+    theme.applySlates()
+    theme.applyColors()
 })
 
 </script>

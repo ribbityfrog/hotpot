@@ -33,9 +33,9 @@ const defaultTile = `${props.tiny ? 'hover:h-5' : 'hover:h-7'} hover:cursor-poin
 const selectedTile = `hover:cursor-default ${props.tiny ? 'rounded-sm' : 'rounded-md'}`
 
 function defineTile(tint: ThemeTint) {
-    if (slate.value.name === 'neutral')
-        return `${defaultSize} hover:cursor-default`
-    else if (selected.value === tint)
+    // if (slate.value.name === 'neutral')
+    //     return `${defaultSize} hover:cursor-default`
+    if (selected.value === tint)
         return `${selectedSize} ${selectedTile}`
     else
         return `${defaultSize} ${defaultTile}`

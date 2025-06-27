@@ -45,8 +45,6 @@ export class Slate {
     }
 
     applyColor() {
-        if (this.name === 'neutral') return
-
         const mode = useColorMode().value
         setProperty(`--ui-${this.name}`, `var(--ui-color-${this.name}-${mode === 'dark' ? this.darkTint : this.lightTint})`)
     }

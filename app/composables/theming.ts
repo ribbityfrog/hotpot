@@ -76,8 +76,10 @@ export class Theme {
     }
 
     applySlates() {
-        for (const slate of Object.values(this.#slates.value))
+        for (const slate of Object.values(this.#slates.value)) {
             slate.applyStyle()
+            slate.applyColor()
+        }
     }
 
     applyColors(mode?: string) {
