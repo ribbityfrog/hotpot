@@ -9,6 +9,14 @@ watch(colorMode, () => {
     theme.applyColors()
 })
 
+const mouseDown = useState('isMouseDown', () => false)
+onMounted(() => {
+    if (import.meta.client) {
+        window.addEventListener('mousedown', () => mouseDown.value = true)
+        window.addEventListener('mouseup', () => mouseDown.value = false)
+    }
+})
+
 </script>
 
 <template>

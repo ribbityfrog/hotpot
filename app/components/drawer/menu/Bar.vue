@@ -23,7 +23,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
 
 <template>
     <div class="rounded-full bg-inverted text-inverted fixed bottom-4 z-20 px-10 hadow-element dark:shadow-element-dark">
-        <UDrawer v-model:open="isOpened" :overlay="false" :handle="false">
+        <UDrawer v-model:open="isOpened" :overlay="false" handle-only>
             <Flex center class="gap-3">
                 <DrawerMenuIcon name="i-mdi-color" tooltip="Colors" @click="tabSelected = 'colors'" />
                 <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="tabSelected = 'bg-colors'" />
@@ -31,7 +31,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
                 <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="tabSelected = 'text-colors'" />
             </Flex>
             <template #content>
-                <Flex full col center class="gap-4 px-2 pt-2 pb-6">
+                <Flex full col center class="gap-4 px-2 pb-6">
                     <Flex full between-start class="gap-2">
                         <div class="w-1/3">
                             <DarkSwitch />
