@@ -15,6 +15,6 @@ const props = defineProps({
 
 <template>
     <UTooltip :delay-duration="0" :text="props.tooltip">
-        <UIcon :name="props.name" class="transform duration-150 ease-in-out size-8 hover:size-9 hover:text-primary hover:cursor-pointer" />
+        <UIcon :name="props.name" class="transform duration-150 ease-in-out size-12 hover:size-11 hover:text-primary hover:cursor-pointer" />
     </UTooltip>
 </template>
