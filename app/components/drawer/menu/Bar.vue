@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DrawerSlates, DrawerBackgrounds } from '#components'
+import { DrawerSlates, DrawerBackgrounds, DrawerBorders, DrawerTexts } from '#components'
 
 const tabItems: { icon: string, value: TabItemValue }[] = [
     { icon: 'i-mdi-color', value: 'colors' },
@@ -11,8 +11,8 @@ const tabItems: { icon: string, value: TabItemValue }[] = [
 const elements = {
     colors: DrawerSlates,
     'bg-colors': DrawerBackgrounds,
-    'border-colors': DrawerSlates,
-    'text-colors': DrawerSlates
+    'border-colors': DrawerBorders,
+    'text-colors': DrawerTexts
 } as const
 type TabItemValue = keyof typeof elements
 
@@ -22,7 +22,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
 </script>
 
 <template>
-    <div class="rounded-full bg-inverted text-inverted fixed bottom-4 z-20 px-10 hadow-element dark:shadow-element-dark">
+    <div class="rounded-full bg-inverted text-inverted fixed bottom-4 z-20 px-4 sm:px-10 hadow-element dark:shadow-element-dark">
         <UDrawer v-model:open="isOpened" :overlay="false" handle-only>
             <Flex center class="gap-3">
                 <DrawerMenuIcon name="i-mdi-color" tooltip="Colors" @click="tabSelected = 'colors'" />

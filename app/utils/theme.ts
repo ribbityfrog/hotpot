@@ -28,26 +28,26 @@ export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'b
 
 export const themeColorsText = [
     'text',
+    'text-inverted',
     'text-dimmed',
     'text-muted',
     'text-toned',
     'text-highlighted',
-    'text-inverted',
 ] as const
 
 export const themeColorsBackground = [
     'bg',
+    'bg-inverted',
     'bg-muted',
     'bg-elevated',
     'bg-accented',
-    'bg-inverted',
 ] as const
 
 export const themeColorsBorder = [
     'border',
+    'border-inverted',
     'border-muted',
     'border-accented',
-    'border-inverted'
 ] as const
 
 export const themeColors = [ ...themeColorsText, ...themeColorsBackground, ...themeColorsBorder] as const
