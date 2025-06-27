@@ -57,8 +57,8 @@ nuxtApp.hook('colors:update', () => {
             </template>
         </USelectMenu>
         <USelect
-            v-if="selected.shade !== 'white' && selected.shade !== 'black'"
             v-model="selected.tint"
+            :disabled="!isThemeShade(selected.shade)"
             color="neutral"
             :items="genItems(themeTints)"
             value-key="value"

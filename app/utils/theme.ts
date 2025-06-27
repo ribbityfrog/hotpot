@@ -12,6 +12,10 @@ export type ThemeShade = keyof typeof themeSlates
 export type ThemeShadeStrict = Exclude<ThemeShade, 'neutral'>
 export type ThemeShadeExtended = ThemeShade | 'white' | 'black'
 
+export function isThemeShade (shade: string): shade is ThemeShade {
+    return Object.keys(themeSlates).includes(shade)
+}
+
 export const themeShades = Object.keys(themeSlates) as Readonly<ThemeShade[]>
 export const themeShadesStrict = themeShades.filter(v => v !== 'neutral') as Readonly<ThemeShadeStrict[]>
 export const themeShadesExtended = [...themeShades, 'white', 'black'] as Readonly<ThemeShadeExtended[]>

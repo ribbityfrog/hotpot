@@ -28,7 +28,8 @@ watch(theme.slatesRef, (newColors) => {
                 <UColorPicker v-model="picker" />
                 <Flex center class="gap-4">
                     <UInput v-model="input" class="w-24" color="neutral" :autofocus="false" />
-                    <UButton :disabled="picker === input" square color="success" @click="picker = input">OK</UButton>
+                    <UButton v-if="picker !== input" square color="success" @click="picker = input">OK</UButton>
+                    <div v-else class="size-8" />
                 </Flex>
             </Flex>
         </template>

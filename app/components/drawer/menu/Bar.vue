@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DrawerSlates } from '#components'
+import { DrawerSlates, DrawerBackgrounds } from '#components'
 
 const tabItems: { icon: string, value: TabItemValue }[] = [
     { icon: 'i-mdi-color', value: 'colors' },
@@ -10,7 +10,7 @@ const tabItems: { icon: string, value: TabItemValue }[] = [
 
 const elements = {
     colors: DrawerSlates,
-    'bg-colors': DrawerSlates,
+    'bg-colors': DrawerBackgrounds,
     'border-colors': DrawerSlates,
     'text-colors': DrawerSlates
 } as const
