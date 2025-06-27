@@ -40,25 +40,25 @@ onMounted(() => {
 }
 
 .slide-fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.07s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.07s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
+  transform: translateY(20px);
   opacity: 0;
 }
 
 .fade-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.14s ease-out;
 }
 
 .fade-leave-active {
-  transition: all 0.3s;
+  transition: all 0.07s;
 }
 
 .fade-enter-from,
