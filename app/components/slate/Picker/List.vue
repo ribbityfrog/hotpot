@@ -19,7 +19,7 @@ const props = defineProps({
             v-for="slate in theme.slates"
             :key="slate.name"
             center>
-            <SlatePicker v-model="theme.slates[slate.name]" :stretched="props.stretch" :tiny="props.tiny" />
+            <SlatePicker v-model="theme.slates[slate.name]" :stretch="props.stretch" :tiny="props.tiny" />
         </Flex>
     </Flex>
 </template>
