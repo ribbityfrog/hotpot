@@ -1,3 +1,3 @@
 <template>
-    <SlatePickerList />
+    <SlatePickerList tiny />
 </template>

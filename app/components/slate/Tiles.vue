@@ -7,6 +7,13 @@ const slate = defineModel({
     required: true
 })
 
+const props = defineProps({
+    tiny: {
+        type: Boolean,
+        default: false
+    }
+})
+
 const tints = Object.keys(slate.value.tints) as ThemeTint[]
 
 const selected = computed(() => colorMode.value === 'dark' ? slate.value.darkTint : slate.value.lightTint)
@@ -20,10 +27,10 @@ function select(tint: ThemeTint)
     slate.value.applyColor()
 }
 
-const defaultSize = 'w-8 h-6'
-const selectedSize = 'w-10 h-8'
-const defaultTile = 'hover:h-7 hover:cursor-pointer'
-const selectedTile = 'hover:cursor-default rounded-md'
+const defaultSize = props.tiny ? 'w-4 h-4' : 'w-8 h-6'
+const selectedSize = props.tiny ? 'w-6 h-6' : 'w-10 h-8'
+const defaultTile = `${props.tiny ? 'hover:h-5' : 'hover:h-7'} hover:cursor-pointer`
+const selectedTile = `hover:cursor-default ${props.tiny ? 'rounded-sm' : 'rounded-md'}`
 
 function defineTile(tint: ThemeTint) {
     if (slate.value.name === 'neutral')
