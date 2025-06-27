@@ -33,10 +33,6 @@ const props = defineProps({
                     class="object-contain w-[60px]">
             </NuxtLink>
         </div>
-        <Flex start class="gap-4">
-            <DrawerShades />
-            <DrawerColors />
-        </Flex>
         <Flex center class="gap-x-4">
             <Menu v-if="props.menu !== undefined" :menu="menu" />
             <DarkSwitch v-if="!props.noDark" />

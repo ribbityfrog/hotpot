@@ -22,7 +22,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
 </script>
 
 <template>
-    <div class="rounded-lg bg-inverted text-inverted fixed bottom-4 z-20 px-8 py-3 shadow-element dark:shadow-element-dark">
+    <div class="rounded-full bg-inverted text-inverted fixed bottom-4 z-20 px-10 hadow-element dark:shadow-element-dark">
         <UDrawer v-model:open="isOpened" :overlay="false" :handle="false">
             <Flex center class="gap-3">
                 <DrawerMenuIcon name="i-mdi-color" tooltip="Colors" @click="tabSelected = 'colors'" />
