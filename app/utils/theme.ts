@@ -22,28 +22,31 @@ export type ThemeTint = typeof themeTints[number]
 export type ThemeShadeTint = `${ThemeShade}-${ThemeTint}`
 export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'black'
 
-export const themeColors = [
-    'primary',
-    'secondary',
-    'success',
-    'info',
-    'warning',
-    'error',
+export const themeColorsText = [
     'text',
     'text-dimmed',
     'text-muted',
     'text-toned',
     'text-highlighted',
     'text-inverted',
+] as const
+
+export const themeColorsBackground = [
     'bg',
     'bg-muted',
     'bg-elevated',
     'bg-accented',
     'bg-inverted',
+] as const
+
+export const themeColorsBorder = [
     'border',
     'border-muted',
     'border-accented',
     'border-inverted'
 ] as const
+
+export const themeColors = [ ...themeColorsText, ...themeColorsBackground, ...themeColorsBorder] as const
+
 export type ThemeColor = typeof themeColors[number]
 

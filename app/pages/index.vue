@@ -2,7 +2,7 @@
     <Page class="gap-y-8">
         <Section class-content="gap-y-2">
             <h1>Hotpot - Nuxt UI Theming</h1>
-            <p>Let's cook something nice with <ULink to="https://ui.nuxt.com/" target="_blank" external>Nuxt UI</ULink></p>
+            <p>Let's cook something nice with and for <ULink to="https://ui.nuxt.com/" target="_blank" external>Nuxt UI</ULink></p>
         </Section>
         <Section start title="What's this ?">
             <p>It's a pain to find the right colors for your website and even worse to configure them all in Nuxt UI.</p>

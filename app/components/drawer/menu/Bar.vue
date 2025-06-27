@@ -31,7 +31,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
                 <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="tabSelected = 'text-colors'" />
             </Flex>
             <template #content>
-                <Flex full col center class="gap-4 p-2">
+                <Flex full col center class="gap-4 px-2 pt-2 pb-4">
                     <Flex full between-start class="gap-2">
                         <div class="w-1/3">
                             <DarkSwitch />
