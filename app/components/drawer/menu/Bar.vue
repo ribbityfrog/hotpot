@@ -24,6 +24,8 @@ function openStyling(tab: TabElement) {
     isStylingOpened.value = true
 }
 
+const isSideOpen = ref(false)
+
 </script>
 
 <template>
@@ -34,13 +36,23 @@ function openStyling(tab: TabElement) {
             <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="openStyling('border-colors')" />
             <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
         </Flex>
-        <UDrawer v-model:open="isStylingOpened" :overlay="false" handle-only>
+
+        <UDrawer v-model:open="isStylingOpened" :direction="isSideOpen ? 'left' : 'bottom'" :overlay="false" handle-only>
             <template #content>
-                <Flex full col center class="gap-4 px-2 pb-6">
-                    <Flex full between-start class="gap-2">
-                        <div class="w-1/3">
+                <Flex full col start-center :class="`gap-4 ${isSideOpen ? 'pl-4 py-4' : 'px-2 pb-6'}`">
+                    <Flex full between-start class="gap-12">
+                        <Flex start-center class="w-1/3">
                             <DarkSwitch />
-                        </div>
+                            <Flex center class="w-full">
+                                <UButton
+                                    v-if="!isSideOpen"
+                                    variant="outline"
+                                    color="info"
+                                    size="sm"
+                                    label="dock on the left"
+                                    @click="isSideOpen = true" />
+                            </Flex>
+                        </Flex>
                         <Flex center class="w-1/3">
                             <UTabs v-model="tabSelected" size="xl" variant="link" :items="tabItems"/>
                         </Flex>
@@ -53,8 +65,17 @@ function openStyling(tab: TabElement) {
                         </Flex>
                     </Flex>
                     <Transition name="slide-fade" mode="out-in">
-                        <component :is="elements[tabSelected]" />
+                        <component :is="elements[tabSelected]" v-if="isSideOpen" col />
+                        <component :is="elements[tabSelected]" v-else />
                     </Transition>
+                    <div class="grow" />
+                    <UButton
+                        v-if="isSideOpen"
+                        size="lg"
+                        variant="outline"
+                        color="info"
+                        label="dock on the bottom"
+                        @click="isSideOpen = false" />
                 </Flex>
             </template>
         </UDrawer>
