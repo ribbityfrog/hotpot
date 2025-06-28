@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { DrawerSlates, DrawerBackgrounds, DrawerBorders, DrawerTexts } from '#components'
 
-const tabItems: { icon: string, value: TabItemValue }[] = [
+const tabItems: { icon: string, value: TabElement }[] = [
     { icon: 'i-mdi-color', value: 'colors' },
     { icon: 'i-mdi-format-paint', value: 'bg-colors' },
     { icon: 'i-mdi-border-all', value: 'border-colors' },
@@ -14,22 +14,27 @@ const elements = {
     'border-colors': DrawerBorders,
     'text-colors': DrawerTexts
 } as const
-type TabItemValue = keyof typeof elements
+type TabElement = keyof typeof elements
 
-const isOpened = ref(false)
-const tabSelected: Ref<TabItemValue> = ref('colors')
+const isStylingOpened = ref(false)
+const tabSelected: Ref<TabElement> = ref('colors')
+
+function openStyling(tab: TabElement) {
+    tabSelected.value = tab
+    isStylingOpened.value = true
+}
 
 </script>
 
 <template>
     <div class="rounded-full bg-inverted text-inverted fixed bottom-4 z-20 px-4 sm:px-10 hadow-element dark:shadow-element-dark">
-        <UDrawer v-model:open="isOpened" :overlay="false" handle-only>
-            <Flex center class="gap-3">
-                <DrawerMenuIcon name="i-mdi-color" tooltip="Colors" @click="tabSelected = 'colors'" />
-                <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="tabSelected = 'bg-colors'" />
-                <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="tabSelected = 'border-colors'" />
-                <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="tabSelected = 'text-colors'" />
-            </Flex>
+        <Flex center class="gap-3">
+            <DrawerMenuIcon name="i-mdi-color" tooltip="Colors" @click="openStyling('colors')" />
+            <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="openStyling('bg-colors')" />
+            <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="openStyling('border-colors')" />
+            <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
+        </Flex>
+        <UDrawer v-model:open="isStylingOpened" :overlay="false" handle-only>
             <template #content>
                 <Flex full col center class="gap-4 px-2 pb-6">
                     <Flex full between-start class="gap-2">
@@ -44,7 +49,7 @@ const tabSelected: Ref<TabItemValue> = ref('colors')
                                 color="error"
                                 icon="i-mdi-close"
                                 variant="link"
-                                @click="isOpened = false"/>
+                                @click="isStylingOpened = false"/>
                         </Flex>
                     </Flex>
                     <Transition name="slide-fade" mode="out-in">
