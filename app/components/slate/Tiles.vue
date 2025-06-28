@@ -52,7 +52,7 @@ function defineTile(tint: ThemeTint) {
         <div
             v-for="tint in tints"
             :key="tint"
-            :class="`transform duration-200 ease-in-out ${defineTile(tint)} bg-${slate.name}-${tint}`"
+            :class="`duration-200 ease-in-out ${defineTile(tint)} bg-${slate.name}-${tint}`"
             @click="select(tint)"
             @mouseenter="select(tint, true)" />
     </Flex>

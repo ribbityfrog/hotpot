@@ -10,7 +10,13 @@
             <Flex center class="gap-4" wrap>
                 <UButton :color="slate.name" label="Button" />
                 <UButton :color="slate.name" icon="i-lucide-bird" disabled label="Disabled" />
-                <UButton :color="slate.name" variant="outline" label="Outlined" />
+                <UButton :color="slate.name" icon="i-lucide-bird" variant="outline" label="Outlined" />
+            </Flex>
+            
+            <Flex center class="gap-4" wrap>
+                <UButton :color="slate.name" variant="soft" label="Soft" />
+                <UButton :color="slate.name" variant="subtle" label="Subtle" />
+                <UButton :color="slate.name" variant="ghost" label="Ghost" />
                 <UButton :color="slate.name" variant="link" label="Link" />
             </Flex>
                 

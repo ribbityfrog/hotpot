@@ -32,8 +32,8 @@ const menus = {
         to: '/',
     },
     {
-        label: 'Colors',
-        to: '/colors',
+        label: 'Styling',
+        to: '/styling',
     },
     {
         label: 'Components',

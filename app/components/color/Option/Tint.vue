@@ -20,14 +20,14 @@ const props = defineProps({
             v-if="props.shade !== 'white' && props.shade !== 'black'"
             v-model="tint"
             color="neutral"
-            :items="itemTints"
+            :items="[...themeTints]"
             value-key="value"
             class="w-26">
             <template #leading="{ modelValue }">
                 <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${props.shade }-${modelValue}`" />
             </template>
             <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${props.shade }-${itemTints![index]!.value}`" />
+                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${props.shade }-${themeTints[index]}`" />
             </template>
         </USelect>
     </div>

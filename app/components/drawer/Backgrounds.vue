@@ -1,3 +1,3 @@
 <template>
-    <ColorList :colors="[...themeColorsBackground]" stretch-width="w-30" />
+    <ColorList tiny :colors="[...themeColorsBackground]" stretch-width="w-30" />
 </template>

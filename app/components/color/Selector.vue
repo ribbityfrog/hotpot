@@ -7,6 +7,10 @@ const props = defineProps({
     color: {
         type: String as PropType<ThemeColor>,
         required: true
+    },
+    tiny: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -38,12 +42,15 @@ nuxtApp.hook('colors:update', () => {
     selected.value = defineSelection(colorMode.value)
 })
 
+const size = props.tiny ? 'sm' : 'md'
+
 </script>
 
 <template>
     <Flex center class="gap-2">
-        <USelectMenu
+        <USelect
             v-model="selected.shade"
+            :size="size"
             color="neutral"
             :items="genItems(themeShadesExtended)"
             value-key="value"
@@ -55,9 +62,10 @@ nuxtApp.hook('colors:update', () => {
             <template #item-leading="{ index }">
                 <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(itemShades![index]!.value)}`" />
             </template>
-        </USelectMenu>
+        </USelect>
         <USelect
             v-model="selected.tint"
+            :size="size"
             :disabled="!isThemeShade(selected.shade)"
             color="neutral"
             :items="genItems(themeTints)"

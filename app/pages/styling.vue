@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { StylingColors } from '#components'
+import { StylingColors, StylingBackgrounds } from '#components'
+
+let fragment = useRoute().hash
+if (fragment.startsWith('#')) fragment = fragment.slice(1)
 
 const tabItems: { label: string, value: TabElements }[] = [
     { label: 'Colors', value: 'colors' },
@@ -8,20 +11,25 @@ const tabItems: { label: string, value: TabElements }[] = [
     { label: 'Texts', value: 'texts' },
 ]
 
-const tabSelected: Ref<TabElements> = ref(tabItems[0]!.value)
-
 const elements = {
     colors: StylingColors,
-    backgrounds: StylingColors,
+    backgrounds: StylingBackgrounds,
     borders: StylingColors,
     texts: StylingColors
 } as const
 type TabElements = keyof typeof elements
 
+const tabSelected: Ref<TabElements> = ref(Object.keys(elements).includes(fragment) ? fragment as TabElements : 'colors')
+
+watch(tabSelected, (newTab) => {
+    window.location.hash = newTab
+})
+
 </script>
 
 <template>
     <Page class="gap-y-8">
+        {{ fragment }}
         <Section>
             <h1>Styling</h1>
             <h3>Preview your configuration with various components and situations</h3>
@@ -30,7 +38,9 @@ type TabElements = keyof typeof elements
             <UTabs v-model="tabSelected" :items="tabItems" class="w-full sm:w-2/3"/>
         </Section>
         <Section class-content="gap-y-4">
-            <component :is="elements[tabSelected]" />
+            <Transition name="slide-fade" mode="out-in">
+                <component :is="elements[tabSelected]" />
+            </Transition>
         </Section>
     </Page>
 </template>

@@ -8,7 +8,7 @@ const shade = defineModel<ThemeShade>({
 </script>
 
 <template>
-    <USelectMenu
+    <USelect
         v-model="shade"
         color="neutral"
         :items="genItems(themeShades)"
@@ -20,5 +20,5 @@ const shade = defineModel<ThemeShade>({
         <template #item-leading="{ index }">
             <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(themeShades![index])}`" />
         </template>
-    </USelectMenu>
+    </USelect>
 </template>
