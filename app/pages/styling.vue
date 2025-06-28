@@ -29,7 +29,6 @@ watch(tabSelected, (newTab) => {
 
 <template>
     <Page class="gap-y-8">
-        {{ fragment }}
         <Section>
             <h1>Styling</h1>
             <h3>Preview your configuration with various components and situations</h3>
