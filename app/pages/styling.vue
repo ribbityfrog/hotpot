@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { StylingColors, StylingBackgrounds } from '#components'
+import { StylingStyle, StylingColors, StylingBackgrounds } from '#components'
 
 let fragment = useRoute().hash
 if (fragment.startsWith('#')) fragment = fragment.slice(1)
 
 const tabItems: { label: string, value: TabElements }[] = [
+    { label: 'Style', value: 'style' },
     { label: 'Colors', value: 'colors' },
     { label: 'Backgrounds', value: 'backgrounds' },
     { label: 'Borders', value: 'borders' },
@@ -12,6 +13,7 @@ const tabItems: { label: string, value: TabElements }[] = [
 ]
 
 const elements = {
+    style: StylingStyle,
     colors: StylingColors,
     backgrounds: StylingBackgrounds,
     borders: StylingColors,
@@ -19,7 +21,7 @@ const elements = {
 } as const
 type TabElements = keyof typeof elements
 
-const tabSelected: Ref<TabElements> = ref(Object.keys(elements).includes(fragment) ? fragment as TabElements : 'colors')
+const tabSelected: Ref<TabElements> = ref(Object.keys(elements).includes(fragment) ? fragment as TabElements : 'style')
 
 watch(tabSelected, (newTab) => {
     window.location.hash = newTab
@@ -36,7 +38,7 @@ watch(tabSelected, (newTab) => {
         <Section tight>
             <UTabs v-model="tabSelected" :items="tabItems" class="w-full sm:w-2/3"/>
         </Section>
-        <Section class-content="gap-y-4">
+        <Section full class-content="gap-y-4">
             <Transition name="slide-fade" mode="out-in">
                 <component :is="elements[tabSelected]" />
             </Transition>

@@ -1,3 +1,3 @@
 <template>
-    <SlatePickerList tiny stretch />
+    <SlatePickerList stretch />
 </template>

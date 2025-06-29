@@ -65,8 +65,8 @@ const isSideOpen = ref(false)
                         </Flex>
                     </Flex>
                     <Transition name="slide-fade" mode="out-in">
-                        <component :is="elements[tabSelected]" v-if="isSideOpen" col />
-                        <component :is="elements[tabSelected]" v-else />
+                        <component :is="elements[tabSelected]" v-if="isSideOpen" col tiny />
+                        <component :is="elements[tabSelected]" v-else tiny />
                     </Transition>
                     <div class="grow" />
                     <UButton

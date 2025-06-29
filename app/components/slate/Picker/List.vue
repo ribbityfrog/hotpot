@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <Flex full center wrap class="gap-4">
+    <Flex center wrap class="gap-4">
         <Flex
             v-for="slate in theme.slates"
             :key="slate.name"
