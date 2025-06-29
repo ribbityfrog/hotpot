@@ -37,7 +37,12 @@ const isSideOpen = ref(false)
             <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
         </Flex>
 
-        <UDrawer v-model:open="isStylingOpened" :direction="isSideOpen ? 'left' : 'bottom'" :overlay="false" handle-only>
+        <UDrawer
+            :key="+isSideOpen"
+            v-model:open="isStylingOpened"
+            :direction="isSideOpen ? 'left' : 'bottom'"
+            :overlay="false"
+            handle-only >
             <template #content>
                 <Flex full col start-center :class="`gap-4 ${isSideOpen ? 'pl-4 py-4' : 'px-2 pb-6'}`">
                     <Flex full between-start class="gap-12">
@@ -65,7 +70,7 @@ const isSideOpen = ref(false)
                         </Flex>
                     </Flex>
                     <Transition name="slide-fade" mode="out-in">
-                        <component :is="elements[tabSelected]" :key="+isSideOpen" :col="isSideOpen" tiny />
+                        <component :is="elements[tabSelected]" :col="isSideOpen" tiny />
                     </Transition>
                     <div class="grow" />
                     <UButton
