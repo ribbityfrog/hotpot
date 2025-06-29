@@ -9,7 +9,7 @@ const isSpread = ref(false)
         <p class="font-medium mb-8">This is a condensed version of all the available options in the bottom styling bar, enjoy</p>
         <USwitch v-model="isSpread" class="mb-4" label="Spread" />
         <Flex
-            :hidden="isSpread"
+            :hidden="!isSpread"
             full
             center-start
             class="gap-8"
@@ -20,7 +20,7 @@ const isSpread = ref(false)
             <DrawerBorders class="border-2 rounded-xl p-4" />
         </Flex>
         <Flex
-            :hidden="!isSpread"
+            :hidden="isSpread"
             full
             center-start
             class="gap-8"
