@@ -52,5 +52,7 @@ export const themeColorsBorder = [
 
 export const themeColors = [ ...themeColorsText, ...themeColorsBackground, ...themeColorsBorder] as const
 
+export type ThemeColorText = typeof themeColorsText[number]
+export type ThemeColorBackground = typeof themeColorsBackground[number]
+export type ThemeColorBorder = typeof themeColorsBorder[number]
 export type ThemeColor = typeof themeColors[number]
-

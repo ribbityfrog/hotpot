@@ -7,7 +7,7 @@ const isSpread = ref(false)
 <template>
     <Flex col center>
         <p class="font-medium mb-8">This is a condensed version of all the available options in the bottom styling bar, enjoy</p>
-        <USwitch v-model="isSpread" class="mb-4" label="Spread" />
+        <!-- <USwitch v-model="isSpread" class="mb-4" label="Spread" /> -->
         <Flex
             :hidden="!isSpread"
             full

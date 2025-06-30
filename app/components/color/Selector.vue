@@ -11,6 +11,18 @@ const props = defineProps({
     tiny: {
         type: Boolean,
         default: false
+    },
+    labeled: {
+        type: Boolean,
+        default: false
+    },
+    labelInverted: {
+        type: Boolean,
+        default: false
+    },
+    name: {
+        type: String,
+        default: undefined
     }
 })
 
@@ -44,40 +56,49 @@ nuxtApp.hook('colors:update', () => {
 
 const size = props.tiny ? 'sm' : 'md'
 
+const label = computed(() => { 
+    if (props.name) return props.name
+    else if (props.labeled) return capitalize(props.color)
+    return undefined
+})
+
 </script>
 
 <template>
     <Flex center class="gap-2">
-        <USelect
-            v-model="selected.shade"
-            :size="size"
-            color="neutral"
-            :items="genItems(themeShadesExtended)"
-            value-key="value"
-            class="w-38"
-            @change="updateColor">
-            <template #leading="{ modelValue }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(modelValue)}`" />
-            </template>
-            <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(itemShades![index]!.value)}`" />
-            </template>
-        </USelect>
-        <USelect
-            v-model="selected.tint"
-            :size="size"
-            :disabled="!isThemeShade(selected.shade)"
-            color="neutral"
-            :items="genItems(themeTints)"
-            value-key="value"
-            class="w-26"
-            @change="updateColor">
-            <template #leading="{ modelValue }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${modelValue}`" />
-            </template>
-            <template #item-leading="{ index }">
-                <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${themeTints![index]}`" />
-            </template>
-        </USelect>
+        <p v-if="label" :class="`font-medium ${props.labelInverted ? 'text-inverted' : ''}`">{{ label }}</p>
+        <Flex center class="gap-2">
+            <USelect
+                v-model="selected.shade"
+                :size="size"
+                color="neutral"
+                :items="genItems(themeShadesExtended)"
+                value-key="value"
+                class="w-38"
+                @change="updateColor">
+                <template #leading="{ modelValue }">
+                    <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(modelValue)}`" />
+                </template>
+                <template #item-leading="{ index }">
+                    <div :class="`mt-0.5 h-3 w-5 rounded-full ${getChipColor(itemShades![index]!.value)}`" />
+                </template>
+            </USelect>
+            <USelect
+                v-model="selected.tint"
+                :size="size"
+                :disabled="!isThemeShade(selected.shade)"
+                color="neutral"
+                :items="genItems(themeTints)"
+                value-key="value"
+                class="w-26"
+                @change="updateColor">
+                <template #leading="{ modelValue }">
+                    <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${modelValue}`" />
+                </template>
+                <template #item-leading="{ index }">
+                    <div :class="`mt-0.5 h-3 w-5 rounded-full bg-${selected.shade}-${themeTints![index]}`" />
+                </template>
+            </USelect>
+        </Flex>
     </Flex>
 </template>

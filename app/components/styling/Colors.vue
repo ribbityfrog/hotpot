@@ -6,7 +6,8 @@
             col
             center
             :class="`border-2 border-${slate.name} rounded-xl p-4 gap-4`">
-            <p class="font-medium">{{ capitalize(slate.name) }}</p>
+            <!-- <p class="font-medium">{{ capitalize(slate.name) }}</p> -->
+            <SlatePicker v-model="theme.slates[slate.name]" neutral outline tiny />
             <Flex center class="gap-4" wrap>
                 <UButton :color="slate.name" label="Button" />
                 <UButton :color="slate.name" icon="i-lucide-bird" disabled label="Disabled" />

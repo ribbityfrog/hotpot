@@ -25,6 +25,14 @@ const props = defineProps({
     tiny: {
         type: Boolean,
         default: false
+    },
+    neutral: {
+        type: Boolean,
+        default: false
+    },
+    outline: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -38,8 +46,8 @@ if (props.stretch) classButton += props.tiny ? 'w-22' : 'w-26'
         <SlatePickerPopup v-model="slate" :class="props.class">
             <UButton
                 :label="capitalize(slate.name)"
-                color="neutral"
-                variant="outline"
+                :color="props.neutral ? 'neutral' : slate.name"
+                :variant="props.outline ? 'outline' : 'solid'"
                 :size="`${props.tiny ? 'xs' : 'md'}`"
                 :class="classButton">
                 <template #leading>
