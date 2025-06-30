@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { StylingStyle, StylingColors, StylingBackgrounds, StylingTexts } from '#components'
+import { StylingStyle, StylingColors, StylingBackgrounds, StylingBorders, StylingTexts } from '#components'
 
 let fragment = useRoute().hash
 if (fragment.startsWith('#')) fragment = fragment.slice(1)
@@ -16,7 +16,7 @@ const elements = {
     style: StylingStyle,
     colors: StylingColors,
     backgrounds: StylingBackgrounds,
-    borders: StylingColors,
+    borders: StylingBorders,
     texts: StylingTexts
 } as const
 type TabElements = keyof typeof elements
