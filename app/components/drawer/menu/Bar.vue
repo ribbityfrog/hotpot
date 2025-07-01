@@ -40,7 +40,7 @@ const isSideOpen = ref(false)
                 menu="drawOptions"
                 color="primary"
                 :ui="{ content: 'bg-inverted', item: 'text-inverted' }">
-                <DrawerMenuIcon name="i-lucide-hamburger" tooltip="Options" />
+                <DrawerMenuIcon name="i-mdi-hamburger" tooltip="Options" />
             </Menu>
         </Flex>
 
