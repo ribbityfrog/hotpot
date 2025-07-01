@@ -5,7 +5,7 @@
 <template>
     <Layout class="relative">
         <DrawerMenuBar />
-        <Section full class="py-3 bg-neutral dark:bg-neutral sticky top-0 z-50">
+        <Section full class="py-3 bg-accented sticky top-0 z-50">
             <HeaderMobile v-if="$device.isMobile" menu="main" />
             <HeaderDefault v-else menu="main" />
         </Section>
@@ -13,7 +13,7 @@
             <slot />
         </Section>
         <footer class="w-full">
-            <Section wide class="bg-neutral-300 dark:bg-neutral-950 py-4">
+            <Section wide class="bg-muted py-4">
                 <FooterDefault />
             </Section>
         </footer>

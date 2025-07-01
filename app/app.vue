@@ -20,7 +20,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <UApp :toaster="{ position: 'top-right' }">
+    <UApp :toaster="{ position: 'top-left' }">
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>
