@@ -8,7 +8,7 @@ const articles = [{
 },
 {
     title: 'Frog birthday !',
-    subtitle: 'Frogs have birthday.\nThe one of yours truly is today :)',
+    subtitle: 'Frogs have birthday.\nChoose the best gift :)',
     thumbnail: '/img/sample/articles/birthday_frog.webp',
     date: '4 Apr. 2025',
 },

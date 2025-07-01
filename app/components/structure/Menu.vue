@@ -35,15 +35,15 @@ const menus = {
         label: 'Styling',
         to: '/styling',
     },
-    {
-        label: 'Components',
-        children: [
-            {
-                label: 'Buttons',
-                to: '/component/buttons',
-            },
-        ],
-    },
+    // {
+    //     label: 'Components',
+    //     children: [
+    //         {
+    //             label: 'Buttons',
+    //             to: '/component/buttons',
+    //         },
+    //     ],
+    // },
     {
         label: 'Samples',
         children: [
@@ -70,7 +70,7 @@ const menus = {
         },
         {
             label: 'Reset theme',
-            onSelect: () => theme.reset()
+            onSelect: () => theme.reset(true)
         },
     ]
 } as const satisfies Record<string, NavigationMenuItem[] | DropdownMenuItem[]>
