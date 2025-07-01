@@ -21,7 +21,7 @@ const selectedTab = ref('text')
         <Flex v-if="selectedTab === 'text'" col center class="gap-6">
             <ColorOption v-model="selectedBg" :colors="[...themeColorsBackground]" class="w-34" />
             <Flex center class="gap-6" wrap>
-                <div v-for="color in themeColorsText" :key="color" :class="`${selectedBg} border-2 p-2 space-y-4`" >
+                <div v-for="color in themeColorsText" :key="color" :class="`${selectedBg} border-2 p-4 space-y-4 rounded-lg`" >
                     <ColorSelector :color="color" labeled :label-inverted="selectedBg === 'bg-inverted'" />
                     <StylingTextsSample :color="color" />
                 </div>
@@ -30,7 +30,7 @@ const selectedTab = ref('text')
         <Flex v-else col center class="gap-6">
             <ColorOption v-model="selectedText" :colors="[...themeColorsText]" class="w-34" />
             <Flex center class="gap-6" wrap>
-                <div v-for="color in themeColorsBackground" :key="color" :class="`${color} border-2 p-2 space-y-4`" >
+                <div v-for="color in themeColorsBackground" :key="color" :class="`${color} border-2 p-4 space-y-4 rounded-lg`" >
                     <ColorSelector :color="selectedText" labeled :label-inverted="color === 'bg-inverted'" />
                     <StylingTextsSample :color="selectedText" />
                 </div>

@@ -27,7 +27,7 @@ export type ThemeShadeTint = `${ThemeShade}-${ThemeTint}`
 export type ThemeShadeTintExtended = `${ThemeShade}-${ThemeTint}` | 'white' | 'black'
 
 export const themeColorsText = [
-    'text',
+    'text-default',
     'text-inverted',
     'text-dimmed',
     'text-muted',
@@ -36,7 +36,7 @@ export const themeColorsText = [
 ] as const
 
 export const themeColorsBackground = [
-    'bg',
+    'bg-default',
     'bg-inverted',
     'bg-muted',
     'bg-elevated',
@@ -44,7 +44,7 @@ export const themeColorsBackground = [
 ] as const
 
 export const themeColorsBorder = [
-    'border',
+    'border-default',
     'border-inverted',
     'border-muted',
     'border-accented',

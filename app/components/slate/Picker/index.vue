@@ -37,7 +37,7 @@ const props = defineProps({
 })
 
 let classButton = ''
-if (props.stretch) classButton += props.tiny ? 'w-22' : 'w-26'
+if (props.stretch) classButton += props.tiny ? 'w-22' : 'w-30'
 
 </script>
 

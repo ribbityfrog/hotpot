@@ -1,12 +1,18 @@
+export type SlateJSON = Record<ThemeShade, { shade: string, light: ThemeTint, dark: ThemeTint }>
+
 export class Slate {
     name: ThemeShade
     tints!: Record<ThemeTint, Color>
-    darkTint: ThemeTint = '400'
     lightTint: ThemeTint = '500'
+    darkTint: ThemeTint = '400'
 
-    constructor(color: Color, shade: ThemeShade) {
+    constructor(color: Color, shade: ThemeShade, light?: ThemeTint, dark?: ThemeTint) {
         this.name = shade
         color.attachSlate(this)
+
+        if (light) this.lightTint = light
+        if (dark) this.darkTint = dark
+
         this.tintsGen(color)
     }
 
