@@ -35,6 +35,13 @@ const isSideOpen = ref(false)
             <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="openStyling('bg-colors')" />
             <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="openStyling('border-colors')" />
             <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
+            <div class="w-[1px] h-10 bg-muted" />
+            <Menu
+                menu="drawOptions"
+                color="primary"
+                :ui="{ content: 'bg-inverted', item: 'text-inverted' }">
+                <DrawerMenuIcon name="i-lucide-hamburger" tooltip="Options" />
+            </Menu>
         </Flex>
 
         <UDrawer

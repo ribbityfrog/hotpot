@@ -3,21 +3,34 @@ export type SlateJSON = Record<ThemeShade, { shade: string, light: ThemeTint, da
 export class Slate {
     name: ThemeShade
     tints!: Record<ThemeTint, Color>
-    lightTint: ThemeTint = '500'
-    darkTint: ThemeTint = '400'
+    _lightTint: ThemeTint = '500'
+    _darkTint: ThemeTint = '400'
 
     constructor(color: Color, shade: ThemeShade, light?: ThemeTint, dark?: ThemeTint) {
         this.name = shade
         color.attachSlate(this)
 
-        if (light) this.lightTint = light
-        if (dark) this.darkTint = dark
+        if (light) this._lightTint = light
+        if (dark) this._darkTint = dark
 
         this.tintsGen(color)
     }
 
     get color(): Color { return this.tints['500'] }
     get shades(): Record<ThemeTint, Color> { return this.tints }
+
+    get lightTint(): ThemeTint { return this._lightTint }
+    get darkTint(): ThemeTint { return this._darkTint }
+    set lightTint(tint: ThemeTint) { 
+        this._lightTint = tint
+        this.applyColor()
+        theme.save()
+    }
+    set darkTint(tint: ThemeTint) { 
+        this._darkTint = tint
+        this.applyColor()
+        theme.save()
+    }
 
     update(color?: Color) { 
         if (color) {
@@ -27,6 +40,7 @@ export class Slate {
         else this.tintsGen(this.color)
         this.applyStyle()
         this.applyColor()
+        theme.save()
     }
 
     tintsGen(color: Color): void {
@@ -53,5 +67,13 @@ export class Slate {
     applyColor() {
         const mode = useColorMode().value
         setProperty(`--ui-${this.name}`, `var(--ui-color-${this.name}-${mode === 'dark' ? this.darkTint : this.lightTint})`)
+    }
+
+    toJSON() {
+        return {
+            shade: this.color.hex3,
+            light: this.lightTint,
+            dark: this.darkTint
+        }
     }
 }

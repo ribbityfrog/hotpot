@@ -28,7 +28,6 @@ function select(tint: ThemeTint, hovering: boolean = false)
         slate.value.darkTint = tint
     else
         slate.value.lightTint = tint
-    slate.value.applyColor()
 }
 
 const defaultSize = props.tiny ? 'w-4 h-4' : 'w-8 h-6'

@@ -58,17 +58,33 @@ const menus = {
         to: '/generate',
     }],
 
+    drawOptions: [
+        {
+            label: 'Import theme (soon)',
+        },    
+        {
+            label: 'Export theme (soon)',
+        },    
+        {
+            label: 'Share theme (soon)',
+        },
+        {
+            label: 'Reset theme',
+            onSelect: () => theme.reset()
+        },
+    ]
 } as const satisfies Record<string, NavigationMenuItem[] | DropdownMenuItem[]>
 
 </script>
 
 <template>
-    <UDropdownMenu v-if="props.dropdown" :items="[...menus[props.menu]]">
-        <UButton :label="props.dropdown"/>
+    <UDropdownMenu v-if="props.dropdown || $slots.default" :items="[...menus[props.menu]]" v-bind="$attrs">
+        <slot><UButton :label="props.dropdown"/></slot>
     </UDropdownMenu>
     <UNavigationMenu
         v-else
         :content-orientation="props.mega ? 'horizontal' : 'vertical'"
         :orientation="props.vertical ? 'vertical' : 'horizontal'"
-        :items="[...menus[props.menu]]" />
+        :items="[...menus[props.menu]]"
+        v-bind="$attrs" />
 </template>
