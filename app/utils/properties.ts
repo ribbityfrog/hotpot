@@ -3,6 +3,5 @@ export function getProperty(property: string, el: HTMLElement = document.documen
 }
 
 export function setProperty(property: string, value: string, el: HTMLElement = document.documentElement): void {
-    console.log(property, value)
     el.style.setProperty(property.includes('-default') ? property.replace('-default', '') : property, value)
 }

@@ -17,12 +17,17 @@ onMounted(() => {
     }
 })
 
+const route = useRoute()
+const sharedStyling = route.query.t
+
 </script>
 
 <template>
     <UApp :toaster="{ position: 'top-left' }">
         <NuxtLayout>
             <NuxtPage />
+
+            <StylingModalImport v-if="sharedStyling && !Array.isArray(sharedStyling)" :content="sharedStyling" />
         </NuxtLayout>
     </UApp>
 </template>

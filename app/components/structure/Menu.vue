@@ -66,7 +66,16 @@ const menus = {
             label: 'Export theme (soon)',
         },    
         {
-            label: 'Share theme (soon)',
+            label: 'Share styling',
+            onSelect: () => {
+                const shareLink = theme.shareLink()
+
+                if (shareLink)
+                {
+                    useToast().add({ title: 'Share link copied!', description: 'Share link has been copied to clipboard.', color: 'success' })
+                    navigator.clipboard.writeText(shareLink)
+                }
+            }
         },
         {
             label: 'Reset theme',

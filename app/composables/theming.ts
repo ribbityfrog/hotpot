@@ -1,3 +1,5 @@
+import { compressUrlSafe } from '~/utils/lmza'
+
 export class Theme {
     #slates!: Ref<Record<ThemeShade, Slate>>
     #colors!: Ref<Record<ThemeColor, ThemeShadeTintExtended>>
@@ -149,6 +151,54 @@ export class Theme {
 
         const toaster = useToast()
         toaster.add({ title: 'Theme reseted!', description: 'Theme has been reseted.', color: 'success' })
+    }
+
+    shareLink(): string | null {
+
+        const slates = localStorage.getItem(this.#lsSlates)
+        const colors = localStorage.getItem(this.#lsColors)
+        const others = localStorage.getItem(this.#lsOthers)
+        
+        if (!slates && !colors && !others)
+        {
+            useToast().add({ title: 'No colors to share', description: 'Your themed has not been customised enough to be shared', color: 'warning' })
+            return null
+        }
+
+        const shareContent: Record<string, string> = {}
+        if (slates) shareContent.slates = JSON.parse(slates)
+        if (colors) shareContent.colors = JSON.parse(colors)
+        if (others) shareContent.others = JSON.parse(others)
+
+        const url = useRequestURL()
+        
+        return `${url.protocol}//${url.host}?t=${compressUrlSafe(JSON.stringify(shareContent))}`
+    }
+    
+    loadStyling(styling: Record<string, any>) {
+
+        console.log(styling)
+
+        if (styling.slates)
+        {
+            console.log('hum')
+            this.#slates = ref(this.copySlates(styling.slates))
+            this.applySlates()
+        }
+
+        if (styling.colors) {
+            this.#colors = ref(styling.colors.light)
+            this.#colorsDark = ref(styling.colors.dark)
+            this.applyColors()
+        }
+
+        if (styling.others)
+        {
+            this.#others = ref(styling.others)
+            this.applyOthers()
+        }
+
+        theme.save()
     }
 }
 
