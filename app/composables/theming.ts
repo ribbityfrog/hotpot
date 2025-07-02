@@ -131,6 +131,7 @@ export class Theme {
         if (delet) {
             localStorage.removeItem(this.#lsSlates)
             localStorage.removeItem(this.#lsColors)
+            localStorage.removeItem(this.#lsOthers)
         }
 
         this.#slates.value = this.copySlates(defaultSlates)
@@ -142,7 +143,7 @@ export class Theme {
 
         this.#others.value = { ...defaultOthers }
         this.applyOthers()
-        
+
         const nuxtApp = useNuxtApp()
         nuxtApp.callHook('colors:update')
 
