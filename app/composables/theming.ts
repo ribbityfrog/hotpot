@@ -177,11 +177,8 @@ export class Theme {
     
     loadStyling(styling: Record<string, any>) {
 
-        console.log(styling)
-
         if (styling.slates)
         {
-            console.log('hum')
             this.#slates = ref(this.copySlates(styling.slates))
             this.applySlates()
         }
