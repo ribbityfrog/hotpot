@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
-const selectedBg: Ref<ThemeColorBackground> = ref('bg')
-const selectedText: Ref<ThemeColorText> = ref('text')
+const selectedBg: Ref<ThemeColorBackground> = ref('bg-default')
+const selectedText: Ref<ThemeColorText> = ref('text-default')
 
 const tabs = [{
     label: 'Text variants',

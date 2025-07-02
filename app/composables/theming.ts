@@ -72,11 +72,11 @@ export class Theme {
     applyOthers(specific?: ThemeOther ) {
         if (specific) {
             const val = this.#others.value[specific]!
-            setProperty(`--ui-${specific}`, typeof val === 'number' ? `${val}rem` : val)
+            setProperty(`--${specific === 'spacing' ? '' : 'ui-'}${specific}`, typeof val === 'number' ? `${val}rem` : val)
         }
         else
             for (const [key, value] of Object.entries(this.#others.value))
-                setProperty(`--ui-${key}`, typeof value === 'number' ? `${value}rem` : value)
+                setProperty(`--${key === 'spacing' ? '' : 'ui-'}${key}`, typeof value === 'number' ? `${value}rem` : value)
     }
 
     setColor(name: ThemeColor, color: ThemeShadeTintExtended, mode?: string) {
@@ -140,6 +140,9 @@ export class Theme {
         this.#colorsDark.value = { ...defaultColorsDark }
         this.applyColors()
 
+        this.#others.value = { ...defaultOthers }
+        this.applyOthers()
+        
         const nuxtApp = useNuxtApp()
         nuxtApp.callHook('colors:update')
 

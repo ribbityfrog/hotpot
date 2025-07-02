@@ -1,7 +1,3 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
     <Flex col center class="gap-6">
         <Flex center class="gap-4" wrap>
