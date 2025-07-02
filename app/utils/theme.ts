@@ -56,3 +56,6 @@ export type ThemeColorText = typeof themeColorsText[number]
 export type ThemeColorBackground = typeof themeColorsBackground[number]
 export type ThemeColorBorder = typeof themeColorsBorder[number]
 export type ThemeColor = typeof themeColors[number]
+
+export const themeOthers = [ 'radius', 'spacing']
+export type ThemeOther = typeof themeOthers[number]

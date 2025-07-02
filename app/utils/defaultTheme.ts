@@ -81,3 +81,8 @@ export const defaultSlates: Record<ThemeShade, { shade: string, light: ThemeTint
         dark: '800'
     }
 }
+
+export const defaultOthers = {
+    'radius': 0.5,
+    'spacing': 0.25
+}

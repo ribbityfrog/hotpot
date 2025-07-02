@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { DrawerSlates, DrawerBackgrounds, DrawerBorders, DrawerTexts } from '#components'
+import { DrawerSlates, DrawerBackgrounds, DrawerBorders, DrawerTexts, DrawerSpacing } from '#components'
 
 const tabItems: { icon: string, value: TabElement }[] = [
     { icon: 'i-mdi-color', value: 'colors' },
@@ -12,7 +12,8 @@ const elements = {
     colors: DrawerSlates,
     'bg-colors': DrawerBackgrounds,
     'border-colors': DrawerBorders,
-    'text-colors': DrawerTexts
+    'text-colors': DrawerTexts,
+    'spacing': DrawerSpacing
 } as const
 type TabElement = keyof typeof elements
 
@@ -35,6 +36,7 @@ const isSideOpen = ref(false)
             <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="openStyling('bg-colors')" />
             <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="openStyling('border-colors')" />
             <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
+            <DrawerMenuIcon name="i-mdi-border-radius" tooltip="Texts colors" @click="openStyling('spacing')" />
             <div class="w-[1px] h-10 bg-muted" />
             <Menu
                 menu="drawOptions"
