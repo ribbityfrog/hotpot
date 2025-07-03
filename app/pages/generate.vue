@@ -4,7 +4,15 @@ const nuxtConfig =
 `export default defineNuxtConfig({
 \tui: {
 \t\ttheme: {
-\t\t\tcolors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral']
+\t\t\tcolors: [
+\t\t\t\t'primary',
+\t\t\t\t'secondary',
+\t\t\t\t'success',
+\t\t\t\t'info',
+\t\t\t\t'warning',
+\t\t\t\t'error',
+\t\t\t\t'neutral'
+\t\t\t],
 \t\t},
 \t},
 \tcss: ['~/assets/css/tailwind.css'],
@@ -56,10 +64,10 @@ let cssConfig =
 
 theme static {`
 
-for (const [key, value] of Object.entries(themeShades)) {
+for (const slate of Object.values(theme.slates)) {
     cssConfig += '\n'
-    for (const [index, tint] of Object.values(themeTints).entries())
-        cssConfig += `\n\t${value}${tint}: ${theme.shades[key as ThemeShade].shades[index]!.hex3};`
+    for (const [tint, shade] of Object.entries(slate.shades))
+        cssConfig += `\n\t--color-slate${capitalize(slate.name)}-${tint}: ${shade.hex3};`
 }
 
 cssConfig += '}\n\n:root {\n'
@@ -89,13 +97,13 @@ cssConfig += '}'
                 This will work only if you have Nuxt UI correctly installed
             </p>
         </Section>
-        <Section start>
-            <ShikiBox :code="nuxtConfig" file="/nuxt.config.ts" />
+        <Section>
+            <Flex center-start class="gap-6">
+                <ShikiBox :code="nuxtConfig" file="/nuxt.config.ts" />
+                <ShikiBox :code="appConfig" file="(/app)/app.config.ts" />
+            </Flex>
         </Section>
-        <Section start>
-            <ShikiBox :code="appConfig" file="(/app)/app.config.ts" />
-        </Section>
-        <Section start>
+        <Section>
             <ShikiBox lang="css" :code="cssConfig" file="(/app)/assets/css/tailwind.css" />
         </Section>
     </Page>
