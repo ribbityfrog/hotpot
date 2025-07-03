@@ -7,41 +7,35 @@
         <Section start title="What's this ?">
             <p>It's a pain to find the right colors for your website and even worse to configure them all in Nuxt UI.</p>
             <p>In this pot, mix the colors you want and the code for your light and dark theme will be automatically generated.</p>
-            <strong>I do the bare minimum at best for mobile, hotpot is meant to be used on desktop for now</strong>
+            <strong>I did the bare minimum at best for mobile, hotpot is meant to be used on desktop for now</strong>
             <p class="mt-2"><ULink to="https://github.com/ribbityfrog/hotpot" target="_blank" external>https://github.com/ribbityfrog/hotpot</ULink></p>
         </Section>
         <Section start title="How to use">
             <p>I turned the fire on already :</p>
             <ol class="list-decimal list-inside ml-4">
-                <li>Choose your colors in <ULink to="/colors">Colors</ULink></li>
-                <li>Shape your components</li>
-                <li>Check the coherence with the samples</li>
-                <li>Retrieve the code in <ULink to="/generate">Generate</ULink></li>
+                <li><ULink to="/styling">Colors</ULink>, choose your colors and style</li>
+                <li>Shaping (soon), shape pour components the way you like them</li>
+                <li>Samples, fine tune your design with some samples</li>
+                <li><ULink to="/generate">Generate</ULink> the Nuxt UI configuration code</li>
             </ol>
-            <strong>Shades and Colors are constantly available as drawers in the header</strong>
+            <strong>The styling is constantly available in the bottom menu alongside with some options</strong>
         </Section>
         <Section start title="Next steps">
-            <p>Here is the roadmap if this project has any form of success:</p>
+            <p>Here the next steps and some ideas I have in mind:</p>
             <ul class="list-disc list-inside ml-4">
-                <li>Adding some Components pages to have more samples (in progress)</li>
-                <li>Export / Import shades and colors (from hotpot to hotpot only)</li>
-                <li>Better shades calculation (now it sucks, I should use HSL to have cleaner shades)</li>
+                <li>Components customisation (shaping)</li>
+                <li>Export / import your theme including the shaping</li>
                 <li>Contrast calculation for accessibility, like <ULink to="https://webaim.org/resources/contrastchecker/" target="_blank" external>WebAIM</ULink></li>
-                <li>Being able to add Shades to be used in the Nuxt UI Shades/Colors and with Tailwind directly</li>
-                <li>More tailwind theming (rounded, shadows and others)</li>
-                <li>Components theming and generating an <i>app.config.ts</i></li> 
+                <li>Better tints calculation and control (now it sucks, I should use HSL to have cleaner tints)</li>
             </ul>
         </Section>
         <Section start title="I have suggestions">
             <p>Thanks :)</p>
-            <p>You can reach me on the <ULink>Nuxt Discord</ULink> or email me at <ULink to="mailto:contact@steamfrog.net" target="_blank" external>contact@steamfrog.net</ULink></p>
+            <p>You can reach me on the <ULink>Nuxt Discord</ULink> or email me at <ULink to="mailto:contact@frogpond.dev" target="_blank" external>contact@frogpond.dev</ULink></p>
         </Section>
         <Section start title="Contributors" class-content="gap-y-2">
             <p>Feel free to contact me if you want to contribute to the project</p>
-            <div>
-                <p class="line-through">If you think your theme is cool, feel free to share it to me, I'll create a gallery later :)</p>
-                <p>Wait... I have to make the export/import first ^^"</p>
-            </div>
+            <p>If you think your styling is cool, feel free to share ne the link, I'll create a gallery later :)</p>
             <p>Thanks to <ULink to="https://github.com/bertyn99">@bertyn99</ULink> who sparkled the idea</p>
         </Section>
     </Page>
