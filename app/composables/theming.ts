@@ -51,7 +51,6 @@ export class Theme {
     }
 
     setOther(key: ThemeOther, value: string | number) {
-        console.log(key, value)
         this.#others.value[key] = value
         this.applyOthers(key)
         localStorage.setItem(this.#lsOthers, JSON.stringify(this.#others.value))

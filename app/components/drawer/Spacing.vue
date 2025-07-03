@@ -13,9 +13,9 @@ const radius = ref<number>(theme.others.radius as number)
                 v-model="radius"
                 :max="2"
                 :min="0.1"
-                :step="0.1"
+                :step="0.05"
                 size="sm"
-                @change="theme.setOther('radius', radius)" />
+                @update:model-value="theme.setOther('radius', radius)" />
             <p class="text-xs">Used for <span class="text-info">rounded</span> utility</p>
         </Flex>
         <Flex col center class="gap-2">
@@ -26,7 +26,7 @@ const radius = ref<number>(theme.others.radius as number)
                 :min="0.01"
                 :step="0.01"
                 size="sm"
-                @change="theme.setOther('spacing', spacing)" />
+                @update:model-value="theme.setOther('spacing', spacing)" />
             <p class="text-xs">Used as a multiplicator for utilities <br> like <span class="text-info">width, height, margins, paddings...</span></p>
         </Flex>
     </Flex>
