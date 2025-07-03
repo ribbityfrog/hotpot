@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-theme.reset(true)
+// theme.reset(true)
 navigateTo('/')
 
 </script>
