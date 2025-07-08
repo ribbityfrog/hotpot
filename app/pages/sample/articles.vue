@@ -85,7 +85,7 @@ function reset() {
             </Flex>
         </Section>
         <Section>
-            <Flex full class="justify-center items-stretch content-start gap-8">
+            <Flex full class="justify-center items-stretch content-start gap-8" wrap>
                 <Flex
                     v-for="article in articles"
                     :key="article.title"

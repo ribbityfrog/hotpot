@@ -33,6 +33,6 @@ function clipboard() {
             </p>
             <UIcon name="i-lucide-clipboard" class="hover:animate-pulse cursor-pointer" @click="clipboard" />
         </Flex>
-        <Shiki :lang="props.lang" :code="props.code" class="px-2 py-2 bg-inverted border-primary dark:bg-elevated border-x-2 border-b-2" />
+        <Shiki :lang="props.lang" :code="props.code" :class="`px-2 py-2 bg-inverted border-primary dark:bg-elevated border-x-2 border-b-2 ${$device.isMobile ? 'text-xs' : ''}`" />
     </Flex>
 </template>

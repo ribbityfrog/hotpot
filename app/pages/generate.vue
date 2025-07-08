@@ -103,7 +103,7 @@ cssConfig += '}'
             </p>
         </Section>
         <Section>
-            <Flex center-start class="gap-6">
+            <Flex center-start class="gap-6" wrap>
                 <ShikiBox :code="nuxtConfig" file="/nuxt.config.ts" />
                 <ShikiBox :code="appConfig" file="(/app)/app.config.ts" />
             </Flex>
