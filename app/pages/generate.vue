@@ -65,21 +65,26 @@ let cssConfig =
 theme static {`
 
 for (const slate of Object.values(theme.slates)) {
-    cssConfig += '\n'
+    if (cssConfig.slice(-1) !== '{')
+        cssConfig += '\n'
     for (const [tint, shade] of Object.entries(slate.shades))
         cssConfig += `\n\t--color-slate${capitalize(slate.name)}-${tint}: ${shade.hex3};`
 }
 
-cssConfig += '}\n\n:root {\n'
+cssConfig += '}\n\n:root {'
 
 for (const [key, value] of Object.entries(theme.colors)) {
-    cssConfig += `\t--ui-color-${key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
+    if (key.includes('default'))
+        cssConfig += '\n'
+    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
 }
 
-cssConfig += '}\n\n.dark {\n'
+cssConfig += '}\n\n.dark {'
 
 for (const [key, value] of Object.entries(theme.colorsDark)) {
-    cssConfig += `\t--ui-color-${key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
+    if (key.includes('default'))
+        cssConfig += '\n'
+    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
 }
 
 cssConfig += '}'

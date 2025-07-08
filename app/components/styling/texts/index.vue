@@ -5,10 +5,10 @@ const selectedText: Ref<ThemeColorText> = ref('text-default')
 
 const tabs = [{
     label: 'Text variants',
-    value: 'text' as const
+    value: 'text'
 }, {
     label: 'Background variants',
-    value: 'bg' as const
+    value: 'bg'
 }]
 
 const selectedTab = ref('text')
