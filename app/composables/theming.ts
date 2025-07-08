@@ -160,7 +160,7 @@ export class Theme {
         
         if (!slates && !colors && !others)
         {
-            useToast().add({ title: 'No colors to share', description: 'Your themed has not been customised enough to be shared', color: 'warning' })
+            useToast().add({ title: 'No colors to share', description: 'Your theme has not been customised enough to be shared', color: 'warning' })
             return null
         }
 
