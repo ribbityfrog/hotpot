@@ -21,7 +21,7 @@
                     :key="border"
                     center
                     wrap
-                    :class="`${bg} p-4`">
+                    :class="`${bg} p-2 sm:p-4`">
                     <StylingBordersSample :color="border" :class="bg === 'bg-inverted' ? 'text-inverted' : ''" />
                 </Flex>
             </Flex>

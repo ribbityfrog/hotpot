@@ -6,7 +6,7 @@ const tabItems: { icon: string, value: TabElement }[] = [
     { icon: 'i-mdi-format-paint', value: 'bg-colors' },
     { icon: 'i-mdi-border-all', value: 'border-colors' },
     { icon: 'i-mdi-writing-system-latin', value: 'text-colors' },
-    { icon: 'i-mdi-focus-field', value: 'spacing' }
+    { icon: 'i-mdi-border-radius', value: 'spacing' }
 ]
 
 const elements = {
@@ -37,7 +37,7 @@ const isSideOpen = ref(false)
             <DrawerMenuIcon name="i-mdi-format-paint" tooltip="Backgrounds colors" @click="openStyling('bg-colors')" />
             <DrawerMenuIcon name="i-mdi-border-all" tooltip="Borders colors" @click="openStyling('border-colors')" />
             <DrawerMenuIcon name="i-mdi-writing-system-latin" tooltip="Texts colors" @click="openStyling('text-colors')" />
-            <DrawerMenuIcon name="i-mdi-focus-field" tooltip="Texts colors" @click="openStyling('spacing')" />
+            <DrawerMenuIcon name="i-mdi-border-radius" tooltip="Texts colors" @click="openStyling('spacing')" />
             <div class="w-[1px] h-10 bg-muted" />
             <Menu
                 menu="drawOptions"

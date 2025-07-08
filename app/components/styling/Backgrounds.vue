@@ -54,10 +54,10 @@ const compShade: Ref<ThemeShade> = ref('primary')
                     <ColorOptionShade v-model="compShade" class="mt-2" />
                 </Flex>
                 <UTabs :color="compShade" :items="[{ label: 'Frog' }, { label: 'Bird' }]" class="w-52" />
-                <UStepper :color="compShade" :items="[{ icon: 'i-lucide-bird' }, { icon: 'i-lucide-egg' }, { icon: 'i-lucide-egg-fried' }]" size="xl" class="w-82" />
-                <UInput variant="soft" placeholder="Input, soft variant" :color="compShade" class="w-92" />
-                <UTextarea variant="subtle" placeholder="Textarea, subtle variant" :color="compShade" class="w-92" />
-                <UProgress :color="compShade" animation="swing" size="xl" class="w-92" />
+                <UStepper :color="compShade" :items="[{ icon: 'i-lucide-bird' }, { icon: 'i-lucide-egg' }, { icon: 'i-lucide-egg-fried' }]" size="xl" class="w-72 sm:w-82" />
+                <UInput variant="soft" placeholder="Input, soft variant" :color="compShade" class="sm:w-92" />
+                <UTextarea variant="subtle" placeholder="Textarea, subtle variant" :color="compShade" class="sm:w-92" />
+                <UProgress :color="compShade" animation="swing" size="xl" class="sm:w-92" />
             </Flex>
         </Flex>
     </Flex>

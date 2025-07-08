@@ -54,7 +54,7 @@ nuxtApp.hook('colors:update', () => {
     selected.value = defineSelection(colorMode.value)
 })
 
-const size = props.tiny ? 'sm' : 'md'
+const size = props.tiny || useDevice()?.isMobile ? 'sm' : 'md'
 
 const label = computed(() => { 
     if (props.name) return props.name
@@ -65,7 +65,7 @@ const label = computed(() => {
 </script>
 
 <template>
-    <Flex center class="gap-2">
+    <Flex center class="gap-2" wrap>
         <p v-if="label" :class="`font-medium ${props.labelInverted ? 'text-inverted' : ''}`">{{ label }}</p>
         <Flex center class="gap-2">
             <USelect

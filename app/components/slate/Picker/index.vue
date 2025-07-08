@@ -36,25 +36,28 @@ const props = defineProps({
     }
 })
 
+const isTiny = useDevice()?.isMobile ?? props.tiny
+
 let classButton = ''
-if (props.stretch) classButton += props.tiny ? 'w-22' : 'w-30'
+if (props.stretch) classButton += isTiny ? 'w-22' : 'w-30'
+
 
 </script>
 
 <template>
-    <Flex class="gap-y-2">
+    <Flex center class="gap-y-2" wrap>
         <SlatePickerPopup v-model="slate" :class="props.class">
             <UButton
                 :label="capitalize(slate.name)"
                 :color="props.neutral ? 'neutral' : slate.name"
                 :variant="props.outline ? 'outline' : 'solid'"
-                :size="`${props.tiny ? 'xs' : 'md'}`"
+                :size="`${isTiny ? 'xs' : 'md'}`"
                 :class="classButton">
                 <template #leading>
                     <span :class="`bg-${slate.name}-500`" class="size-3 rounded-full" />
                 </template>
             </UButton>
         </SlatePickerPopup>
-        <SlateTiles v-model="slate" :class="props.classTiles" :tiny="props.tiny" />
+        <SlateTiles v-model="slate" :class="props.classTiles" :tiny="isTiny" />
     </Flex>
 </template>

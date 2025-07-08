@@ -15,11 +15,11 @@ const props = defineProps({
 
 <template>
     <Flex center wrap class="gap-4">
-        <Flex
+        <SlatePicker
             v-for="slate in theme.slates"
             :key="slate.name"
-            center>
-            <SlatePicker v-model="theme.slates[slate.name]" :stretch="props.stretch" :tiny="props.tiny" />
-        </Flex>
+            v-model="theme.slates[slate.name]"
+            :stretch="props.stretch"
+            :tiny="props.tiny" />
     </Flex>
 </template>

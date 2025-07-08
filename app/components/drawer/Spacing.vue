@@ -6,7 +6,7 @@ const radius = ref<number>(theme.others.radius as number)
 </script>
 
 <template>
-    <Flex center-start class="gap-12">
+    <Flex center-start class="gap-6 sm:gap-12" wrap>
         <Flex col center class="gap-2">
             <p class="font-medium">Radius <span class="text-sm">(in rem)</span></p>
             <UInputNumber

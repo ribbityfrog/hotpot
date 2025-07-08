@@ -10,5 +10,5 @@ const props = defineProps({
 </script>
 
 <template>
-    <ColorList :colors="[...themeColorsBackground]" :stretch-width="props.tiny ? 'w-26' : 'w-30'" />
+    <ColorList :colors="[...themeColorsBackground]" :stretch-width="props.tiny || $device.isMobile ? 'w-26' : 'w-30'" />
 </template>

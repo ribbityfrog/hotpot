@@ -36,7 +36,7 @@ watch(tabSelected, (newTab) => {
             <h3>Preview your configuration with various components and situations</h3>
         </Section>
         <Section tight>
-            <UTabs v-model="tabSelected" :items="tabItems" class="w-full sm:w-2/3"/>
+            <UTabs v-model="tabSelected" :items="tabItems" :orientation="$device.isMobile ? 'vertical' : 'horizontal'" class="sm:w-2/3"/>
         </Section>
         <Section full class-content="gap-y-4">
             <Transition name="slide-fade" mode="out-in">
