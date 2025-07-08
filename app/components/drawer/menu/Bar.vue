@@ -58,9 +58,8 @@ const isSideOpen = ref(false)
                     <Flex full between-start class="gap-12">
                         <Flex start-center class="w-1/3">
                             <DarkSwitch />
-                            <Flex center class="w-full">
+                            <Flex v-if="!isSideOpen && !$device.isMobile" center class="w-full">
                                 <UButton
-                                    v-if="!isSideOpen"
                                     variant="outline"
                                     color="info"
                                     size="sm"
@@ -68,7 +67,7 @@ const isSideOpen = ref(false)
                                     @click="isSideOpen = true" />
                             </Flex>
                         </Flex>
-                        <Flex center class="w-1/3">
+                        <Flex v-if="!$device.isMobile" center class="w-1/3">
                             <UTabs v-model="tabSelected" size="xl" variant="link" :items="tabItems"/>
                         </Flex>
                         <Flex end class="w-1/3">
@@ -79,17 +78,20 @@ const isSideOpen = ref(false)
                                 @click="isStylingOpened = false"/>
                         </Flex>
                     </Flex>
+                    <Flex v-if="$device.isMobile" center class="w-1/3">
+                        <UTabs v-model="tabSelected" size="xl" variant="link" :items="tabItems"/>
+                    </Flex>
                     <Transition name="slide-fade" mode="out-in">
                         <component :is="elements[tabSelected]" :col="isSideOpen" tiny />
                     </Transition>
                     <div class="grow" />
                     <UButton
-                        v-if="isSideOpen"
+                        v-if="isSideOpen || $device.isMobile"
                         size="lg"
                         variant="outline"
                         color="info"
-                        label="dock on the bottom"
-                        @click="isSideOpen = false" />
+                        :label="isSideOpen ? 'dock on the bottom' : 'dock on the left'"
+                        @click="isSideOpen = !isSideOpen" />
                 </Flex>
             </template>
         </UDrawer>
