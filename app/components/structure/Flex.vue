@@ -61,6 +61,10 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
+    centerStretch: {
+        type: Boolean,
+        default: false
+    },
     aroundStart: {
         type: Boolean,
         default: false
@@ -138,6 +142,8 @@ else if (props.centerStart)
     justifyAlign = 'justify-center items-start content-center'
 else if (props.centerEnd)
     justifyAlign = 'justify-center items-end content-center'
+else if (props.centerStretch)
+    justifyAlign = 'justify-center items-stretch content-center'
 else if (props.aroundStart)
     justifyAlign = 'justify-around items-start content-center'
 else if (props.evenlyStart)

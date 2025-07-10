@@ -4,21 +4,23 @@
             <h1>Hotpot - Nuxt UI Theming</h1>
             <p>Let's cook something nice with and for <ULink to="https://ui.nuxt.com/" target="_blank" external>Nuxt UI</ULink></p>
         </Section>
-        <Section start title="What's this ?">
-            <p>It's a pain to find the right colors for your website and even worse to configure them all in Nuxt UI.</p>
-            <p>In this pot, mix the colors you want and the code for your light and dark theme will be automatically generated.</p>
-            <strong>It's not mobile responsive yet, given the goal and the code it produces, I consider it not a priority</strong>
-            <p class="mt-2"><ULink to="https://github.com/ribbityfrog/hotpot" target="_blank" external>https://github.com/ribbityfrog/hotpot</ULink></p>
+        <Section class="bg-primary-100 dark:bg-primary-800 text-center py-4" class-content="gap-y-1">
+            <p>It would be great to have a simple tool to theme Nuxt UI easily</p>
+            <p>It would be even better to generate th associated code, ready to be copy/pasted in your project, right ?</p>
+            <p>Well, there you go :)</p>
         </Section>
-        <Section start title="How to use">
-            <p>I turned the fire on already :</p>
-            <ol class="list-decimal list-inside ml-4">
-                <li><ULink to="/styling">Colors</ULink>, choose your colors and style</li>
-                <li>Shaping (soon), shape pour components the way you like them</li>
-                <li>Samples, fine tune your design with some samples</li>
-                <li><ULink to="/generate">Generate</ULink> the Nuxt UI configuration code</li>
-            </ol>
-            <strong>The styling is constantly available in the bottom menu alongside with some options</strong>
+        <Section title="Ready to start ?" center-title class-content="gap-6">
+            <Flex center-stretch class="justify-stretch gap-12 mt-4" wrap>
+                <EditoCard :numero="1" title="Styling" description="Choose and setup your colors" link="/styling"/>
+                <EditoCard
+                    :numero="2"
+                    title="Shaping"
+                    description="Shape your components the way you like"
+                    soon/>
+                <EditoCard :numero="3" title="Samples" description="Choose and setup your colors" link="/sample/articles"/>
+                <EditoCard :numero="4" title="Generate" description="Copy/paste the associated code in your project" link="/sample/articles"/>
+            </Flex>
+            <p class="text-info">The styling is constantly available in the bottom menu alongside with some options</p>
         </Section>
         <Section start title="Next steps">
             <p>Here the next steps and some ideas I have in mind:</p>
@@ -31,7 +33,7 @@
         </Section>
         <Section start title="I have suggestions">
             <p>Thanks :)</p>
-            <p>You can reach me on the <ULink>Nuxt Discord</ULink> or email me at <ULink to="mailto:contact@frogpond.dev" target="_blank" external>contact@frogpond.dev</ULink></p>
+            <p>You can reach me on the <ULink to="https://discord.com/invite/nuxt" target="_blank" external>Nuxt Discord</ULink> or email me at <ULink to="mailto:contact@frogpond.dev" target="_blank" external>contact@frogpond.dev</ULink></p>
         </Section>
         <Section start title="Contributors" class-content="gap-y-2">
             <p>Feel free to contact me if you want to contribute to the project</p>
