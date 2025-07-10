@@ -6,7 +6,7 @@
         </Section>
         <Section class="bg-primary-100 dark:bg-primary-800 text-center py-4" class-content="gap-y-1">
             <p>It would be great to have a simple tool to theme Nuxt UI easily</p>
-            <p>It would be even better to generate th associated code, ready to be copy/pasted in your project, right ?</p>
+            <p>It would be even better to generate the associated code, ready to be copy/pasted in your project, right ?</p>
             <p>Well, there you go :)</p>
         </Section>
         <Section title="Ready to start ?" center-title class-content="gap-6">
