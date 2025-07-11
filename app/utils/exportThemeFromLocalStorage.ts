@@ -100,9 +100,21 @@ export function exportThemeFromStorageAsNuxtUIConfig(): string {
   const config = {
     ui: {
       primary: primaryColorName,
-      gray: grayColorName
+      secondary: slates.secondary ? 'secondary' : undefined,
+      success: slates.success ? 'success' : undefined,
+      info: slates.info ? 'info' : undefined,
+      warning: slates.warning ? 'warning' : undefined,
+      error: slates.error ? 'error' : undefined,
+      gray: grayColorName,
     }
   }
+
+  // Remove undefined values
+  Object.keys(config.ui).forEach(key => {
+    if (config.ui[key as keyof typeof config.ui] === undefined) {
+      delete config.ui[key as keyof typeof config.ui]
+    }
+  })
 
   return `export default defineAppConfig(${JSON.stringify(config, null, 2)})`
 }
@@ -117,9 +129,21 @@ export function exportThemeFromStorageAsNuxtUIV2Config(): string {
   const config = {
     ui: {
       primary: primaryColorName,
-      gray: grayColorName
+      gray: grayColorName,
+      secondary: slates.secondary ? 'secondary' : undefined,
+      success: slates.success ? 'success' : undefined,
+      info: slates.info ? 'info' : undefined,
+      warning: slates.warning ? 'warning' : undefined,
+      error: slates.error ? 'error' : undefined
     }
   }
+
+  // Remove undefined values
+  Object.keys(config.ui).forEach(key => {
+    if (config.ui[key as keyof typeof config.ui] === undefined) {
+      delete config.ui[key as keyof typeof config.ui]
+    }
+  })
 
   return `export default defineAppConfig(${JSON.stringify(config, null, 2)})`
 }
@@ -135,10 +159,22 @@ export function exportThemeFromStorageAsNuxtUIV3Config(): string {
     ui: {
       colors: {
         primary: primaryColorName,
-        neutral: neutralColorName
+        secondary: slates.secondary ? 'secondary' : undefined,
+        success: slates.success ? 'success' : undefined,
+        info: slates.info ? 'info' : undefined,
+        warning: slates.warning ? 'warning' : undefined,
+        error: slates.error ? 'error' : undefined,
+        neutral: neutralColorName,
       }
     }
   }
+
+  // Remove undefined values
+  Object.keys(config.ui.colors).forEach(key => {
+    if (config.ui.colors[key as keyof typeof config.ui.colors] === undefined) {
+      delete config.ui.colors[key as keyof typeof config.ui.colors]
+    }
+  })
 
   return `export default defineAppConfig(${JSON.stringify(config, null, 2)})`
 }
