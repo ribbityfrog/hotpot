@@ -76,7 +76,7 @@ cssConfig += '}\n\n:root {'
 for (const [key, value] of Object.entries(theme.colors)) {
     if (key.includes('default'))
         cssConfig += '\n'
-    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
+    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-color-${value})`};\n`
 }
 
 cssConfig += '}\n\n.dark {'
@@ -84,7 +84,7 @@ cssConfig += '}\n\n.dark {'
 for (const [key, value] of Object.entries(theme.colorsDark)) {
     if (key.includes('default'))
         cssConfig += '\n'
-    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-${value})`};\n`
+    cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-color-${value})`};\n`
 }
 
 cssConfig += '}'
