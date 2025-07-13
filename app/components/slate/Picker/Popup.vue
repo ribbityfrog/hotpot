@@ -11,17 +11,14 @@ const input = ref(slate.value.color.hex3)
 watch(picker, (newColor) => {
     if (newColor?.[0] !== '#') {
         picker.value = `#${newColor}`
-        console.log('meh')
         return
     }
     if (newColor?.length < 7) {
         picker.value = newColor.padEnd(7, '0')
-        console.log('meh')
         return
     }
     if (newColor?.length > 7) {
         picker.value = newColor.slice(0, 7)
-        console.log('meh')
         return
     }
 
