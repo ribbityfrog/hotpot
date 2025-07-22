@@ -54,8 +54,8 @@ const menus = {
         ],
     },
     {
-        label: 'Generate',
-        to: '/generate',
+        label: 'Code',
+        to: '/code',
     }],
 
     drawOptions: [

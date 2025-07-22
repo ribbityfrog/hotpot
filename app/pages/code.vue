@@ -62,7 +62,7 @@ let cssConfig =
 `@import 'tailwindcss';
 @import '@nuxt/ui';
 
-theme static {`
+@theme static {`
 
 for (const slate of Object.values(theme.slates)) {
     if (cssConfig.slice(-1) !== '{')
@@ -71,7 +71,10 @@ for (const slate of Object.values(theme.slates)) {
         cssConfig += `\n\t--color-slate${capitalize(slate.name)}-${tint}: ${shade.hex3};`
 }
 
-cssConfig += '}\n\n:root {'
+cssConfig += '}\n\n:root {\n'
+
+for (const [key, value] of Object.entries(theme.slates))
+    cssConfig += `\t--ui-${key}: var(--ui-color-${value.name}-${value.lightTint});\n`
 
 for (const [key, value] of Object.entries(theme.colors)) {
     if (key.includes('default'))
@@ -79,7 +82,10 @@ for (const [key, value] of Object.entries(theme.colors)) {
     cssConfig += `\t--ui-${key.includes('-default') ? key.replace('-default', '') : key}: ${value === 'black' || value === 'white' ? value : `var(--ui-color-${value})`};\n`
 }
 
-cssConfig += '}\n\n.dark {'
+cssConfig += '}\n\n.dark {\n'
+
+for (const [key, value] of Object.entries(theme.slates))
+    cssConfig += `\t--ui-${key}: var(--ui-color-${value.name}-${value.darkTint});\n`
 
 for (const [key, value] of Object.entries(theme.colorsDark)) {
     if (key.includes('default'))

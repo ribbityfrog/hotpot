@@ -18,7 +18,7 @@
                     description="Shape your components the way you like"
                     soon/>
                 <EditoCard :numero="3" title="Samples" description="Choose and setup your colors" link="/sample/articles"/>
-                <EditoCard :numero="4" title="Generate" description="Copy/paste the associated code in your project" link="/sample/articles"/>
+                <EditoCard :numero="4" title="Generate" description="Copy/paste the associated code in your project" link="/code"/>
             </Flex>
             <p class="text-info">The styling is constantly available in the bottom menu alongside with some options</p>
         </Section>
